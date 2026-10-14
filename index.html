@@ -22,9 +22,13 @@
                         brand: {
                             50: '#f0fdf4',
                             100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
                             500: '#22c55e',
                             600: '#16a34a',
                             700: '#15803d',
+                            800: '#166534',
                             900: '#14532d',
                         }
                     }
@@ -57,12 +61,14 @@
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden lg:flex items-center space-x-6">
                     <a href="#" onclick="navigate('home')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Beranda</a>
                     <a href="#" onclick="navigate('edukasi')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Edukasi & Berita</a>
                     <a href="#" onclick="navigate('katalog')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Katalog Produk</a>
+                    <a href="#" onclick="navigate('sdg')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">SDG Academy</a>
+                    <a href="#" onclick="navigate('tim')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Tim Kami</a>
 
-                    <div class="flex items-center gap-4 ml-4 border-l pl-4 border-gray-200">
+                    <div class="flex items-center gap-4 ml-2 border-l pl-4 border-gray-200">
                         <div id="auth-section-desktop">
                             <!-- Injected by JS -->
                         </div>
@@ -70,7 +76,7 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center gap-4">
+                <div class="lg:hidden flex items-center gap-4">
                     <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-brand-600 focus:outline-none p-2">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
@@ -79,11 +85,13 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" onclick="navigate('home'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Beranda</a>
                 <a href="#" onclick="navigate('edukasi'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Edukasi & Berita</a>
                 <a href="#" onclick="navigate('katalog'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Katalog Produk</a>
+                <a href="#" onclick="navigate('sdg'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">SDG Academy</a>
+                <a href="#" onclick="navigate('tim'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Tim Kami</a>
                 <div id="auth-section-mobile" class="border-t border-gray-200 mt-2 pt-2 px-3">
                     <!-- Injected by JS -->
                 </div>
@@ -125,13 +133,15 @@
                         <li><a href="#" onclick="navigate('home')" class="hover:text-brand-500 transition">Beranda</a></li>
                         <li><a href="#" onclick="navigate('edukasi')" class="hover:text-brand-500 transition">Edukasi & Berita</a></li>
                         <li><a href="#" onclick="navigate('katalog')" class="hover:text-brand-500 transition">Katalog Produk</a></li>
+                        <li><a href="#" onclick="navigate('sdg')" class="hover:text-brand-500 transition">SDG Academy Indonesia</a></li>
+                        <li><a href="#" onclick="navigate('tim')" class="hover:text-brand-500 transition">Tim Agracantika</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Mitra Penjualan</h3>
                     <p class="text-xs text-gray-500 mb-3 leading-relaxed">Agracantika.store adalah portal informasi & katalog — tidak melayani transaksi jual‑beli langsung. Pembelian dilayani oleh mitra berikut:</p>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="https://www.kriyakiteindonesia.com/" target="_blank" rel="noopener" class="hover:text-brand-500 transition"><i class="fa-solid fa-arrow-up-right-from-square w-5 text-xs"></i> Kriya Kite Indonesia</a></li>
+                        <li><a href="https://id.shp.ee/Rmc2uxcY" target="_blank" rel="noopener" class="hover:text-brand-500 transition"><i class="fa-solid fa-arrow-up-right-from-square w-5 text-xs"></i> Shopee — Kriya Kite Indonesia</a></li>
                         <li><a href="https://id.shp.ee/RKmnheoP" target="_blank" rel="noopener" class="hover:text-brand-500 transition"><i class="fa-solid fa-arrow-up-right-from-square w-5 text-xs"></i> Shopee — PT Raksasi Ruri Arimbi</a></li>
                     </ul>
                 </div>
@@ -139,12 +149,14 @@
                     <h3 class="text-lg font-semibold mb-4">Kontak</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><i class="fa-solid fa-envelope w-5"></i> info@agracantika.store</li>
+                        <li><a href="https://www.instagram.com/agra.cantika/" target="_blank" rel="noopener" class="hover:text-brand-500 transition"><i class="fa-brands fa-instagram w-5"></i> @agra.cantika</a></li>
                         <li class="flex items-start gap-1"><i class="fa-solid fa-location-dot w-5 mt-1"></i> <span>Desa Toman, Kabupaten Musi Banyuasin, Sumatera Selatan</span></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
                 &copy; 2026 Agracantika — SDG Academy Indonesia Capstone Project. Portal informasi & katalog, bukan platform transaksi.
+                <button onclick="showLoginModal()" class="ml-2 text-gray-700 hover:text-gray-400 transition" aria-label="Ruang kontributor" title="Ruang kontributor"><i class="fa-solid fa-feather-pointed text-xs"></i></button>
             </div>
         </div>
     </footer>
@@ -216,8 +228,8 @@
                     img: 'images/produk-kain-gambo-wastra.jpg',
                     desc: 'Wastra tradisional khas Musi Banyuasin dengan motif jumputan dan pewarna alami — perpaduan hitam, coklat, dan krem yang elegan dan natural. Dikembangkan Kriya Kite Indonesia untuk melestarikan warisan budaya dan membuka peluang ekonomi bagi perajin perempuan. Harga tertinggi untuk bahan sutra.',
                     vendor: 'Kriya Kite Indonesia',
-                    ctaLabel: 'Beli di Kriya Kite Indonesia',
-                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                    ctaLabel: 'Beli di Shopee Kriya Kite',
+                    externalUrl: 'https://id.shp.ee/Rmc2uxcY'
                 },
                 {
                     id: 'kriyakite-outer-gambo',
@@ -226,8 +238,8 @@
                     img: 'images/produk-outer-gambo.jpg',
                     desc: 'Potongan modern dan santai dengan aksen kain Gambo bermotif jumputan pada kerah, saku, dan tepian. Serbaguna untuk kegiatan komunitas, acara semi-formal, hingga aktivitas kreatif sehari-hari.',
                     vendor: 'Kriya Kite Indonesia',
-                    ctaLabel: 'Beli di Kriya Kite Indonesia',
-                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                    ctaLabel: 'Beli di Shopee Kriya Kite',
+                    externalUrl: 'https://id.shp.ee/Rmc2uxcY'
                 },
                 {
                     id: 'kriyakite-vest-gambo',
@@ -236,8 +248,8 @@
                     img: 'images/produk-vest-gambo.jpg',
                     desc: 'Siluet feminin tanpa lengan dengan panel kain Gambo bermotif jumputan coklat alam dan kombinasi krem. Nyaman dipadukan untuk bekerja, acara, maupun kegiatan formal dan komunitas.',
                     vendor: 'Kriya Kite Indonesia',
-                    ctaLabel: 'Beli di Kriya Kite Indonesia',
-                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                    ctaLabel: 'Beli di Shopee Kriya Kite',
+                    externalUrl: 'https://id.shp.ee/Rmc2uxcY'
                 },
                 {
                     id: 'kriyakite-totebag-gambo',
@@ -246,8 +258,8 @@
                     img: 'images/produk-totebag-gambo.jpg',
                     desc: 'Memadukan kain Gambo bermotif jumputan dengan material canvas dalam desain praktis dan modern. Cocok untuk bekerja, berbelanja, atau sebagai hadiah bermakna.',
                     vendor: 'Kriya Kite Indonesia',
-                    ctaLabel: 'Beli di Kriya Kite Indonesia',
-                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                    ctaLabel: 'Beli di Shopee Kriya Kite',
+                    externalUrl: 'https://id.shp.ee/Rmc2uxcY'
                 },
                 {
                     id: 'kriyakite-cardholder-gambo',
@@ -256,21 +268,35 @@
                     img: 'images/produk-cardholder-gambo.jpg',
                     desc: 'Aksesori kerja dengan material bertekstur, detail jahitan, dan aksen kain Gambo. Cocok sebagai merchandise perusahaan, seminar kit, atau suvenir — tersedia opsi kustomisasi logo dan identitas perusahaan (contoh: Pertamina Hulu Rokan).',
                     vendor: 'Kriya Kite Indonesia',
-                    ctaLabel: 'Beli di Kriya Kite Indonesia',
-                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                    ctaLabel: 'Beli di Shopee Kriya Kite',
+                    externalUrl: 'https://id.shp.ee/Rmc2uxcY'
                 }
             ];
         }
 
+        // Gabungkan paragraf: setiap paragraf dipisah baris kosong (\n\n) supaya
+        // admin juga bisa menulis artikel panjang lewat dashboard (Enter 2x = paragraf baru).
+        const P = (...paragraphs) => paragraphs.join('\n\n');
+
+        const SRC_MONGABAY_2021 = { t: 'Mongabay Indonesia (10 Jan 2021): Pernah jadi andalan Sumatera Selatan, tanaman gambir kini ditinggalkan', u: 'https://mongabay.co.id/2021/01/10/pernah-jadi-andalan-sumatera-selatan-tanaman-gambir-kini-ditinggalkan/' };
+        const SRC_MONGABAY_2020 = { t: 'Mongabay Indonesia (11 Des 2020): Bukan hanya karet dan sawit, Kabupaten Muba juga kembangkan gambir', u: 'https://mongabay.co.id/2020/12/11/bukan-hanya-karet-dan-sawit-kabupaten-muba-juga-kembangkan-gambir/' };
+        const SRC_TANOTO_SDGACADEMY = { t: 'Tanoto Foundation: peluncuran SDG Academy Indonesia (Oktober 2019)', u: 'https://www.tanotofoundation.org/?p=3116' };
+
         function getDefaultPosts() {
             return [
+                // ====================== BERITA ======================
                 {
                     id: 'fgd-pemda-12okt2026',
                     title: 'FGD & Deklarasi Komitmen Bersama: Pengembangan dan Hilirisasi Gambir Berkelanjutan Musi Banyuasin',
                     type: 'Berita',
                     date: '12 Oktober 2026',
                     image: 'images/berita-fgd-pemda-12okt2026.jpg',
-                    content: 'Tim Agracantika bersama Pemerintah Daerah Kabupaten Musi Banyuasin dan para petani gambir menyelenggarakan Focus Group Discussion (FGD) di Kantor Bapperida Musi Banyuasin. Kegiatan ini ditutup dengan penandatanganan Deklarasi Komitmen Bersama "Pengembangan dan Hilirisasi Gambir Berkelanjutan Kabupaten Musi Banyuasin: Kolaborasi Multipihak untuk Nilai Tambah, Daya Saing, dan Kesejahteraan Masyarakat", yang ditandatangani oleh Pemerintah Daerah, kelompok petani gambir, komunitas Selaras Muba Lestari, akademisi/peneliti, serta pelaku UMKM — menandai arah bersama bagi masa depan petani gambir di Musi Banyuasin.'
+                    icon: 'fa-handshake',
+                    content: P(
+                        'Tim Agracantika bersama Pemerintah Daerah Kabupaten Musi Banyuasin dan para petani gambir menyelenggarakan Focus Group Discussion (FGD) di Kantor Bapperida Musi Banyuasin. Forum ini mempertemukan pihak-pihak yang selama ini bekerja di titik berbeda pada rantai nilai gambir: pengambil kebijakan daerah, petani yang mengolah getah, akademisi, hingga pelaku usaha kecil.',
+                        'Kegiatan ditutup dengan penandatanganan Deklarasi Komitmen Bersama bertajuk “Pengembangan dan Hilirisasi Gambir Berkelanjutan Kabupaten Musi Banyuasin: Kolaborasi Multipihak untuk Nilai Tambah, Daya Saing, dan Kesejahteraan Masyarakat”. Deklarasi ini ditandatangani oleh Pemerintah Daerah, kelompok petani gambir, komunitas Selaras Muba Lestari, akademisi/peneliti, serta pelaku UMKM.',
+                        'Bagi Tim Agracantika, deklarasi ini adalah pijakan awal, bukan garis akhir. Sebuah deklarasi menyatakan arah dan niat bersama; langkah berikutnya adalah menerjemahkannya menjadi kesepakatan yang lebih rinci, misalnya tentang pasokan bahan baku, mutu, dan mekanisme harga yang adil bagi petani. Tim akan melaporkan perkembangan tindak lanjutnya di laman ini.'
+                    )
                 },
                 {
                     id: 'kunjungan-kebun-12okt2026',
@@ -278,7 +304,12 @@
                     type: 'Berita',
                     date: '12 Oktober 2026',
                     image: 'images/berita-kunjungan-kebun-12okt2026.jpg',
-                    content: 'Masih di hari yang sama dengan FGD bersama Pemda, Tim Agracantika mengunjungi kebun gambir milik petani binaan di Musi Banyuasin untuk melihat langsung proses budidaya hingga pengolahan getah gambir. Kunjungan ini memperkuat pemahaman tim atas tantangan di tingkat petani, sekaligus menjadi dasar perancangan produk turunan (kriya dan sabun) yang benar-benar menjawab kebutuhan rantai nilai gambir dari hulu.'
+                    icon: 'fa-seedling',
+                    content: P(
+                        'Masih di hari yang sama dengan FGD bersama Pemda, Tim Agracantika mengunjungi kebun gambir milik petani binaan di Musi Banyuasin. Tujuannya sederhana tetapi penting: melihat langsung bagaimana tanaman dibudidayakan, bagaimana daun dan ranting dipanen, dan bagaimana getahnya diolah menjadi gambir cetak yang selama ini dijual sebagai bahan mentah.',
+                        'Secara umum, pengolahan getah gambir di tingkat petani memerlukan beberapa hari dan banyak tenaga: daun serta ranting direbus, dipres untuk mengeluarkan cairan getah, diendapkan, dicetak, lalu dikeringkan. Melihat tahapan ini dari dekat membuat tim lebih memahami di mana petani paling terbebani, dan di mana peluang nilai tambah paling masuk akal dibuka.',
+                        'Pengalaman lapangan ini menjadi dasar perancangan produk turunan, yaitu kriya dan sabun. Tim ingin produk yang dirancang benar-benar menjawab kebutuhan rantai nilai dari hulu, bukan sekadar produk menarik yang tidak membawa manfaat bagi pengolah getah di desa.'
+                    )
                 },
                 {
                     id: 'kunjungan-ruriarimbi-06okt2026',
@@ -286,15 +317,256 @@
                     type: 'Berita',
                     date: '6 Oktober 2026',
                     image: 'images/berita-kunjungan-ruriarimbi-06okt2026.jpg',
-                    content: 'Tim Agracantika berkunjung ke fasilitas PT Raksasi Ruri Arimbi untuk melihat langsung proses penelitian, pengembangan (R&D), hingga produksi sabun botanical berbahan ekstrak gambir. Kunjungan ini menjadi bagian dari kolaborasi yang menghasilkan dua produk sabun gambir — Refreshing Botanical Soap dan Relaxing Botanical Soap — yang kini tersedia bagi masyarakat luas.'
+                    icon: 'fa-flask',
+                    content: P(
+                        'Tim Agracantika berkunjung ke fasilitas PT Raksasi Ruri Arimbi untuk melihat langsung proses penelitian, pengembangan (R&D), hingga produksi sabun botanical berbahan ekstrak gambir. Kunjungan ini memperlihatkan bahwa pengembangan produk kosmetik menuntut tahapan yang ketat, mulai dari formulasi, uji coba, hingga kemasan.',
+                        'Kolaborasi dengan Ruri Arimbi menghasilkan dua produk sabun gambir, yaitu Refreshing Botanical Soap dan Relaxing Botanical Soap, yang kini tersedia bagi masyarakat luas melalui Shopee PT Raksasi Ruri Arimbi. Ekstrak gambir yang digunakan berasal dari rantai pasok gambir Desa Toman yang dikembangkan tim.',
+                        'Model kerja samanya mempertemukan dua kekuatan: petani menyediakan bahan baku, sementara perusahaan yang sudah memiliki fasilitas, pengalaman formulasi, dan saluran penjualan mengolahnya menjadi produk jadi. Tim menegaskan satu hal sejak awal: sabun ini diposisikan sebagai produk perawatan harian berbahan botani, bukan produk yang mengklaim khasiat medis.'
+                    )
                 },
                 {
                     id: 'buku-merajut-asa',
-                    title: 'Buku "Merajut Asa di Musi Banyuasin: Sinergi, Inovasi, dan Keberlanjutan Rantai Nilai Gambir" Resmi Terbit',
-                    type: 'Edukasi',
+                    title: 'Buku “Merajut Asa di Musi Banyuasin: Sinergi, Inovasi, dan Keberlanjutan Rantai Nilai Gambir” Resmi Terbit',
+                    type: 'Berita',
                     date: 'Oktober 2026',
                     image: 'images/berita-buku-merajut-asa-cover.png',
-                    content: 'Tim Penulis Agracantika menerbitkan buku "Merajut Asa di Musi Banyuasin: Sinergi, Inovasi, dan Keberlanjutan Rantai Nilai Gambir" bersama Gemini Publishing, dengan prolog oleh Fadillah (SDG Academy Indonesia) dan disunting oleh Andi Azhar. Buku ini merangkum perjalanan, tantangan, dan strategi kolaborasi multipihak dalam membangun rantai nilai gambir yang berkelanjutan di Kabupaten Musi Banyuasin.'
+                    icon: 'fa-book-open',
+                    content: P(
+                        'Tim Penulis Agracantika menerbitkan buku “Merajut Asa di Musi Banyuasin: Sinergi, Inovasi, dan Keberlanjutan Rantai Nilai Gambir” bersama Gemini Publishing. Buku ini memuat prolog oleh Fadillah dari SDG Academy Indonesia dan disunting oleh Andi Azhar.',
+                        'Buku ini merupakan bunga rampai yang ditulis sepuluh penulis dengan latar berbeda, mulai dari unsur pemerintah, akademisi, hingga pelaku industri dan praktisi lapangan. Keragaman sudut pandang itu disengaja, sebab persoalan gambir di Musi Banyuasin tidak bisa dijelaskan dari satu sisi saja.',
+                        'Isinya merangkum perjalanan, tantangan, dan strategi kolaborasi multipihak dalam membangun rantai nilai gambir yang berkelanjutan di Kabupaten Musi Banyuasin. Buku ini juga menjadi rujukan bagi capstone Agracantika dan bahan pengembangan tulisan ilmiah tentang pemberdayaan petani gambir.'
+                    )
+                },
+
+                // ====================== EDUKASI ======================
+                {
+                    id: 'toman-satu-satunya-gambir-sumsel',
+                    title: 'Desa Toman: Sentra Gambir Satu-satunya di Sumatera Selatan',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/berita-kunjungan-kebun-12okt2026.jpg',
+                    icon: 'fa-location-dot',
+                    sources: [SRC_MONGABAY_2021, SRC_MONGABAY_2020],
+                    content: P(
+                        'Dalam pembicaraan tentang perkebunan Sumatera Selatan, karet dan sawit hampir selalu menguasai percakapan. Gambir nyaris tak terdengar. Padahal di Desa Toman, Kecamatan Babat Toman, Kabupaten Musi Banyuasin (Muba), tanaman yang oleh warga setempat disebut “gambo” ini ditanam dan diolah turun-temurun. Data BPS Kabupaten Musi Banyuasin (2023) yang kami rujuk menempatkan Muba sebagai satu-satunya kabupaten penghasil gambir di Sumatera Selatan, dan liputan Mongabay Indonesia menyebut Desa Toman sebagai pusatnya.',
+                        'Menurut penuturan warga yang dikutip Mongabay, gambir sudah dikenal sejak masa Kedatuan Sriwijaya sebagai komoditas rempah ekspor, dan kebun gambir di Toman diyakini berusia ratusan tahun, bahkan lebih tua daripada masa kolonial Belanda. Sebelum karet diperkenalkan, gambir disebut-sebut sebagai tumpuan ekonomi masyarakat Babat Toman. Catatan ini berasal dari tuturan lokal, bukan dokumen sejarah resmi, sehingga sebaiknya dibaca sebagai bagian dari ingatan kolektif desa.',
+                        'Di tingkat petani, gambir dikelola dalam kelompok tani. Laporan Mongabay tahun 2020 mencatat salah satunya, Kelompok Tani Ginde, beranggotakan 19 keluarga dengan lahan garapan masing-masing sekitar 1 sampai 1,5 hektare. Gambir juga lazim ditanam sebagai tanaman sela di kebun karet, dan dengan perawatan yang baik tanamannya dapat bertahan 25 tahun atau lebih.',
+                        'Getah gambir diolah secara tradisional selama sekitar tiga sampai empat hari. Daun dan ranting direbus lalu digiling, dipres untuk mengeluarkan cairan, diendapkan semalam, dipres lagi hingga terpisah antara air dan endapan padat, lalu endapan itu direbus ulang, dicetak di nampan, dan dikeringkan. Hasilnya berupa gambir cetak yang dijual sebagai bahan mentah.',
+                        'Soal luas kebun, angka yang beredar berbeda-beda antar sumber: Mongabay (2020) melaporkan sekitar 35 hektare di Kecamatan Babat Toman, sementara catatan lain menyebut ratusan hektare pada tahun-tahun sebelumnya. Perbedaan ini bisa muncul karena tahun, wilayah, dan definisi yang berbeda (luas tanam atau luas panen). Kami sengaja tidak memilih satu angka tunggal; data resmi yang terbaru dan seragam memang termasuk hal yang masih perlu dibenahi.',
+                        'Skalanya kecil dibanding sentra besar di Sumatera Barat dan Riau, tetapi justru di situlah argumen Agracantika: ketika sebuah daerah hanya memiliki satu sentra, kehilangan sentra itu berarti kehilangan seluruh pengetahuan budidaya, pengolahan, dan tradisi yang menyertainya. Bagi Toman, nilai tambah lebih masuk akal dikejar daripada volume.'
+                    )
+                },
+                {
+                    id: 'mengenal-gambir',
+                    title: 'Mengenal Gambir: Dari Daun Uncaria gambir hingga Getah Cetak',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/produk-sabun-cair-100ml.jpg',
+                    icon: 'fa-leaf',
+                    sources: [SRC_MONGABAY_2020, SRC_MONGABAY_2021],
+                    content: P(
+                        'Gambir adalah produk yang berasal dari tanaman Uncaria gambir, semak memanjat dari keluarga Rubiaceae. Tanaman ini tumbuh di daerah tropis Asia Tenggara dan, menurut Mongabay Indonesia, dapat dibudidayakan pada ketinggian sekitar 200 sampai 1.000 meter di atas permukaan laut. Di Musi Banyuasin, ia dapat ditanam di sela pohon karet sehingga tidak selalu membutuhkan lahan khusus.',
+                        'Yang diperdagangkan bukan daunnya begitu saja, melainkan ekstrak getahnya. Daun dan ranting muda dipanen, direbus, dipres, lalu cairan yang dihasilkan diendapkan dan dikeringkan menjadi balok atau potongan cokelat yang keras. Dalam bahasa Inggris produk ini sering disebut gambier atau pale catechu.',
+                        'Rasa sepat dan warna cokelat khas gambir terutama berasal dari dua kelompok senyawa: katekin dan tanin. Katekin adalah antioksidan yang juga ditemukan dalam teh, sedangkan tanin bersifat mengikat protein dan memberi sifat astringen. Dua senyawa inilah yang menjadi dasar hampir semua pemanfaatan gambir, mulai dari pewarna hingga bahan baku kosmetik.',
+                        'Secara nasional, Mongabay mencatat sekitar 90 persen gambir Indonesia berasal dari Sumatera Barat dan Riau, dengan India dan Singapura sebagai tujuan ekspor utama. Daerah lain seperti Jambi, Bengkulu, dan Sumatera Selatan memasok jumlah yang lebih kecil. Karena gambir umumnya diperdagangkan sebagai bahan mentah, nilai tambahnya banyak dinikmati di luar desa penghasil.',
+                        'Memahami gambir sebagai bahan dengan banyak kemungkinan, tetapi umumnya dijual sebagai komoditas mentah, adalah titik awal gagasan Agracantika. Pertanyaannya bukan lagi apakah gambir berguna, melainkan bagaimana kegunaan itu dikembalikan kepada orang yang menanam dan mengolahnya.'
+                    )
+                },
+                {
+                    id: 'manfaat-gambir',
+                    title: 'Manfaat Gambir: Yang Sudah Diketahui dan Yang Belum Terbukti',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-flask-vial',
+                    sources: [SRC_MONGABAY_2020],
+                    content: P(
+                        'Gambir memiliki riwayat penggunaan tradisional yang panjang. Selain untuk menyirih, ia dipakai dalam pengobatan rakyat. Mongabay mengutip pakar setempat bahwa gambir secara tradisional digunakan untuk luka bakar, sakit kepala, diare, disentri, dan penyakit kulit. Catatan ini penting sebagai warisan pengetahuan, tetapi pemakaian tradisional belum sama dengan bukti klinis.',
+                        'Minat ilmiah terhadap gambir bertumpu pada kandungan katekin dan taninnya. Katekin dikenal sebagai antioksidan, sedangkan tanin memberi efek astringen. Sejumlah penelitian laboratorium dan formulasi melaporkan aktivitas antioksidan serta antimikroba dari ekstrak gambir, dan beberapa di antaranya meneliti pemakaian dalam sabun, pasta gigi, atau sediaan perawatan kulit.',
+                        'Namun, bukti bergerak dalam tangga yang berjenjang: uji di tabung reaksi, uji hewan atau uji pilot kecil pada manusia, lalu uji klinis dengan pembanding. Untuk sebagian besar pemanfaatan kosmetik gambir, bukti yang tersedia masih berada di anak tangga bawah, yaitu bioaktivitas laboratorium dan formulasi. Itu menunjukkan potensi, bukan jaminan khasiat pada kulit manusia.',
+                        'Karena itu Agracantika tidak mengklaim bahwa sabun gambir menyembuhkan penyakit kulit atau memberi efek anti-penuaan. Uji coba terbatas yang dilakukan tim terhadap 30 orang dewasa pada Oktober 2026 hanya menilai penerimaan, seperti aroma, busa, dan kesan setelah pemakaian; uji itu tidak dirancang untuk membuktikan khasiat maupun keamanan.',
+                        'Ada pula hal yang perlu diwaspadai. Tanin dapat membuat kulit terasa kering atau iritatif pada sebagian orang jika kadarnya tinggi, katekin mudah teroksidasi sehingga warna produk dapat berubah cokelat dan menodai kain, dan gambir mentah dari pengolahan tradisional berpotensi memiliki mutu yang tidak seragam. Pengujian mutu dan keamanan bahan baku karenanya merupakan syarat, bukan pilihan.',
+                        'Manfaat yang paling bisa dipertanggungjawabkan saat ini justru bersifat ekonomi: gambir adalah bahan baku serbaguna yang, bila diolah lebih lanjut dengan benar, dapat memberi penghasilan lebih baik bagi petani. Informasi ini bersifat edukasi umum dan bukan nasihat medis; konsultasikan kondisi kulit atau kesehatan Anda kepada tenaga kesehatan.'
+                    )
+                },
+                {
+                    id: 'pemanfaatan-gambir',
+                    title: 'Pemanfaatan Gambir: Dari Sirih hingga Kosmetik',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/produk-kain-gambo-wastra.jpg',
+                    icon: 'fa-puzzle-piece',
+                    sources: [SRC_MONGABAY_2020, SRC_MONGABAY_2021],
+                    content: P(
+                        'Pemanfaatan paling tua dan paling dikenal adalah sebagai ramuan menyirih. Mongabay menyebut tradisi menyirih telah berlangsung ribuan tahun di kawasan ini, dan gambir menjadi salah satu komponen utamanya. Kebiasaan inilah yang selama berabad-abad menjaga permintaan, termasuk permintaan ekspor ke India.',
+                        'Di luar menyirih, gambir dipakai sebagai pewarna alami dan bahan penyamak kulit. Tanin dalam gambir mengikat serat dan protein sehingga menghasilkan warna cokelat hangat pada kain, sekaligus dapat digunakan untuk menyamak kulit. Pemanfaatan ini bersifat industri sekaligus kriya.',
+                        'Di Musi Banyuasin, kriya gambir terwujud dalam kain jumputan “Gambo”, yaitu kain yang dicelup memakai getah gambir atau cairan limbah pengolahannya. Menariknya, limbah cair pengolahan yang tadinya sulit dikelola ternyata dapat dijual kepada pengrajin; pada tahun 2020 petani menyebut harganya sekitar Rp1.000 per liter. Pendapatannya kecil, tetapi menunjukkan bahwa produk sampingan pun bisa bernilai.',
+                        'Pemanfaatan lain adalah sebagai bahan baku farmasi dan perawatan diri. Katekin yang dimurnikan dari gambir diteliti untuk sediaan kosmetik dan kesehatan, dan Pemerintah Kabupaten Muba pernah menyatakan sedang mengkaji produksi katekin untuk pasar farmasi dan kosmetik. Jalur ini bernilai tinggi tetapi menuntut peralatan, standar mutu, dan perizinan yang lebih berat.',
+                        'Agracantika memilih dua jalur yang saling melengkapi. Pertama, kriya dan pewarna alami (kain Gambo, outer, vest, tas, dan dompet kartu) bersama Kriya Kite Indonesia, yang menyerap bahan dalam jumlah besar. Kedua, sabun berekstrak gambir bersama PT Raksasi Ruri Arimbi, yang memberi nilai jual lebih tinggi per satuan bahan. Katalog keduanya dapat dilihat pada halaman Katalog Produk.'
+                    )
+                },
+                {
+                    id: 'tantangan-petani-gambir',
+                    title: 'Tantangan yang Dihadapi Petani Gambir Hari Ini',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-triangle-exclamation',
+                    sources: [SRC_MONGABAY_2021, SRC_MONGABAY_2020],
+                    content: P(
+                        'Tantangan pertama dan paling terasa adalah harga. Dalam laporan Mongabay (Desember 2020), petani di Babat Toman menyebut harga jual getah gambir turun dari sekitar Rp45 ribu per jaras dua tahun sebelumnya menjadi Rp20–25 ribu per jaras, dengan permintaan dari Jawa dan Sumatera Barat yang melemah saat pandemi. Satu petani mengatakan harga saat itu hanya cukup memenuhi kebutuhan sehari-hari.',
+                        'Tantangan kedua adalah berpindahnya petani ke komoditas atau pekerjaan lain. Mongabay mencatat banyak petani beralih ke pengolahan minyak dari sumur rakyat dan perkebunan sawit, sementara gambir kini sering hanya menjadi tanaman sela di kebun karet. Akibatnya, kebun gambir ditinggalkan dan pengetahuan mengolahnya berisiko tidak diwariskan.',
+                        'Ketiga, ketergantungan pada satu jenis produk dan satu jenis pasar. Gambir dijual sebagai bahan mentah kepada pembeli di luar daerah (sebagian kemudian diekspor). Petani menerima harga yang ditentukan pasar yang tidak mereka kendalikan, sementara nilai tambah dari pengolahan lanjutan dinikmati pihak lain.',
+                        'Keempat, pengolahan yang padat tenaga dan waktu. Dari panen sampai getah kering dibutuhkan sekitar tiga sampai empat hari, melibatkan perebusan, penggilingan, dan pengepresan berulang. Karena mutu sangat dipengaruhi cara kerja, hasil antar petani bisa berbeda dan sulit distandarkan untuk kebutuhan industri.',
+                        'Kelima, keterbatasan modal dan peralatan. Dalam liputan yang sama, seorang petani memperkirakan mesin pengolah katekin bisa menelan biaya hingga ratusan juta rupiah, jauh di luar jangkauan petani perorangan. Petani menyatakan membutuhkan dukungan pemerintah dan swasta untuk bisa naik kelas dari penjual getah menjadi pengolah.',
+                        'Keenam, limbah pengolahan yang bernilai rendah. Cairan sisa pengolahan dapat dijual untuk pewarna kain, tetapi nilainya kecil, dan tanpa saluran pasar yang jelas limbah ini lebih sering menjadi beban lingkungan daripada pemasukan.',
+                        'Terakhir, data. Luas kebun, produksi, dan harga dicatat berbeda-beda oleh berbagai sumber, sehingga sulit merancang kebijakan yang tepat sasaran. Itulah sebabnya Agracantika menyimpan catatan lapangannya sendiri dan menyampaikan angka dengan menyebut sumbernya. Angka-angka di atas berasal dari laporan tahun 2020; kondisi saat ini perlu diverifikasi lebih lanjut bersama kelompok tani.'
+                    )
+                },
+                {
+                    id: 'hambatan-hilirisasi-gambir',
+                    title: 'Mengapa Hilirisasi Gambir Tidak Semudah Kedengarannya: Mutu, Izin, dan Modal',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-industry',
+                    content: P(
+                        'Hilirisasi berarti mengolah bahan mentah menjadi produk yang lebih jauh dalam rantai nilai sehingga nilai tambahnya tinggal di daerah penghasil. Gagasan ini sering terdengar sederhana dalam pidato, tetapi di lapangan ada beberapa pagar yang harus dilompati satu per satu.',
+                        'Pagar pertama adalah mutu. Industri kosmetik dan farmasi memerlukan bahan baku dengan kadar senyawa, kadar air, dan tingkat kebersihan yang dapat diuji dan konsisten. Getah gambir hasil pengolahan tradisional belum tentu seragam. Tim Agracantika mendorong pengujian mutu getah, yang difasilitasi Kementerian Pertanian, sebagai langkah awal untuk mengetahui kondisi sebenarnya sebelum bahan itu dipakai dalam produk.',
+                        'Pagar kedua adalah regulasi. Di Indonesia, kosmetik wajib melalui notifikasi BPOM, dan setiap klaim yang dicantumkan harus bisa dipertanggungjawabkan. Proses ini membutuhkan dokumen formula, bukti keamanan bahan, dan fasilitas produksi yang memenuhi syarat. Itulah alasan Agracantika menggandeng produsen berpengalaman dan berhati-hati menyusun klaim produk.',
+                        'Pagar ketiga adalah modal dan peralatan. Ekstraksi lanjutan, pemurnian katekin, dan produksi kosmetik skala komersial memerlukan investasi yang tidak mungkin ditanggung petani sendiri. Kemitraan dengan perusahaan yang sudah memiliki fasilitas, seperti PT Raksasi Ruri Arimbi, memangkas hambatan ini tanpa membebankan utang kepada petani.',
+                        'Pagar keempat adalah pasar. Produk baru butuh saluran penjualan dan kepercayaan pembeli. Karena itu website ini memosisikan diri sebagai etalase yang mengarahkan ke mitra penjualan resmi, sementara tim juga menjajaki pasar pengadaan pemerintah yang selaras dengan prinsip belanja berkelanjutan (SDG 12.7).',
+                        'Pagar kelima adalah kepastian hubungan antar pihak. Tanpa kesepakatan tertulis tentang pasokan, mutu, dan harga, petani rentan kembali menjadi pihak yang menerima harga apa adanya. Deklarasi Komitmen Bersama pada 12 Oktober 2026 adalah langkah awal; kesepakatan yang lebih rinci masih menjadi pekerjaan rumah yang kami akui terbuka.'
+                    )
+                },
+                {
+                    id: 'apa-itu-capstone-agracantika',
+                    title: 'Apa Itu Capstone Project Agracantika?',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-graduation-cap',
+                    content: P(
+                        'Capstone project adalah proyek akhir dalam program pelatihan kepemimpinan SDGs, yaitu kesempatan bagi peserta menerapkan apa yang dipelajari pada masalah pembangunan yang nyata. Agracantika adalah capstone project Tim Agracantika (Kelompok 7) pada SDG Academy Indonesia Angkatan VIII tahun 2026, dalam SDGs Certified Leadership Program yang diselenggarakan SDG Academy Indonesia bersama Bappenas.',
+                        'Agracantika adalah nama proyek sekaligus merek produknya. Masalah yang dijawab: petani gambir di Desa Toman menjual getah sebagai bahan mentah dengan harga rendah, sementara nilai tambah dari pengolahan lanjutan dinikmati pihak lain, dan kebun gambir terus ditinggalkan.',
+                        'Jawaban yang dirancang adalah kemitraan antara petani, usaha kecil, dan industri. Ada tiga jalur kerja. Pertama, produk kriya berpewarna alami gambir bersama Kriya Kite Indonesia, yang membina perajin perempuan di Muba. Kedua, sabun berekstrak gambir bersama PT Raksasi Ruri Arimbi. Ketiga, pendekatan kebijakan dan pasar: berdialog dengan pemerintah daerah dan menjajaki pasar pengadaan pemerintah.',
+                        'Timnya terdiri dari tujuh anggota dengan latar belakang perguruan tinggi, lembaga pemerintah, usaha kriya, dan industri kosmetik, dengan Rizka Khoirulika sebagai mentor. Profil anggota dapat dilihat pada halaman Tim Kami.',
+                        'Sampai saat ini kegiatan yang telah berjalan antara lain kunjungan ke fasilitas produsen sabun (6 Oktober 2026), kunjungan kebun serta FGD dan penandatanganan Deklarasi Komitmen Bersama bersama Pemda Muba (12 Oktober 2026), penerbitan buku, dan peluncuran website ini. Dampak ekonomi bagi petani belum dapat diukur secara pasti dalam waktu sesingkat ini; kami lebih memilih mengatakannya apa adanya daripada menjanjikan angka.',
+                        'Website agracantika.store berfungsi sebagai portal informasi dan katalog. Kami tidak melayani transaksi di sini; pembelian dilakukan langsung melalui mitra resmi, yaitu Kriya Kite Indonesia dan PT Raksasi Ruri Arimbi, melalui Shopee.'
+                    )
+                },
+                {
+                    id: 'mengapa-gambir-di-toman',
+                    title: 'Mengapa Kami Memilih Gambir di Toman?',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/galeri-silaturahmi-mitra.jpg',
+                    icon: 'fa-bullseye',
+                    sources: [SRC_MONGABAY_2021],
+                    content: P(
+                        'Ada banyak komoditas dan desa yang membutuhkan dukungan. Kami memilih gambir di Desa Toman karena empat alasan yang saling menguatkan: keunikan, kerentanan, ekosistem yang sudah ada, dan potensi untuk direplikasi.',
+                        'Pertama, keunikan. Berdasarkan data BPS Muba (2023) dan liputan media, Toman adalah sentra gambir Sumatera Selatan. Satu-satunya sentra berarti ada identitas yang bisa diceritakan kepada pembeli, sekaligus berarti tidak ada cadangan: bila kebun di Toman menghilang, pengetahuan budidaya dan pengolahan gambir di provinsi ini ikut hilang.',
+                        'Kedua, kerentanan. Harga jual getah yang rendah dan beralihnya petani ke komoditas lain membuat kebun gambir terus berkurang. Jika tidak ada alasan ekonomi yang lebih kuat untuk menanam gambir, kebun akan beralih fungsi; karena itu nilai tambah perlu hadir sebelum terlambat.',
+                        'Ketiga, ekosistem yang sudah ada. Di Muba sudah ada tradisi kain jumputan Gambo, perajin perempuan yang dibina Kriya Kite Indonesia (lebih dari 30 orang menurut data tim), perhatian pemerintah daerah terhadap pengembangan gambir, serta produsen sabun yang bersedia berkolaborasi. Kami tidak memulai dari nol; kami menyambungkan bagian-bagian yang sudah ada tetapi belum terhubung.',
+                        'Keempat, potensi replikasi. Model yang diuji di Toman, yaitu bahan baku petani, pengolahan oleh mitra, dan pemasaran bersama, dapat dipelajari oleh daerah lain yang memiliki komoditas serupa. Pada tahap awal, tim bekerja dengan sekelompok kecil petani (empat petani dengan lahan sekitar 6 hektare menurut data awal tim), sehingga hasilnya perlu dibaca sebagai percontohan, bukan hasil yang sudah mewakili seluruh desa.',
+                        'Kami juga sadar akan batasan pilihan ini. Skala yang kecil berarti dampak terhadap total petani masih terbatas, dan keberhasilan jangka panjang bergantung pada kesepakatan harga serta pasokan yang adil. Kami memilih tetap memulai dari yang kecil dan jujur tentang batasannya.'
+                    )
+                },
+                {
+                    id: 'mengapa-produk-kecantikan',
+                    title: 'Mengapa Gambir Dijadikan Produk Kecantikan?',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/produk-sabun-pouch-400ml.jpg',
+                    icon: 'fa-spa',
+                    content: P(
+                        'Pertanyaan ini wajar: mengapa bukan makanan atau minuman, mengapa kecantikan? Jawabannya berlapis, dan tidak semuanya romantis. Sebagian besar adalah soal hitungan nilai dan kesiapan mitra.',
+                        'Pertama, nilai per kilogram. Berdasarkan data awal tim, produk olahan hasil pemisahan senyawa gambir seperti tanin dan katekin dihargai jauh di atas harga getah mentah di tingkat petani, dalam kisaran ratusan ribu hingga jutaan rupiah per kilogram, bergantung pada kemurnian dan pasar. Selisih besar inilah ruang nilai tambah yang selama ini tidak dinikmati petani.',
+                        'Kedua, kecocokan dengan kebutuhan pasar. Konsumen kini semakin memperhatikan bahan botani dan proses yang ramah lingkungan, sehingga cerita asal bahan dari kebun rakyat di Desa Toman memberi nilai yang sulit ditiru produk massal. Kisah itu hanya layak dijual jika benar, dan karena itu kami terbuka menyebutkan asal bahan dan mitra produksinya.',
+                        'Ketiga, kesiapan mitra. PT Raksasi Ruri Arimbi sudah memiliki fasilitas, pengalaman formulasi, dan sabun cair dasar yang telah melalui proses notifikasi. Menambahkan ekstrak gambir ke platform yang sudah ada jauh lebih cepat dan murah daripada membangun pabrik dari nol, dan itu mengurangi risiko bagi petani.',
+                        'Keempat, kombinasi dengan kriya. Kriya pewarna alami menyerap gambir dalam jumlah besar, sedangkan produk kecantikan memberi nilai jual lebih tinggi per satuan bahan. Menggabungkan keduanya menyeimbangkan antara volume dan nilai. Ke depan, tim membuka kemungkinan produk perawatan lain, tidak terbatas pada sabun.',
+                        'Ada hal-hal yang sengaja kami hindari. Kami tidak mengklaim khasiat medis atau efek anti-penuaan karena buktinya belum memadai, dan produk kecantikan memang diatur ketat oleh BPOM. Kecantikan dalam arti Agracantika adalah jalur ekonomi yang berkelanjutan, bukan janji perawatan kulit yang berlebihan.'
+                    )
+                },
+                {
+                    id: 'apa-itu-sdgs',
+                    title: 'Apa Itu SDGs?',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-globe',
+                    content: P(
+                        'SDGs adalah singkatan dari Sustainable Development Goals, dalam bahasa Indonesia disebut Tujuan Pembangunan Berkelanjutan (TPB). SDGs merupakan kesepakatan global yang diadopsi seluruh negara anggota Perserikatan Bangsa-Bangsa pada September 2015 sebagai bagian dari Agenda 2030, dengan 17 tujuan dan 169 target yang ingin dicapai pada tahun 2030.',
+                        'SDGs menggantikan Tujuan Pembangunan Milenium (MDGs) yang berakhir pada 2015. Ada tiga hal yang membedakannya. SDGs bersifat universal, artinya berlaku untuk semua negara, bukan hanya negara berkembang. SDGs bersifat terpadu, karena menyatukan sisi ekonomi, sosial, dan lingkungan. Dan SDGs memegang prinsip “tidak meninggalkan seorang pun” (leave no one behind).',
+                        'Ketujuh belas tujuan itu mencakup, antara lain, penghapusan kemiskinan, pengakhiran kelaparan, kesehatan dan pendidikan yang baik, kesetaraan gender, air bersih, energi bersih, pekerjaan layak dan pertumbuhan ekonomi, industri dan inovasi, pengurangan ketimpangan, kota yang berkelanjutan, konsumsi dan produksi yang bertanggung jawab, penanganan perubahan iklim, ekosistem laut dan daratan, perdamaian dan keadilan, serta kemitraan untuk mencapai tujuan.',
+                        'Setiap tujuan dijabarkan menjadi target yang lebih spesifik, misalnya Target 8.2 tentang peningkatan produktivitas ekonomi melalui diversifikasi, peningkatan teknologi, dan inovasi, termasuk fokus pada sektor bernilai tambah tinggi. Penomoran seperti ini penting karena memungkinkan proyek, seperti capstone, menyebut dengan tepat kontribusi yang diklaimnya.',
+                        'Di Indonesia, pelaksanaan SDGs diatur melalui Peraturan Presiden Nomor 59 Tahun 2017 tentang Pelaksanaan Pencapaian Tujuan Pembangunan Berkelanjutan, dengan Kementerian PPN/Bappenas sebagai koordinator nasional. Pemerintah provinsi dan kabupaten/kota diharapkan menyusun rencana aksi daerah yang sejalan.',
+                        'Tahun 2030 sudah dekat. Pencapaian SDGs tidak hanya ditentukan perjanjian di tingkat dunia atau program di tingkat pusat, tetapi juga oleh kerja-kerja nyata di desa dan komunitas. Di sinilah proyek seperti Agracantika mencoba mengambil bagian.'
+                    )
+                },
+                {
+                    id: 'mengapa-sdgs',
+                    title: 'Mengapa Agracantika Memakai Kerangka SDGs?',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-compass',
+                    content: P(
+                        'Jawaban paling jujur lebih dulu: Agracantika lahir dalam program SDG Academy Indonesia, sehingga kerangka SDGs adalah bahasa kerja kami sejak awal. Namun kerangka ini bukan sekadar syarat administratif; ada empat alasan mengapa ia berguna bagi proyek seperti ini.',
+                        'Pertama, SDGs mencegah berpikir satu dimensi. Menaikkan pendapatan petani adalah tujuan penting, tetapi jika dikejar dengan cara yang merusak lingkungan atau mengabaikan perempuan perajin, hasilnya timpang. Kerangka SDGs memaksa kami melihat kaitan antara pekerjaan layak (SDG 8), inovasi (SDG 9), produksi yang bertanggung jawab (SDG 12), dan tujuan lain secara bersamaan.',
+                        'Kedua, SDGs adalah bahasa bersama. Pemerintah daerah, perusahaan yang menjalankan program tanggung jawab sosial, akademisi, dan lembaga donor sering memetakan programnya ke tujuan SDGs. Dengan memakai bahasa yang sama, dialog dengan Pemda dan mitra, termasuk FGD pada 12 Oktober 2026, menjadi lebih mudah dan hasilnya lebih mudah diselaraskan dengan rencana pembangunan.',
+                        'Ketiga, SDGs mendorong kejelasan ukuran. Setiap tujuan memiliki target dan indikator, sehingga kami ditantang menyatakan apa yang akan diukur, misalnya harga di tingkat petani, jumlah perajin yang terlibat, atau volume limbah yang dimanfaatkan, dan membedakannya dari sekadar niat baik.',
+                        'Keempat, SDGs menempatkan kemitraan sebagai tujuan tersendiri (SDG 17). Model Agracantika tidak mungkin berjalan tanpa kolaborasi antara petani, usaha kecil, industri, pemerintah, dan akademisi, dan kerangka ini membenarkan bahwa kolaborasi memang cara kerja, bukan pelengkap.',
+                        'Kami juga sadar akan risiko kerangka ini: label SDGs mudah ditempel pada program apa saja tanpa perubahan nyata. Karena itu kami memilih membedakan secara terbuka mana yang sudah berjalan, mana yang masih rencana, dan mana yang belum terbukti. Kerangka SDGs berguna selama dipakai untuk menguji diri sendiri, bukan sebagai hiasan.'
+                    )
+                },
+                {
+                    id: 'sdgs-dan-petani-gambir',
+                    title: 'Apa Kaitan SDGs dengan Petani Gambir?',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: '',
+                    icon: 'fa-link',
+                    content: P(
+                        'Sekilas, SDGs terdengar seperti urusan konferensi internasional, sementara petani gambir di Toman memikirkan harga getah minggu ini. Namun jika dibaca teliti, banyak target SDGs menyentuh kehidupan petani sehari-hari. Berikut pemetaan yang dipakai Agracantika; ini adalah pemetaan kami, bukan klaim bahwa semua dampak sudah tercapai.',
+                        'SDG 1 dan SDG 8 adalah inti. Pendapatan yang tidak stabil membuat petani dan keluarganya rentan, sedangkan SDG 8 mendorong pekerjaan layak dan pertumbuhan ekonomi. Target 8.2 menyebut produktivitas yang meningkat melalui diversifikasi, teknologi, dan inovasi, termasuk fokus pada sektor bernilai tambah tinggi; Target 8.3 mendukung kewirausahaan dan pertumbuhan UMKM. Hilirisasi gambir secara langsung menjawab keduanya.',
+                        'SDG 9 berbicara tentang industri dan inovasi. Salah satu targetnya (9.3) adalah meningkatkan akses usaha kecil terhadap pasar dan rantai nilai. Bagi petani gambir, itu berarti beranjak dari sekadar penjual bahan mentah menjadi bagian dari rantai produksi yang menghasilkan produk jadi.',
+                        'SDG 12 menyangkut konsumsi dan produksi yang bertanggung jawab. Target 12.2 mendorong pengelolaan sumber daya alam yang efisien, Target 12.5 mengurangi limbah melalui pencegahan, daur ulang, dan penggunaan kembali, sedangkan Target 12.7 mendorong pengadaan publik yang berkelanjutan. Pemanfaatan cairan limbah pengolahan gambir sebagai pewarna kain merupakan contoh nyata semangat 12.5.',
+                        'SDG 5 relevan karena sebagian besar perajin kriya mitra adalah perempuan (lebih dari 30 orang menurut data tim), sehingga rantai nilai kriya gambir juga membuka sumber penghasilan bagi perempuan setempat. SDG 15 relevan secara tidak langsung: bila gambir tetap menguntungkan, petani punya alasan mempertahankan kebun campuran yang lebih beragam dibandingkan beralih penuh ke monokultur.',
+                        'Terakhir, SDG 17 tentang kemitraan. Semua hal di atas hanya bisa berjalan jika petani, Pemda, usaha kecil, dan industri bekerja sama. Dalam laporan capstone, tujuan utama Agracantika adalah SDG 8, dengan SDG 1, 9, 12, dan 17 sebagai pendukung. Pemetaan ini adalah hipotesis kerja; dampak yang sebenarnya akan kami ukur dan laporkan seiring waktu.'
+                    )
+                },
+                {
+                    id: 'kain-gambo-wastra',
+                    title: 'Gambo: Kain Jumputan Berwarna Getah Gambir',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/produk-vest-gambo.jpg',
+                    icon: 'fa-shirt',
+                    sources: [SRC_MONGABAY_2020],
+                    content: P(
+                        '“Gambo” adalah sebutan lokal untuk gambir di Musi Banyuasin, sekaligus nama kain jumputan khas Muba yang dicelup menggunakan getah gambir atau cairan sisa pengolahannya. Warna cokelat hangat yang khas berasal dari tanin gambir, dan motif jumputan dibuat dengan teknik ikat atau jahit-celup yang dikerjakan tangan.',
+                        'Kain Gambo sudah dikenal di luar daerah. Mongabay Indonesia mencatat bahwa Ibu Negara Iriana Joko Widodo memuji Gambo Muba pada September 2019, dan Ketua DPR Puan Maharani dilaporkan mengenakan busana Gambo Muba pada peringatan Hari Ibu 2020. Pengakuan semacam ini membantu membuka perhatian pasar, meski perhatian saja belum otomatis menjadi penghasilan yang stabil.',
+                        'Bagi Agracantika, Gambo adalah contoh paling jelas bagaimana limbah dapat diubah menjadi nilai. Cairan sisa pengolahan getah, yang di desa sering hanya menjadi masalah, menjadi pewarna. Ini selaras dengan upaya mengurangi limbah dan memanfaatkan bahan alami (SDG 12), sambil membuka pekerjaan bagi perajin perempuan.',
+                        'Kriya Kite Indonesia, mitra kami, membina lebih dari 30 perempuan perajin di Muba menurut data tim. Dari kerja sama ini lahir lini produk kriya Gambo yang ditampilkan di Katalog Produk: kain wastra, outer, vest, tote bag, dan cardholder, masing-masing dengan rentang harga berbeda.',
+                        'Satu catatan jujur tentang pewarna alami: warna dapat sedikit berbeda antar produksi dan perlu perawatan khusus, misalnya dicuci lembut dan tidak dijemur langsung terlalu lama. Sifat ini bukan kekurangan, melainkan ciri khas produk buatan tangan berbahan alami. Pembelian dilakukan melalui Shopee Kriya Kite Indonesia lewat tautan pada halaman katalog.'
+                    )
+                },
+                {
+                    id: 'rantai-nilai-gambir-dan-kemitraan',
+                    title: 'Rantai Nilai Gambir: Siapa Berperan dan Apa Bagiannya',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/berita-fgd-pemda-12okt2026.jpg',
+                    icon: 'fa-diagram-project',
+                    content: P(
+                        'Rantai nilai adalah urutan tahapan yang dilalui sebuah produk dari bahan mentah sampai ke tangan pembeli, beserta siapa saja yang mengerjakan setiap tahapan. Pada gambir, rantai itu selama ini pendek di sisi petani: menanam, memanen, mengolah getah, lalu menjual. Tahapan setelahnya, yang paling bernilai, dikerjakan pihak lain.',
+                        'Agracantika berusaha memanjangkan rantai itu tanpa memindahkan seluruh beban ke petani. Petani tetap berperan di hulu, yaitu budidaya dan pengolahan getah yang bermutu. Kriya Kite Indonesia bersama perajin perempuan mengolah pewarna menjadi kain dan produk kriya. PT Raksasi Ruri Arimbi mengubah ekstrak menjadi sabun dan menjual melalui salurannya.',
+                        'Di sekeliling rantai itu ada pihak yang memungkinkan: Pemerintah Daerah Kabupaten Musi Banyuasin, termasuk Bapperida, yang menetapkan arah kebijakan; akademisi dan peneliti yang membantu kajian dan pengujian; komunitas Selaras Muba Lestari; serta anggota tim yang berasal dari bidang regulasi kosmetik, pengadaan pemerintah, dan pembinaan UMKM.',
+                        'Pada 12 Oktober 2026, para pihak ini menandatangani Deklarasi Komitmen Bersama di Kantor Bapperida Musi Banyuasin. Deklarasi menyatakan arah kolaborasi untuk nilai tambah, daya saing, dan kesejahteraan masyarakat. Ini adalah pernyataan niat; kekuatan hukum dan rincian teknisnya masih perlu dibangun melalui kesepakatan lanjutan.',
+                        'Beberapa hal yang menurut tim masih dalam perencanaan dan belum boleh dianggap selesai: perjanjian tertulis tentang pasokan dan bagi hasil, laporan pengujian mutu yang lengkap, rencana usaha dan proyeksi pendapatan petani, serta replikasi ke kelompok tani lain. Kami mencantumkannya di sini agar publik dapat menagih perkembangannya.',
+                        'Pembaca yang ingin terlibat dapat membantu dengan tiga cara: membeli produk melalui mitra resmi, membagikan informasi ini kepada jaringan yang relevan, atau menghubungi tim untuk kolaborasi riset dan pendampingan.'
+                    )
                 }
             ];
         }
@@ -474,11 +746,11 @@
 
             let html = '';
             if (!currentUser) {
-                html = `<button onclick="showLoginModal()" class="text-sm font-medium text-gray-700 hover:text-brand-600">Login Admin</button>`;
+                html = `<button onclick="showLoginModal()" class="text-gray-300 hover:text-gray-500 transition p-1" aria-label="Ruang kontributor" title="Ruang kontributor"><i class="fa-solid fa-feather-pointed"></i></button>`;
             } else {
                 let roleDisplay = '';
-                if(currentUserRole === 'admin_project') roleDisplay = '<span class="ml-2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Admin Project</span>';
-                if(currentUserRole === 'admin_marketplace') roleDisplay = '<span class="ml-2 bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Admin Marketplace</span>';
+                if(currentUserRole === 'admin_project') roleDisplay = '<span class="ml-2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Editor Konten</span>';
+                if(currentUserRole === 'admin_marketplace') roleDisplay = '<span class="ml-2 bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Editor Katalog</span>';
 
                 html = `
                     <div class="flex items-center gap-3">
@@ -499,7 +771,7 @@
             desktopContainer.innerHTML = html;
 
             if (!currentUser) {
-                mobileContainer.innerHTML = `<button onclick="showLoginModal(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-600">Login Admin</button>`;
+                mobileContainer.innerHTML = `<button onclick="showLoginModal(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-sm text-gray-400 hover:text-gray-600"><i class="fa-solid fa-feather-pointed mr-1"></i> Ruang kontributor</button>`;
             } else {
                 mobileContainer.innerHTML = `
                     <div class="px-3 py-2 text-sm text-gray-500 border-b border-gray-100 pb-2 mb-2">
@@ -521,8 +793,8 @@
                             <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                 <div class="sm:flex sm:items-start w-full">
                                     <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                                        <h3 class="text-xl font-semibold leading-6 text-gray-900 mb-1" id="modal-title">Login Admin</h3>
-                                        <p class="text-xs text-gray-500 mb-6">Khusus Admin Project & Admin Marketplace. Website ini tidak memiliki pendaftaran akun pembeli karena tidak melayani transaksi.</p>
+                                        <h3 class="text-xl font-semibold leading-6 text-gray-900 mb-1" id="modal-title">Ruang Kontributor</h3>
+                                        <p class="text-xs text-gray-500 mb-6">Khusus tim pengelola konten Agracantika. Masuk dengan akun yang telah didaftarkan oleh tim.</p>
                                         <form id="login-form" onsubmit="handleLoginSubmit(event)">
                                             <div class="mb-4">
                                                 <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -604,9 +876,15 @@
                 case 'katalog':
                     renderKatalog(contentDiv);
                     break;
+                case 'sdg':
+                    renderSdgAcademy(contentDiv);
+                    break;
+                case 'tim':
+                    renderTim(contentDiv);
+                    break;
                 case 'dashboard':
                     if (!currentUser || currentUserRole === 'guest') {
-                        contentDiv.innerHTML = `<div class="text-center py-24 text-gray-500"><i class="fa-solid fa-lock text-4xl mb-4 text-gray-300"></i><p class="text-lg">Silakan login sebagai Admin untuk mengakses dashboard.</p><button onclick="showLoginModal()" class="mt-4 bg-brand-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-brand-700">Login Admin</button></div>`;
+                        contentDiv.innerHTML = `<div class="text-center py-24 text-gray-500"><i class="fa-solid fa-lock text-4xl mb-4 text-gray-300"></i><p class="text-lg">Halaman ini khusus tim pengelola konten.</p><button onclick="showLoginModal()" class="mt-4 bg-brand-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-brand-700">Masuk</button></div>`;
                         return;
                     }
                     renderDashboard(contentDiv);
@@ -664,7 +942,7 @@
                 <div class="bg-amber-50 border-y border-amber-200">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-3 text-sm text-amber-800">
                         <i class="fa-solid fa-circle-info text-amber-500 text-lg"></i>
-                        <p>Website Agracantika adalah portal informasi &amp; katalog produk — <strong>tidak melayani transaksi jual-beli langsung</strong>. Pembelian dilayani oleh mitra resmi kami (Kriya Kite Indonesia &amp; Shopee PT Raksasi Ruri Arimbi).</p>
+                        <p>Website Agracantika adalah portal informasi &amp; katalog produk — <strong>tidak melayani transaksi jual-beli langsung</strong>. Pembelian dilayani oleh mitra resmi kami melalui Shopee (Kriya Kite Indonesia &amp; PT Raksasi Ruri Arimbi).</p>
                     </div>
                 </div>
 
@@ -712,20 +990,60 @@
                     </div>
                 </div>
 
+                <!-- Explore: SDG Academy & Tim -->
+                <div class="py-14 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="rounded-2xl border border-brand-100 bg-brand-50 p-8 flex flex-col">
+                            <i class="fa-solid fa-graduation-cap text-brand-600 text-3xl mb-4"></i>
+                            <h3 class="text-xl font-extrabold text-gray-900">Apa itu SDG Academy Indonesia?</h3>
+                            <p class="mt-2 text-gray-600 text-sm leading-relaxed flex-1">Agracantika adalah capstone project dari SDGs Certified Leadership Program Angkatan VIII (2026). Kenali program tempat proyek ini lahir.</p>
+                            <button onclick="navigate('sdg')" class="mt-5 self-start text-brand-700 font-bold text-sm hover:underline">Pelajari program <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                        <div class="rounded-2xl border border-brand-100 bg-brand-50 p-8 flex flex-col">
+                            <i class="fa-solid fa-users text-brand-600 text-3xl mb-4"></i>
+                            <h3 class="text-xl font-extrabold text-gray-900">Siapa di balik Agracantika?</h3>
+                            <p class="mt-2 text-gray-600 text-sm leading-relaxed flex-1">Tujuh orang dari perguruan tinggi, lembaga pemerintah, usaha kriya, dan industri kosmetik, didampingi satu mentor.</p>
+                            <button onclick="navigate('tim')" class="mt-5 self-start text-brand-700 font-bold text-sm hover:underline">Kenali tim <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Latest news teaser -->
-                <div class="py-16 bg-white">
+                <div class="py-16 bg-gray-50">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="flex justify-between items-end mb-8 border-b pb-4">
                             <h2 class="text-2xl font-extrabold text-gray-900">Kabar Terbaru</h2>
-                            <a href="#" onclick="navigate('edukasi')" class="text-brand-600 hover:text-brand-700 font-medium text-sm">Semua Berita &rarr;</a>
+                            <a href="#" onclick="openEdukasi('Berita')" class="text-brand-600 hover:text-brand-700 font-medium text-sm">Semua Berita &rarr;</a>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            ${posts.slice(0, 4).map(p => `
-                                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition cursor-pointer" onclick="navigate('edukasi')">
-                                    <img class="h-36 w-full object-cover" src="${p.image}" alt="${p.title}">
+                            ${posts.filter(p => p.type === 'Berita').slice(0, 4).map(p => `
+                                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition cursor-pointer" onclick="showArticleDetail('${p.id}')">
+                                    ${postThumb(p, 'h-36', 'text-4xl')}
                                     <div class="p-4">
-                                        <span class="text-xs font-semibold text-brand-600">${p.type} &bull; ${p.date}</span>
-                                        <h3 class="mt-1 text-sm font-bold text-gray-900 leading-snug line-clamp-3">${p.title}</h3>
+                                        <span class="text-xs font-semibold text-brand-600">${escHtml(p.type)} &bull; ${escHtml(p.date)}</span>
+                                        <h3 class="mt-1 text-sm font-bold text-gray-900 leading-snug line-clamp-3">${escHtml(p.title)}</h3>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edukasi pilihan -->
+                <div class="py-16 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex justify-between items-end mb-8 border-b pb-4">
+                            <h2 class="text-2xl font-extrabold text-gray-900">Edukasi Pilihan</h2>
+                            <a href="#" onclick="openEdukasi('Edukasi')" class="text-brand-600 hover:text-brand-700 font-medium text-sm">Semua Edukasi &rarr;</a>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            ${['toman-satu-satunya-gambir-sumsel', 'apa-itu-capstone-agracantika', 'sdgs-dan-petani-gambir'].map(id => posts.find(x => x.id === id)).filter(Boolean).map(p => `
+                                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition cursor-pointer" onclick="showArticleDetail('${p.id}')">
+                                    ${postThumb(p, 'h-40', 'text-4xl')}
+                                    <div class="p-5">
+                                        <span class="text-xs font-semibold text-brand-600">${escHtml(p.type)} &bull; ${readingMinutes(p)} menit baca</span>
+                                        <h3 class="mt-1 text-base font-bold text-gray-900 leading-snug">${escHtml(p.title)}</h3>
+                                        <p class="mt-2 text-sm text-gray-500 line-clamp-3">${escHtml(postExcerpt(p))}</p>
                                     </div>
                                 </div>
                             `).join('')}
@@ -736,38 +1054,83 @@
             container.innerHTML = html;
         }
 
+        // ---------- Helper tampilan artikel ----------
+        function escHtml(s) {
+            return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function splitParagraphs(text) {
+            return String(text || '').split(/\n{2,}/).map(s => s.trim()).filter(Boolean);
+        }
+        function postExcerpt(post) {
+            return splitParagraphs(post.content)[0] || '';
+        }
+        function readingMinutes(post) {
+            const words = String(post.content || '').split(/\s+/).filter(Boolean).length;
+            return Math.max(1, Math.round(words / 200));
+        }
+        // Thumbnail: pakai foto bila ada, jika tidak pakai blok gradien + ikon.
+        function postThumb(post, cls = 'h-48', iconCls = 'text-5xl') {
+            if (post.image) {
+                return `<img class="${cls} w-full object-cover" src="${escHtml(post.image)}" alt="${escHtml(post.title)}" loading="lazy">`;
+            }
+            return `<div class="${cls} w-full bg-gradient-to-br from-brand-900 via-brand-700 to-brand-500 flex items-center justify-center"><i class="fa-solid ${escHtml(post.icon || 'fa-leaf')} text-white/90 ${iconCls}"></i></div>`;
+        }
+
+        let edukasiFilter = 'Semua';
+        window.openEdukasi = (f) => { edukasiFilter = f; navigate('edukasi'); };
+        window.setEdukasiFilter = (f) => {
+            edukasiFilter = f;
+            renderEdukasi(document.getElementById('app-content'));
+            const anchor = document.getElementById('daftar-artikel');
+            if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
         function renderEdukasi(container) {
+            const counts = {
+                Semua: posts.length,
+                Edukasi: posts.filter(p => p.type === 'Edukasi').length,
+                Berita: posts.filter(p => p.type === 'Berita').length
+            };
+            const filtered = edukasiFilter === 'Semua' ? posts : posts.filter(p => p.type === edukasiFilter);
+
             let postsHtml = '';
-            if (posts.length === 0) {
-                postsHtml = '<p class="text-gray-500 col-span-full text-center py-10">Belum ada informasi/berita saat ini.</p>';
+            if (filtered.length === 0) {
+                postsHtml = '<p class="text-gray-500 col-span-full text-center py-10">Belum ada informasi pada kategori ini.</p>';
             } else {
-                postsHtml = posts.map(post => `
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 cursor-pointer" onclick="showArticleDetail('${post.id}')">
-                        <img class="h-48 w-full object-cover" src="${post.image || 'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'}" alt="${post.title}">
-                        <div class="p-6">
+                postsHtml = filtered.map(post => `
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 cursor-pointer flex flex-col" onclick="showArticleDetail('${post.id}')">
+                        ${postThumb(post, 'h-44')}
+                        <div class="p-5 flex flex-col flex-1">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-brand-600 bg-brand-100">
-                                    ${post.type || 'Informasi'}
+                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full ${post.type === 'Berita' ? 'text-amber-700 bg-amber-100' : 'text-brand-700 bg-brand-100'}">
+                                    ${escHtml(post.type || 'Informasi')}
                                 </span>
-                                <span class="text-xs text-gray-500">${post.date}</span>
+                                <span class="text-xs text-gray-500">${escHtml(post.date)}</span>
                             </div>
-                            <h3 class="mt-2 text-xl font-semibold text-gray-900 leading-tight">${post.title}</h3>
-                            <p class="mt-3 text-base text-gray-500 line-clamp-3">
-                                ${post.content}
-                            </p>
-                            <button class="mt-4 text-brand-600 hover:text-brand-700 font-medium text-sm flex items-center gap-1">
-                                Baca selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
-                            </button>
+                            <h3 class="mt-1 text-lg font-semibold text-gray-900 leading-snug">${escHtml(post.title)}</h3>
+                            <p class="mt-3 text-sm text-gray-500 line-clamp-3 flex-1">${escHtml(postExcerpt(post))}</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <button class="text-brand-600 hover:text-brand-700 font-medium text-sm flex items-center gap-1">
+                                    Baca selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <span class="text-xs text-gray-400"><i class="fa-regular fa-clock"></i> ${readingMinutes(post)} menit</span>
+                            </div>
                         </div>
                     </div>
                 `).join('');
             }
 
+            const tabs = ['Semua', 'Edukasi', 'Berita'].map(t => `
+                <button onclick="setEdukasiFilter('${t}')" class="px-4 py-2 rounded-full text-sm font-semibold transition ${edukasiFilter === t ? 'bg-brand-600 text-white shadow-sm' : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-500 hover:text-brand-700'}">
+                    ${t} <span class="ml-1 text-xs opacity-80">${counts[t]}</span>
+                </button>
+            `).join('');
+
             let galleryHtml = galleryPhotos.map(g => `
                 <div class="relative group overflow-hidden rounded-xl shadow-sm border border-gray-200">
-                    <img src="${g.img}" alt="${g.caption}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+                    <img src="${g.img}" alt="${escHtml(g.caption)}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-                        <p class="text-white text-xs font-medium leading-snug">${g.caption}</p>
+                        <p class="text-white text-xs font-medium leading-snug">${escHtml(g.caption)}</p>
                     </div>
                 </div>
             `).join('');
@@ -787,11 +1150,12 @@
                             <div>
                                 <h3 class="text-2xl font-bold text-brand-900 mb-4">Apa itu Gambir?</h3>
                                 <p class="text-gray-700 mb-4 leading-relaxed">
-                                    Gambir adalah ekstrak air panas dari daun dan ranting tanaman <em>Uncaria gambir</em>. Kabupaten Musi Banyuasin, Sumatera Selatan — khususnya Desa Toman — merupakan salah satu sentra penghasil gambir di Indonesia.
+                                    Gambir adalah ekstrak air panas dari daun dan ranting tanaman <em>Uncaria gambir</em>. Kabupaten Musi Banyuasin, Sumatera Selatan — khususnya Desa Toman — merupakan sentra penghasil gambir di provinsi ini.
                                 </p>
                                 <p class="text-gray-700 leading-relaxed">
-                                    Secara tradisional digunakan untuk menyirih, namun penelitian modern menunjukkan gambir sangat kaya akan <strong>katekin</strong> (antioksidan kuat). Potensi inilah yang Agracantika angkat untuk diolah menjadi produk turunan bernilai ekonomi tinggi seperti kosmetik (sabun) dan pewarna alami untuk produk kriya.
+                                    Secara tradisional digunakan untuk menyirih dan pewarna alami; penelitian menunjukkan gambir kaya akan <strong>katekin</strong> dan <strong>tanin</strong>. Potensi inilah yang Agracantika angkat untuk diolah menjadi produk turunan bernilai ekonomi tinggi seperti sabun dan pewarna alami untuk produk kriya.
                                 </p>
+                                <button onclick="showArticleDetail('mengenal-gambir')" class="mt-4 text-brand-700 font-semibold text-sm hover:underline">Baca: Mengenal Gambir <i class="fa-solid fa-arrow-right text-xs"></i></button>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <img src="images/berita-kunjungan-kebun-12okt2026.jpg" alt="Kebun gambir Desa Toman" class="rounded-lg shadow-sm h-48 w-full object-cover">
@@ -800,8 +1164,11 @@
                         </div>
 
                         <!-- Blog/News Grid -->
-                        <div class="mb-16">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-8 border-b pb-4">Kabar Terbaru & Edukasi</h3>
+                        <div class="mb-16" id="daftar-artikel">
+                            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 border-b pb-4">
+                                <h3 class="text-2xl font-bold text-gray-900">Edukasi &amp; Kabar Terbaru</h3>
+                                <div class="flex flex-wrap gap-2">${tabs}</div>
+                            </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 ${postsHtml}
                             </div>
@@ -823,6 +1190,28 @@
         window.showArticleDetail = (postId) => {
             const post = posts.find(p => p.id === postId);
             if (!post) return;
+            // Tutup modal artikel sebelumnya bila ada (mis. dibuka dari artikel lain)
+            const old = document.getElementById('dynamic-modal-article-view');
+            if (old) old.remove();
+
+            const paragraphs = splitParagraphs(post.content).map(t => `<p class="mt-4 text-[15px] text-gray-700 leading-relaxed">${escHtml(t)}</p>`).join('');
+            const sources = (post.sources && post.sources.length) ? `
+                <div class="mt-8 pt-4 border-t border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Sumber rujukan</p>
+                    <ul class="space-y-1">
+                        ${post.sources.map(s => `<li class="text-xs text-gray-500"><a href="${escHtml(s.u)}" target="_blank" rel="noopener" class="text-brand-700 hover:underline">${escHtml(s.t)} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></li>`).join('')}
+                    </ul>
+                </div>` : '';
+            // Artikel terkait: 3 artikel lain dengan kategori sama
+            const related = posts.filter(p => p.id !== post.id && p.type === post.type).slice(0, 3);
+            const relatedHtml = related.length ? `
+                <div class="mt-8 pt-4 border-t border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Baca juga</p>
+                    <ul class="space-y-2">
+                        ${related.map(r => `<li><button onclick="showArticleDetail('${r.id}')" class="text-left text-sm text-brand-700 hover:underline">${escHtml(r.title)}</button></li>`).join('')}
+                    </ul>
+                </div>` : '';
+
             const modalHtml = `
             <div id="dynamic-modal-article-view" class="relative z-[60]" role="dialog" aria-modal="true">
                 <div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0" onclick="closeModal('dynamic-modal-article-view')"></div>
@@ -830,16 +1219,18 @@
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                         <div class="modal-panel relative transform overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                             <div class="absolute top-0 right-0 pt-4 pr-4 z-10">
-                                <button type="button" onclick="closeModal('dynamic-modal-article-view')" class="bg-white/80 rounded-full h-8 w-8 flex items-center justify-center text-gray-500 hover:text-gray-800">
+                                <button type="button" onclick="closeModal('dynamic-modal-article-view')" class="bg-white/80 rounded-full h-8 w-8 flex items-center justify-center text-gray-500 hover:text-gray-800" aria-label="Tutup">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </div>
-                            <img src="${post.image}" alt="${post.title}" class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-brand-600 bg-brand-100">${post.type}</span>
-                                <span class="text-xs text-gray-500 ml-2">${post.date}</span>
-                                <h3 class="mt-3 text-xl font-bold text-gray-900">${post.title}</h3>
-                                <p class="mt-3 text-sm text-gray-600 leading-relaxed">${post.content}</p>
+                            ${postThumb(post, 'h-56 sm:h-64', 'text-6xl')}
+                            <div class="p-6 sm:p-8">
+                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full ${post.type === 'Berita' ? 'text-amber-700 bg-amber-100' : 'text-brand-700 bg-brand-100'}">${escHtml(post.type)}</span>
+                                <span class="text-xs text-gray-500 ml-2">${escHtml(post.date)} &bull; ${readingMinutes(post)} menit baca</span>
+                                <h3 class="mt-3 text-2xl font-bold text-gray-900 leading-tight">${escHtml(post.title)}</h3>
+                                ${paragraphs}
+                                ${sources}
+                                ${relatedHtml}
                             </div>
                         </div>
                     </div>
@@ -848,6 +1239,135 @@
             document.getElementById('modal-container').insertAdjacentHTML('beforeend', modalHtml);
             setTimeout(() => openModal('dynamic-modal-article-view'), 50);
         };
+
+        // ---------- Halaman: SDG Academy Indonesia ----------
+        function renderSdgAcademy(container) {
+            const programs = [
+                { icon: 'fa-user-graduate', title: 'SDGs Leadership Certification', desc: 'Program sertifikasi kepemimpinan bagi para pemimpin lintas sektor agar memahami pembangunan dalam kerangka SDGs. Peserta belajar lewat studi kasus dan pengalaman praktis, lalu menuntaskannya dengan capstone project.' },
+                { icon: 'fa-plane-departure', title: 'Study Abroad', desc: 'Program belajar ke luar negeri untuk melihat praktik baik penerapan SDGs di negara lain.' },
+                { icon: 'fa-mobile-screen-button', title: 'Mobile Learning', desc: 'Pembelajaran daring tentang SDGs yang terbuka bagi siapa saja yang ingin belajar.' }
+            ];
+            const programsHtml = programs.map(p => `
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="h-12 w-12 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center mb-4"><i class="fa-solid ${p.icon} text-xl"></i></div>
+                    <h4 class="font-bold text-gray-900 mb-2">${p.title}</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">${p.desc}</p>
+                </div>`).join('');
+
+            const timeline = [
+                { d: '7 Okt 2019', t: 'SDG Academy Indonesia diluncurkan oleh Tanoto Foundation bersama UNDP dan Kementerian PPN/Bappenas di Jakarta.' },
+                { d: '2026', t: 'Tim Agracantika (Kelompok 7) menjalani SDGs Certified Leadership Program Angkatan VIII dan menyusun capstone project.' },
+                { d: '6 Okt 2026', t: 'Kunjungan ke fasilitas PT Raksasi Ruri Arimbi (R&D dan produksi sabun gambir).' },
+                { d: '12 Okt 2026', t: 'Kunjungan kebun gambir serta FGD dan Deklarasi Komitmen Bersama di Kantor Bapperida Musi Banyuasin.' },
+                { d: '14 Okt 2026', t: 'Presentasi capstone dalam kolokium bersama tim Bappenas.' }
+            ].map(i => `
+                <li class="relative pl-8 pb-6 last:pb-0">
+                    <span class="absolute left-0 top-1 h-3 w-3 rounded-full bg-brand-600 ring-4 ring-brand-100"></span>
+                    <span class="absolute left-[5px] top-4 bottom-0 w-px bg-brand-100"></span>
+                    <p class="text-xs font-bold text-brand-700 uppercase tracking-wide">${i.d}</p>
+                    <p class="text-sm text-gray-700 mt-1">${i.t}</p>
+                </li>`).join('');
+
+            container.innerHTML = `
+                <div class="fade-in">
+                    <div class="hero-bg text-white py-16">
+                        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                            <span class="inline-block text-xs font-bold tracking-wide uppercase bg-white/15 px-3 py-1.5 rounded-full mb-4">Tentang Program</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold">Apa Itu SDG Academy Indonesia?</h2>
+                            <p class="mt-4 text-brand-50 text-lg max-w-2xl mx-auto">Wadah pembelajaran nasional yang membekali para pemimpin dan pelaku pembangunan untuk membawa SDGs ke tingkat lokal. Agracantika lahir dari program ini.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white py-14">
+                        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 text-gray-700 leading-relaxed">
+                            <p>SDG Academy Indonesia adalah inisiatif peningkatan kapasitas (capacity building) yang diluncurkan pada 7 Oktober 2019 di Jakarta. Inisiatif ini digagas oleh <strong>Tanoto Foundation</strong> bersama <strong>UNDP</strong> (Program Pembangunan PBB) dan pemerintah Indonesia melalui <strong>Kementerian PPN/Bappenas</strong>. Tujuannya membantu para pemangku kepentingan di Indonesia melokalkan SDGs, yaitu menerjemahkan tujuan global menjadi aksi yang sesuai dengan konteks daerah masing-masing.</p>
+                            <p>Sasarannya adalah pelaku pemerintah dan nonpemerintah di seluruh Indonesia. Dalam pemberitaan peluncuran angkatan awalnya, program kepemimpinan ini menggunakan model kasus inovatif dan pengalaman langsung untuk melatih kemampuan memecahkan masalah yang kompleks; angkatan pertamanya terdiri dari sekitar 30 peserta. Pada Februari 2026, SDG Academy Indonesia diberitakan diluncurkan kembali sebagai pusat pembelajaran nasional untuk mempercepat Agenda 2030.</p>
+                            <p class="text-xs text-gray-500">Sumber: <a class="text-brand-700 hover:underline" href="https://www.tanotofoundation.org/?p=3116" target="_blank" rel="noopener">Tanoto Foundation — peluncuran SDG Academy Indonesia</a>. Detail program dapat berubah; rujuk kanal resmi SDG Academy Indonesia untuk informasi terbaru.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 py-14">
+                        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h3 class="text-2xl font-extrabold text-gray-900 mb-8 text-center">Tiga Program Utama</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">${programsHtml}</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white py-14">
+                        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div>
+                                <h3 class="text-2xl font-extrabold text-gray-900 mb-4">SDGs Certified Leadership Program &amp; Capstone</h3>
+                                <p class="text-gray-700 leading-relaxed mb-4">Dalam SDGs Certified Leadership Program, peserta dari berbagai instansi dan sektor dikelompokkan menjadi tim. Setiap tim didampingi mentor dan merancang <strong>capstone project</strong>, yaitu proyek akhir yang menjawab masalah pembangunan nyata dengan kerangka SDGs.</p>
+                                <p class="text-gray-700 leading-relaxed mb-4"><strong>Agracantika</strong> adalah capstone project Tim Agracantika (Kelompok 7) pada Angkatan VIII tahun 2026, dengan Rizka Khoirulika sebagai mentor. Proyek ini mengangkat nilai tambah gambir Desa Toman, Kabupaten Musi Banyuasin, melalui kriya dan sabun, dengan SDG 8 (Pekerjaan Layak dan Pertumbuhan Ekonomi) sebagai tujuan utama serta SDG 1, 9, 12, dan 17 sebagai pendukung.</p>
+                                <div class="flex flex-wrap gap-3 mt-6">
+                                    <button onclick="navigate('tim')" class="bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-700 transition">Kenali Tim Agracantika</button>
+                                    <button onclick="showArticleDetail('apa-itu-capstone-agracantika')" class="bg-brand-100 text-brand-700 px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-200 transition">Baca tentang capstone kami</button>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-extrabold text-gray-900 mb-6">Jejak Waktu</h3>
+                                <ul>${timeline}</ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // ---------- Halaman: Tim Agracantika ----------
+        const teamMembers = [
+            { name: 'Aziza Nurul Amanah', org: 'Kriya Kite Indonesia', role: 'PIC UMKM; Koordinator Proyek / PIC Administrasi' },
+            { name: 'Ruri Arimbi', org: 'PT Raksasi Ruri Arimbi', role: 'PIC Produksi dan Kemitraan Rantai Pasok' },
+            { name: 'Muhammad Ridho Gunawan', org: 'Kementerian Pertanian RI', role: 'PJ Penguatan Kapasitas UMKM dan Quality Control' },
+            { name: 'Alexander Arie Sanata Dharma', org: 'BPOM', role: 'PIC BPOM dan Legalitas Produk' },
+            { name: 'Dewi Sadtyaji', org: 'LKPP', role: 'PIC LKPP dan Pengadaan Pasar' },
+            { name: 'Andi Azhar', org: 'Universitas Muhammadiyah Bengkulu', role: 'PIC Riset dan Pendanaan' },
+            { name: 'R. Muhammad Wildan', org: 'Pertamina Hulu Rokan', role: 'PIC Marketing' }
+        ];
+        function initials(name) {
+            const parts = name.replace(/\./g, '').split(/\s+/).filter(Boolean);
+            return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+        }
+        function renderTim(container) {
+            const cards = teamMembers.map(m => `
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex gap-4 items-start hover:shadow-md transition">
+                    <div class="h-14 w-14 flex-shrink-0 rounded-full bg-gradient-to-br from-brand-700 to-brand-500 text-white font-extrabold flex items-center justify-center text-lg">${initials(m.name)}</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 leading-snug">${escHtml(m.name)}</h4>
+                        <p class="text-sm text-brand-700 font-medium mt-0.5">${escHtml(m.org)}</p>
+                        <p class="text-sm text-gray-600 mt-2">${escHtml(m.role)}</p>
+                    </div>
+                </div>`).join('');
+
+            container.innerHTML = `
+                <div class="bg-gray-50 py-14 fade-in">
+                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-12">
+                            <span class="inline-block text-xs font-bold tracking-wide uppercase text-brand-700 bg-brand-100 px-3 py-1.5 rounded-full mb-4">Kelompok 7 &bull; SDG Academy Indonesia Angkatan VIII</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Tim Agracantika</h2>
+                            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-500">Tujuh orang dari perguruan tinggi, lembaga pemerintah, usaha kriya, dan industri kosmetik yang bertemu dalam SDGs Certified Leadership Program 2026, dan memilih bekerja bersama untuk petani gambir Desa Toman.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${cards}</div>
+
+                        <div class="mt-10 bg-white border border-brand-100 rounded-xl p-6 flex gap-4 items-start">
+                            <div class="h-14 w-14 flex-shrink-0 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center"><i class="fa-solid fa-compass text-xl"></i></div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wide text-gray-400">Mentor</p>
+                                <h4 class="font-bold text-gray-900">Rizka Khoirulika</h4>
+                                <p class="text-sm text-gray-600 mt-1">Mentor Kelompok 7 dalam SDGs Certified Leadership Program 2026, SDG Academy Indonesia.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                            <div class="bg-white rounded-xl border border-gray-200 p-6"><p class="font-bold text-gray-900 mb-1">Penerima manfaat utama</p><p class="text-gray-600">Petani gambir dan perajin kriya gambir.</p></div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-6"><p class="font-bold text-gray-900 mb-1">Lokasi</p><p class="text-gray-600">Desa Toman, Kecamatan Babat Toman, Kabupaten Musi Banyuasin, Sumatera Selatan.</p></div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-6"><p class="font-bold text-gray-900 mb-1">Tujuan SDGs utama</p><p class="text-gray-600">SDG 8: Pekerjaan Layak dan Pertumbuhan Ekonomi (didukung SDG 1, 9, 12, 17).</p></div>
+                        </div>
+
+                        <p class="mt-8 text-xs text-gray-400 text-center">Afiliasi dan peran dicantumkan sebagaimana pada laporan capstone Tim Agracantika.</p>
+                    </div>
+                </div>`;
+        }
 
         function renderProductCard(product) {
             return `
@@ -904,7 +1424,7 @@
                             <p class="mt-2 text-base text-gray-500">Produk hasil kolaborasi petani gambir Desa Toman, Musi Banyuasin, dengan mitra pengembang produk.</p>
                             <div class="mt-4 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg px-4 py-3 flex items-start gap-2">
                                 <i class="fa-solid fa-circle-info mt-0.5"></i>
-                                <span>Website ini hanya menampilkan katalog — klik "Beli Sekarang" untuk melanjutkan pembelian langsung di platform mitra resmi kami. Harga kriya di atas adalah rentang per kategori produk (draf per Oktober 2026), harga pasti mengikuti halaman mitra.</span>
+                                <span>Website ini hanya menampilkan katalog — klik tombol "Beli di Shopee" untuk melanjutkan pembelian di toko mitra resmi kami. Harga kriya di atas adalah rentang per kategori produk (draf per Oktober 2026), harga pasti mengikuti halaman mitra.</span>
                             </div>
                         </div>
 
@@ -914,10 +1434,10 @@
                         <div class="bg-gradient-to-r from-brand-700 to-brand-500 rounded-2xl p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
                             <div>
                                 <h3 class="text-2xl font-extrabold mb-2">Koleksi Lengkap & Custom Branding Korporat</h3>
-                                <p class="text-brand-50 max-w-xl">Varian lain, ukuran custom, dan opsi branding logo perusahaan (merchandise/seminar kit) tersedia selengkapnya di katalog mitra resmi, Kriya Kite Indonesia.</p>
+                                <p class="text-brand-50 max-w-xl">Varian lain, ukuran custom, dan opsi branding logo perusahaan (merchandise/seminar kit) tersedia selengkapnya di toko resmi Kriya Kite Indonesia di Shopee.</p>
                             </div>
-                            <a href="https://www.kriyakiteindonesia.com/" target="_blank" rel="noopener" class="flex-shrink-0 bg-white text-brand-700 font-bold px-6 py-3 rounded-lg hover:bg-brand-50 transition flex items-center gap-2">
-                                Kunjungi Kriya Kite Indonesia <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            <a href="https://id.shp.ee/Rmc2uxcY" target="_blank" rel="noopener" class="flex-shrink-0 bg-white text-brand-700 font-bold px-6 py-3 rounded-lg hover:bg-brand-50 transition flex items-center gap-2">
+                                Kunjungi Shopee Kriya Kite <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                             </a>
                         </div>
                     </div>
@@ -958,7 +1478,7 @@
                                                 <a href="${product.externalUrl}" target="_blank" rel="noopener" class="w-full bg-brand-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-brand-700 flex items-center justify-center gap-2">
                                                     ${product.ctaLabel || 'Beli Sekarang'} <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                                                 </a>
-                                                <p class="text-xs text-gray-400 mt-2 text-center">Anda akan diarahkan ke situs mitra untuk menyelesaikan pembelian.</p>
+                                                <p class="text-xs text-gray-400 mt-2 text-center">Anda akan diarahkan ke Shopee mitra resmi untuk menyelesaikan pembelian.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1015,7 +1535,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 h-12 w-12">
-                                <img class="h-12 w-12 rounded-lg object-cover shadow-sm border border-gray-100" src="${post.image}" alt="">
+                                <div class="h-12 w-12 rounded-lg overflow-hidden shadow-sm border border-gray-100">${postThumb(post, 'h-12', 'text-lg')}</div>
                             </div>
                             <div class="ml-4">
                                 <div class="text-sm font-bold text-gray-900">${post.title.substring(0, 45)}${post.title.length > 45 ? '...' : ''}</div>
@@ -1236,7 +1756,7 @@
                                 <h3 class="text-lg font-bold text-gray-900 mb-4">${post ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div class="space-y-4">
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Judul</label>
-                                        <input id="am-title" value="${post ? post.title : ''}" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                        <input id="am-title" value="${post ? escHtml(post.title) : ''}" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
                                         <select id="am-type" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm">
                                             <option value="Berita" ${post && post.type==='Berita' ? 'selected' : ''}>Berita</option>
@@ -1244,10 +1764,10 @@
                                         </select></div>
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
                                         <input id="am-date" value="${post ? post.date : ''}" placeholder="mis. 12 Oktober 2026" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
-                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">URL Foto</label>
-                                        <input id="am-image" value="${post ? post.image : ''}" placeholder="https:// atau images/nama-file.jpg" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
-                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Isi Artikel</label>
-                                        <textarea id="am-content" rows="4" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm">${post ? post.content : ''}</textarea></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">URL Foto <span class="text-gray-400 font-normal">(boleh kosong — akan tampil ikon)</span></label>
+                                        <input id="am-image" value="${post ? escHtml(post.image) : ''}" placeholder="https:// atau images/nama-file.jpg" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Isi Artikel <span class="text-gray-400 font-normal">(tekan Enter dua kali untuk paragraf baru)</span></label>
+                                        <textarea id="am-content" rows="10" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm">${post ? escHtml(post.content) : ''}</textarea></div>
                                 </div>
                                 <div class="mt-6 flex gap-3">
                                     <button onclick="saveArticleModal('${post ? post.id : ''}')" class="flex-1 bg-brand-600 text-white rounded-md py-2.5 text-sm font-semibold hover:bg-brand-700">Simpan</button>
@@ -1267,7 +1787,7 @@
                 title: document.getElementById('am-title').value,
                 type: document.getElementById('am-type').value,
                 date: document.getElementById('am-date').value || new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }),
-                image: document.getElementById('am-image').value || 'https://placehold.co/600x400/45573D/ffffff?text=Agracantika',
+                image: document.getElementById('am-image').value || '',
                 content: document.getElementById('am-content').value
             };
             if (!data.title) { showToast('Judul artikel wajib diisi', 'error'); return; }

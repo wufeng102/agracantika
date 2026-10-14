@@ -8,13 +8,25 @@ Situs ini sekarang **portal informasi & katalog, bukan platform transaksi**.
 Tidak ada lagi keranjang belanja, checkout, QRIS, atau akun pembeli. Setiap
 produk di halaman Katalog menautkan langsung ke mitra penjualan:
 - 2 produk sabun Ruri Arimbi → Shopee PT Raksasi Ruri Arimbi (`https://id.shp.ee/RKmnheoP`)
-- Produk kriya lainnya → `https://www.kriyakiteindonesia.com/`
+- 5 produk kriya Kriya Kite Indonesia → Shopee Kriya Kite (`https://id.shp.ee/Rmc2uxcY`)
 
 Akibatnya, **koleksi `orders` di Firestore dan proxy ongkir (`backend/shipping-ongkir-proxy.gs`)
 tidak lagi dipakai** — tidak perlu dideploy atau dikonfigurasi. File `.gs` tetap
 disimpan sebagai arsip, aman dihapus kapan saja.
 
-## Bug yang diperbaiki di revisi ini
+## Revisi 14 Okt 2026 (siang): konten & halaman baru
+- **Halaman baru:** `#sdg` (Apa itu SDG Academy Indonesia) dan `#tim` (Tim Agracantika: 7 anggota + mentor).
+  Keduanya ada di menu atas, menu mobile, dan footer. Data anggota ada di array `teamMembers` di `index.html`.
+- **Edukasi:** 14 artikel edukasi (5–7 paragraf) + 4 berita (3 paragraf), dengan filter Semua/Edukasi/Berita.
+  Artikel ditulis di `getDefaultPosts()`; paragraf dipisah baris kosong, memakai helper `P(...)`.
+  Artikel boleh tanpa foto (otomatis tampil blok gradien + ikon dari field `icon`). Field `sources` menampilkan daftar rujukan.
+- **Login admin** diganti menjadi ikon bulu kecil berwarna pudar ("Ruang kontributor") di navbar dan footer; tidak ada lagi tulisan "Admin"/"Login" di tampilan publik.
+- **Kriya Kite** kini diarahkan ke Shopee, bukan ke website mereka.
+- **PENTING:** jika Anda sudah pernah menekan "Semai Data Default" di dashboard, isi Firestore akan menimpa
+  data bawaan ini (artikel lama / link Kriya Kite lama tetap muncul). Tekan "Semai Data Default" lagi
+  (atau ubah link produk dan artikel lewat dashboard) agar perubahan ini tampil.
+
+## Bug yang diperbaiki di revisi sebelumnya
 Ditemukan saat revisi: kode sebelumnya login admin marketplace dengan nilai role
 `'admin_market'`, tetapi `firestore.rules` yang sudah ter-publish memeriksa
 `'admin_marketplace'` — akibatnya dashboard Admin Marketplace versi lama **tidak
