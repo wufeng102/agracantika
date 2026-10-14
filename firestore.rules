@@ -11,42 +11,28 @@ service cloud.firestore {
       function isAdminProject() { return isSignedIn() && myRole() == 'admin_project'; }
       function isAdminMarket()  { return isSignedIn() && myRole() == 'admin_marketplace'; }
 
-      // Profil pengguna. Role default saat daftar sendiri SELALU 'buyer' —
-      // tidak ada jalur di aplikasi untuk menaikkan diri sendiri jadi admin.
-      // Akun admin_project / admin_marketplace dibuat manual lewat Firebase
-      // Console (Authentication > Add user, lalu buat dokumen di sini dengan
-      // role yang sesuai).
+      // Profil pengguna (hanya admin). Tidak ada lagi pendaftaran akun pembeli
+      // di aplikasi (situs tidak melayani transaksi) — akun admin_project /
+      // admin_marketplace dibuat manual lewat Firebase Console:
+      // Authentication > Add user, lalu buat dokumen di sini dengan UID yang
+      // sama berisi field role yang sesuai.
       match /public/data/users/{uid} {
         allow read: if isSignedIn() && request.auth.uid == uid;
-        allow create: if isSignedIn() && request.auth.uid == uid
-                      && request.resource.data.role == 'buyer';
-        allow update: if isSignedIn() && request.auth.uid == uid
-                      && request.resource.data.role == resource.data.role;
+        allow write: if false; // isi/ubah role HANYA lewat Firebase Console, bukan dari app
       }
 
-      // Katalog produk — siapa saja (termasuk yang belum login) boleh
-      // melihat marketplace; hanya admin_marketplace yang boleh menulis.
+      // Katalog produk — portal katalog saja (tidak ada transaksi di sini).
+      // Publik boleh baca; hanya admin_marketplace yang boleh menulis.
       match /public/data/products/{productId} {
         allow read: if true;
         allow write: if isAdminMarket();
       }
 
       // Artikel edukasi/berita — publik boleh baca, hanya admin_project
-      // yang boleh menulis (termasuk unggah URL foto/video).
+      // yang boleh menulis.
       match /public/data/posts/{postId} {
         allow read: if true;
         allow write: if isAdminProject();
-      }
-
-      // Order — satu koleksi bersama. Pembeli hanya boleh membuat order
-      // atas namanya sendiri dan membaca ordernya sendiri; admin_marketplace
-      // boleh membaca & mengubah status semua order (verifikasi pembayaran,
-      // update status kirim). Tidak ada yang boleh menghapus order.
-      match /public/data/orders/{orderId} {
-        allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
-        allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdminMarket());
-        allow update: if isAdminMarket();
-        allow delete: if false;
       }
     }
   }

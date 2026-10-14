@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agracantika - Pemberdayaan Petani Gambir</title>
+    <title>Agracantika - Pemberdayaan Petani Gambir Musi Banyuasin</title>
+    <meta name="description" content="Agracantika — Capstone Project SDG Academy Indonesia 2026. Pusat informasi, edukasi, dan katalog produk kriya & sabun gambir dari Desa Toman, Kabupaten Musi Banyuasin, Sumatera Selatan.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -32,15 +33,14 @@
         }
     </script>
     <style>
-        /* Custom Styles for aesthetics */
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .hero-bg { background: linear-gradient(135deg, #14532d 0%, #16a34a 100%); }
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        /* Hide scrollbar for clean UI in certain areas */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
 <body class="text-gray-800 antialiased flex flex-col min-h-screen">
@@ -55,19 +55,14 @@
                         <span class="font-bold text-xl tracking-tight text-brand-900">Agracantika</span>
                     </a>
                 </div>
-                
+
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" onclick="navigate('home')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Beranda</a>
-                    <a href="#" onclick="navigate('edukasi')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Edukasi & SDG</a>
-                    <a href="#" onclick="navigate('marketplace')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Marketplace</a>
-                    
+                    <a href="#" onclick="navigate('edukasi')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Edukasi & Berita</a>
+                    <a href="#" onclick="navigate('katalog')" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Katalog Produk</a>
+
                     <div class="flex items-center gap-4 ml-4 border-l pl-4 border-gray-200">
-                        <button onclick="toggleCart()" class="relative p-2 text-gray-600 hover:text-brand-600 transition-colors">
-                            <i class="fa-solid fa-cart-shopping text-xl"></i>
-                            <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full hidden">0</span>
-                        </button>
-                        
                         <div id="auth-section-desktop">
                             <!-- Injected by JS -->
                         </div>
@@ -76,10 +71,6 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center gap-4">
-                    <button onclick="toggleCart()" class="relative p-2 text-gray-600">
-                        <i class="fa-solid fa-cart-shopping text-xl"></i>
-                        <span id="cart-count-mobile" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full hidden">0</span>
-                    </button>
                     <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-brand-600 focus:outline-none p-2">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
@@ -91,8 +82,8 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" onclick="navigate('home'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Beranda</a>
-                <a href="#" onclick="navigate('edukasi'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Edukasi & SDG</a>
-                <a href="#" onclick="navigate('marketplace'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Marketplace</a>
+                <a href="#" onclick="navigate('edukasi'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Edukasi & Berita</a>
+                <a href="#" onclick="navigate('katalog'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Katalog Produk</a>
                 <div id="auth-section-mobile" class="border-t border-gray-200 mt-2 pt-2 px-3">
                     <!-- Injected by JS -->
                 </div>
@@ -104,41 +95,6 @@
     <main id="app-content" class="flex-grow pt-16">
         <!-- Content will be injected here based on navigation -->
     </main>
-
-    <!-- Shopping Cart Sidebar -->
-    <div id="cart-sidebar" class="fixed inset-0 overflow-hidden z-[60] hidden">
-        <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="toggleCart()"></div>
-        <div class="fixed inset-y-0 right-0 max-w-full flex">
-            <div class="w-screen max-w-md transform transition ease-in-out duration-500 translate-x-full" id="cart-panel">
-                <div class="h-full flex flex-col bg-white shadow-xl">
-                    <div class="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
-                        <div class="flex items-start justify-between">
-                            <h2 class="text-lg font-medium text-gray-900">Keranjang Belanja</h2>
-                            <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-500">
-                                <i class="fa-solid fa-xmark text-xl"></i>
-                            </button>
-                        </div>
-                        <div class="mt-8">
-                            <div class="flow-root">
-                                <ul id="cart-items-container" role="list" class="-my-6 divide-y divide-gray-200">
-                                    <!-- Cart items injected here -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-                        <div class="flex justify-between text-base font-medium text-gray-900 mb-4">
-                            <p>Subtotal</p>
-                            <p id="cart-subtotal">Rp 0</p>
-                        </div>
-                        <button onclick="proceedToCheckout()" class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-brand-600 hover:bg-brand-700">
-                            Checkout
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modals Container -->
     <div id="modal-container"></div>
@@ -152,36 +108,43 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white mt-12 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-4">
                         <i class="fa-solid fa-leaf text-brand-500 text-2xl"></i>
                         <span class="font-bold text-xl tracking-tight">Agracantika</span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed">
                         Capstone Project SDG Academy Indonesia 2026.<br>
-                        Memberdayakan petani Gambir melalui inovasi produk bernilai tambah (kriya & sabun) untuk masa depan yang berkelanjutan.
+                        Memberdayakan petani Gambir Desa Toman melalui inovasi produk bernilai tambah (kriya & sabun) untuk masa depan yang berkelanjutan.
                     </p>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Tautan Cepat</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="#" onclick="navigate('home')" class="hover:text-brand-500 transition">Beranda</a></li>
-                        <li><a href="#" onclick="navigate('edukasi')" class="hover:text-brand-500 transition">Edukasi & SDG</a></li>
-                        <li><a href="#" onclick="navigate('marketplace')" class="hover:text-brand-500 transition">Marketplace</a></li>
+                        <li><a href="#" onclick="navigate('edukasi')" class="hover:text-brand-500 transition">Edukasi & Berita</a></li>
+                        <li><a href="#" onclick="navigate('katalog')" class="hover:text-brand-500 transition">Katalog Produk</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Mitra Penjualan</h3>
+                    <p class="text-xs text-gray-500 mb-3 leading-relaxed">Agracantika.store adalah portal informasi & katalog — tidak melayani transaksi jual‑beli langsung. Pembelian dilayani oleh mitra berikut:</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="https://www.kriyakiteindonesia.com/" target="_blank" rel="noopener" class="hover:text-brand-500 transition"><i class="fa-solid fa-arrow-up-right-from-square w-5 text-xs"></i> Kriya Kite Indonesia</a></li>
+                        <li><a href="https://id.shp.ee/RKmnheoP" target="_blank" rel="noopener" class="hover:text-brand-500 transition"><i class="fa-solid fa-arrow-up-right-from-square w-5 text-xs"></i> Shopee — PT Raksasi Ruri Arimbi</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Kontak</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><i class="fa-solid fa-envelope w-5"></i> info@agracantika.id</li>
-                        <li><i class="fa-solid fa-phone w-5"></i> +62 812-3456-7890</li>
-                        <li><i class="fa-solid fa-location-dot w-5"></i> Sumatera Barat, Indonesia</li>
+                        <li><i class="fa-solid fa-envelope w-5"></i> info@agracantika.store</li>
+                        <li class="flex items-start gap-1"><i class="fa-solid fa-location-dot w-5 mt-1"></i> <span>Desa Toman, Kabupaten Musi Banyuasin, Sumatera Selatan</span></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
-                &copy; 2026 Agracantika - SDG Academy Indonesia Capstone Project. All rights reserved.
+                &copy; 2026 Agracantika — SDG Academy Indonesia Capstone Project. Portal informasi & katalog, bukan platform transaksi.
             </div>
         </div>
     </footer>
@@ -189,15 +152,10 @@
     <!-- Firebase Scripts -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, addDoc, getDocs, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // ── KONFIGURASI FIREBASE ──────────────────────────────────────────
-        // 1) Buat project di https://console.firebase.google.com (gratis, paket Spark)
-        // 2) Project settings > General > Your apps > tambah Web app, salin objek config-nya ke bawah ini
-        // 3) Authentication > Sign-in method > aktifkan Email/Password
-        // 4) Firestore Database > Create database (mode production) > lalu deploy isi firestore.rules
-        // 5) Storage > Get started (untuk foto produk & foto/video artikel)
         const appId = (typeof __app_id !== 'undefined' && __app_id) ? __app_id : 'agracantika-prod';
         let firebaseConfig;
         try {
@@ -217,19 +175,142 @@
 
         let app, db, auth;
         let currentUser = null;
-        let currentUserRole = 'guest'; // guest, buyer, admin_project, admin_market
+        let currentUserRole = 'guest'; // guest, admin_project, admin_marketplace
+        let usingLocalFallback = false; // true jika Firestore tidak terjangkau — pakai data default lokal
 
         // App State
-        let cart = [];
         let products = [];
         let posts = [];
-        let orders = [];
+
+        // ── DATA DEFAULT (ASLI) ────────────────────────────────────────────
+        // Dipakai sebagai (a) isi awal yang disemai ke Firestore saat koleksi
+        // masih kosong, dan (b) fallback total kalau Firestore/Firebase tidak
+        // terjangkau saat presentasi (mis. koneksi venue bermasalah) — supaya
+        // konten asli tetap tampil apa pun yang terjadi.
+        function getDefaultProducts() {
+            return [
+                {
+                    id: 'ruri-arimbi-100ml',
+                    name: 'Ruri Arimbi Refreshing Botanical Soap 100ml',
+                    priceLabel: '',
+                    img: 'images/produk-sabun-cair-100ml.jpg',
+                    desc: 'Sabun cair botanical yang diperkaya ekstrak Uncaria gambir, hasil kolaborasi Ruri Arimbi dengan Petani Gambir Musi Banyuasin dan Agracantika. Membantu membersihkan serta menjaga kelembapan kulit secara alami.',
+                    vendor: 'PT Raksasi Ruri Arimbi',
+                    ctaLabel: 'Beli di Shopee',
+                    externalUrl: 'https://id.shp.ee/RKmnheoP'
+                },
+                {
+                    id: 'ruri-arimbi-400ml',
+                    name: 'Ruri Arimbi Relaxing Botanical Soap 400ml (Pouch Refill)',
+                    priceLabel: '',
+                    img: 'images/produk-sabun-pouch-400ml.jpg',
+                    desc: 'Kemasan pouch refill 400ml, diperkaya ekstrak Uncaria gambir. Pilihan hemat dan ramah lingkungan untuk penggunaan sehari-hari di rumah.',
+                    vendor: 'PT Raksasi Ruri Arimbi',
+                    ctaLabel: 'Beli di Shopee',
+                    externalUrl: 'https://id.shp.ee/RKmnheoP'
+                },
+                {
+                    id: 'kriyakite-kain-gambo',
+                    name: 'Kain Gambo Muba — Wastra Alam Sumatera Selatan',
+                    priceLabel: 'Rp350.000 – Rp5.000.000',
+                    img: 'images/produk-kain-gambo-wastra.jpg',
+                    desc: 'Wastra tradisional khas Musi Banyuasin dengan motif jumputan dan pewarna alami — perpaduan hitam, coklat, dan krem yang elegan dan natural. Dikembangkan Kriya Kite Indonesia untuk melestarikan warisan budaya dan membuka peluang ekonomi bagi perajin perempuan. Harga tertinggi untuk bahan sutra.',
+                    vendor: 'Kriya Kite Indonesia',
+                    ctaLabel: 'Beli di Kriya Kite Indonesia',
+                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                },
+                {
+                    id: 'kriyakite-outer-gambo',
+                    name: 'Outer Gambo Unisex — Modern Heritage Wear',
+                    priceLabel: 'Rp350.000 – Rp450.000',
+                    img: 'images/produk-outer-gambo.jpg',
+                    desc: 'Potongan modern dan santai dengan aksen kain Gambo bermotif jumputan pada kerah, saku, dan tepian. Serbaguna untuk kegiatan komunitas, acara semi-formal, hingga aktivitas kreatif sehari-hari.',
+                    vendor: 'Kriya Kite Indonesia',
+                    ctaLabel: 'Beli di Kriya Kite Indonesia',
+                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                },
+                {
+                    id: 'kriyakite-vest-gambo',
+                    name: 'Gambo Modest Vest — Contemporary Modest Fashion',
+                    priceLabel: '',
+                    img: 'images/produk-vest-gambo.jpg',
+                    desc: 'Siluet feminin tanpa lengan dengan panel kain Gambo bermotif jumputan coklat alam dan kombinasi krem. Nyaman dipadukan untuk bekerja, acara, maupun kegiatan formal dan komunitas.',
+                    vendor: 'Kriya Kite Indonesia',
+                    ctaLabel: 'Beli di Kriya Kite Indonesia',
+                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                },
+                {
+                    id: 'kriyakite-totebag-gambo',
+                    name: 'Gambo Everyday Tote Bag',
+                    priceLabel: '',
+                    img: 'images/produk-totebag-gambo.jpg',
+                    desc: 'Memadukan kain Gambo bermotif jumputan dengan material canvas dalam desain praktis dan modern. Cocok untuk bekerja, berbelanja, atau sebagai hadiah bermakna.',
+                    vendor: 'Kriya Kite Indonesia',
+                    ctaLabel: 'Beli di Kriya Kite Indonesia',
+                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                },
+                {
+                    id: 'kriyakite-cardholder-gambo',
+                    name: 'Gambo ID Card Holder — Sustainable Corporate Gift',
+                    priceLabel: 'Rp120.000 – Rp155.000',
+                    img: 'images/produk-cardholder-gambo.jpg',
+                    desc: 'Aksesori kerja dengan material bertekstur, detail jahitan, dan aksen kain Gambo. Cocok sebagai merchandise perusahaan, seminar kit, atau suvenir — tersedia opsi kustomisasi logo dan identitas perusahaan (contoh: Pertamina Hulu Rokan).',
+                    vendor: 'Kriya Kite Indonesia',
+                    ctaLabel: 'Beli di Kriya Kite Indonesia',
+                    externalUrl: 'https://www.kriyakiteindonesia.com/'
+                }
+            ];
+        }
+
+        function getDefaultPosts() {
+            return [
+                {
+                    id: 'fgd-pemda-12okt2026',
+                    title: 'FGD & Deklarasi Komitmen Bersama: Pengembangan dan Hilirisasi Gambir Berkelanjutan Musi Banyuasin',
+                    type: 'Berita',
+                    date: '12 Oktober 2026',
+                    image: 'images/berita-fgd-pemda-12okt2026.jpg',
+                    content: 'Tim Agracantika bersama Pemerintah Daerah Kabupaten Musi Banyuasin dan para petani gambir menyelenggarakan Focus Group Discussion (FGD) di Kantor Bapperida Musi Banyuasin. Kegiatan ini ditutup dengan penandatanganan Deklarasi Komitmen Bersama "Pengembangan dan Hilirisasi Gambir Berkelanjutan Kabupaten Musi Banyuasin: Kolaborasi Multipihak untuk Nilai Tambah, Daya Saing, dan Kesejahteraan Masyarakat", yang ditandatangani oleh Pemerintah Daerah, kelompok petani gambir, komunitas Selaras Muba Lestari, akademisi/peneliti, serta pelaku UMKM — menandai arah bersama bagi masa depan petani gambir di Musi Banyuasin.'
+                },
+                {
+                    id: 'kunjungan-kebun-12okt2026',
+                    title: 'Kunjungan Lapangan ke Kebun Gambir: Melihat Langsung Proses Produksi',
+                    type: 'Berita',
+                    date: '12 Oktober 2026',
+                    image: 'images/berita-kunjungan-kebun-12okt2026.jpg',
+                    content: 'Masih di hari yang sama dengan FGD bersama Pemda, Tim Agracantika mengunjungi kebun gambir milik petani binaan di Musi Banyuasin untuk melihat langsung proses budidaya hingga pengolahan getah gambir. Kunjungan ini memperkuat pemahaman tim atas tantangan di tingkat petani, sekaligus menjadi dasar perancangan produk turunan (kriya dan sabun) yang benar-benar menjawab kebutuhan rantai nilai gambir dari hulu.'
+                },
+                {
+                    id: 'kunjungan-ruriarimbi-06okt2026',
+                    title: 'Kunjungan ke PT Raksasi Ruri Arimbi: Riset, Pengembangan, dan Produksi Sabun Berbahan Gambir',
+                    type: 'Berita',
+                    date: '6 Oktober 2026',
+                    image: 'images/berita-kunjungan-ruriarimbi-06okt2026.jpg',
+                    content: 'Tim Agracantika berkunjung ke fasilitas PT Raksasi Ruri Arimbi untuk melihat langsung proses penelitian, pengembangan (R&D), hingga produksi sabun botanical berbahan ekstrak gambir. Kunjungan ini menjadi bagian dari kolaborasi yang menghasilkan dua produk sabun gambir — Refreshing Botanical Soap dan Relaxing Botanical Soap — yang kini tersedia bagi masyarakat luas.'
+                },
+                {
+                    id: 'buku-merajut-asa',
+                    title: 'Buku "Merajut Asa di Musi Banyuasin: Sinergi, Inovasi, dan Keberlanjutan Rantai Nilai Gambir" Resmi Terbit',
+                    type: 'Edukasi',
+                    date: 'Oktober 2026',
+                    image: 'images/berita-buku-merajut-asa-cover.png',
+                    content: 'Tim Penulis Agracantika menerbitkan buku "Merajut Asa di Musi Banyuasin: Sinergi, Inovasi, dan Keberlanjutan Rantai Nilai Gambir" bersama Gemini Publishing, dengan prolog oleh Fadillah (SDG Academy Indonesia) dan disunting oleh Andi Azhar. Buku ini merangkum perjalanan, tantangan, dan strategi kolaborasi multipihak dalam membangun rantai nilai gambir yang berkelanjutan di Kabupaten Musi Banyuasin.'
+                }
+            ];
+        }
+
+        // Galeri dokumentasi (foto-foto kegiatan lapangan/petani). Sebagian foto
+        // yang diminta diambil dari folder Google Drive tim tidak bisa diakses
+        // otomatis dari sistem ini — galeri di bawah memakai foto yang sudah
+        // tersedia; tambahkan foto lain secara manual ke folder images/ bila perlu.
+        const galleryPhotos = [
+            { img: 'images/berita-kunjungan-kebun-12okt2026.jpg', caption: 'Tim Agracantika dan petani di kebun gambir, Musi Banyuasin' },
+            { img: 'images/galeri-silaturahmi-mitra.jpg', caption: 'Silaturahmi dengan mitra dan tokoh masyarakat setempat' },
+            { img: 'images/berita-fgd-pemda-12okt2026.jpg', caption: 'Penandatanganan Deklarasi Komitmen Bersama di Kantor Bapperida Musi Banyuasin' },
+            { img: 'images/berita-kunjungan-ruriarimbi-06okt2026.jpg', caption: 'Tim bersama hasil produksi sabun gambir di fasilitas PT Raksasi Ruri Arimbi' }
+        ];
 
         // Formatting utilities
-        const formatRupiah = (number) => {
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
-        };
-
         const formatDate = (timestamp) => {
             if (!timestamp) return '-';
             const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
@@ -241,9 +322,9 @@
             const toast = document.getElementById('toast');
             const icon = document.getElementById('toast-icon');
             const msg = document.getElementById('toast-message');
-            
+
             msg.textContent = message;
-            
+
             if (type === 'success') {
                 icon.innerHTML = '<i class="fa-solid fa-check text-green-500"></i>';
                 icon.className = 'inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg';
@@ -256,7 +337,7 @@
             }
 
             toast.classList.remove('translate-y-full', 'opacity-0');
-            
+
             setTimeout(() => {
                 toast.classList.add('translate-y-full', 'opacity-0');
             }, 3000);
@@ -280,7 +361,6 @@
                 modal.querySelector('.modal-panel').classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
                 setTimeout(() => {
                     modal.classList.add('hidden');
-                    // Remove modal from DOM if it was dynamically created (like auth modals)
                     if(id.startsWith('dynamic-modal-')) {
                         modal.remove();
                     }
@@ -289,9 +369,14 @@
         };
 
         async function initFirebase() {
+            // Selalu siapkan data default lokal lebih dulu supaya situs TETAP
+            // tampil benar walau Firebase gagal konek (mis. wifi venue bermasalah).
+            products = getDefaultProducts();
+            posts = getDefaultPosts();
+
             if (!firebaseConfig || Object.keys(firebaseConfig).length === 0 || firebaseConfig.projectId === 'GANTI') {
-                console.warn("Firebase config belum diisi. Berjalan dalam mode demo (data lokal, tidak tersimpan).");
-                setupMockData();
+                console.warn("Firebase config belum diisi. Berjalan dengan data default lokal (tidak tersimpan).");
+                usingLocalFallback = true;
                 renderAuthUI();
                 navigate('home');
                 return;
@@ -302,36 +387,13 @@
                 db = getFirestore(app);
                 auth = getAuth(app);
 
-                // Authentication Flow
-                const initialToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-                if (initialToken) {
-                    await signInWithCustomToken(auth, initialToken);
-                } else {
-                    // We don't force anonymous sign-in immediately because buyers need to register.
-                    // We will check auth state.
-                }
-
                 onAuthStateChanged(auth, async (user) => {
                     currentUser = user;
                     if (user) {
-                        // Check custom claims or a user document to determine role
-                        // For this prototype, we'll use a Firestore collection to map uid to role
                         try {
                             const userDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', user.uid);
                             const userDoc = await getDoc(userDocRef);
-                            
-                            if (userDoc.exists()) {
-                                currentUserRole = userDoc.data().role || 'buyer';
-                            } else {
-                                // Default role for new email signups
-                                if(!user.isAnonymous) {
-                                    await setDoc(userDocRef, { role: 'buyer', email: user.email, name: user.displayName });
-                                    currentUserRole = 'buyer';
-                                } else {
-                                     currentUserRole = 'guest';
-                                }
-                            }
+                            currentUserRole = userDoc.exists() ? (userDoc.data().role || 'guest') : 'guest';
                         } catch (e) {
                             console.error("Error fetching user role", e);
                             currentUserRole = 'guest';
@@ -339,147 +401,89 @@
                     } else {
                         currentUserRole = 'guest';
                     }
-                    
+
                     renderAuthUI();
-                    
-                    // Setup listeners only if user is logged in
-                    if(currentUser) {
-                         setupFirestoreListeners();
-                    } else {
-                         // Load public data for guests
-                         loadPublicData();
-                    }
-                    
-                    // Initial render based on current hash or default
+                    await loadPublicData();
+
                     const hash = window.location.hash.slice(1) || 'home';
                     navigate(hash, false);
                 });
 
             } catch (error) {
                 console.error("Firebase initialization error:", error);
-                setupMockData();
+                usingLocalFallback = true;
                 renderAuthUI();
                 navigate('home');
             }
         }
 
-        function setupMockData() {
-            products = [
-                { id: 'p1', name: 'Sabun Ekstrak Gambir Organik', price: 35000, desc: 'Sabun mandi dengan ekstrak gambir alami. Antioksidan tinggi, baik untuk kesehatan kulit dan mengatasi masalah kulit ringan.', img: 'https://placehold.co/400x400/16a34a/ffffff?text=Sabun+Gambir', category: 'Sabun', stock: 50 },
-                { id: 'p2', name: 'Sabun Cuci Muka Gambir', price: 45000, desc: 'Formulasi khusus untuk wajah. Membantu mengurangi jerawat dan mencerahkan kulit.', img: 'https://placehold.co/400x400/15803d/ffffff?text=Facial+Wash', category: 'Sabun', stock: 30 },
-                { id: 'p3', name: 'Kain Tenun Pewarna Gambir', price: 250000, desc: 'Kain tenun tradisional yang diwarnai menggunakan pewarna alami dari ekstrak gambir. Warna tanah yang elegan dan awet.', img: 'https://placehold.co/400x400/8b4513/ffffff?text=Kain+Tenun', category: 'Kriya', stock: 10 },
-                { id: 'p4', name: 'Dompet Anyaman Motif Gambir', price: 85000, desc: 'Dompet kriya buatan tangan pengrajin lokal dengan sentuhan pewarna dan motif inspirasi daun gambir.', img: 'https://placehold.co/400x400/d2691e/ffffff?text=Dompet+Kriya', category: 'Kriya', stock: 25 }
-            ];
-
-            posts = [
-                { id: 'n1', title: 'Pelatihan Pembuatan Sabun Gambir di Desa X', date: '2026-09-10', content: 'Tim Agracantika sukses menyelenggarakan pelatihan pembuatan sabun berbasis ekstrak gambir untuk 30 petani lokal. Kegiatan ini bertujuan meningkatkan added value...', type: 'Berita', image: 'https://placehold.co/600x400/1e293b/ffffff?text=Pelatihan+Sabun' },
-                { id: 'n2', title: 'Mengenal Gambir (Uncaria gambir)', date: '2026-08-25', content: 'Gambir adalah ekstrak air panas dari daun dan ranting tanaman Uncaria gambir. Kaya akan katekin, menjadikannya antioksidan alami yang sangat potensial untuk kriya dan kosmetik...', type: 'Edukasi', image: 'https://placehold.co/600x400/22c55e/ffffff?text=Tanaman+Gambir' }
-            ];
-
-            // Data pesanan simulasi untuk tampilan Dashboard
-            orders = [
-                { id: 'ORD-8192', status: 'Dikirim', totalAmount: 155000, date: '2026-09-12T10:00:00Z', items: [{name: 'Sabun Ekstrak Gambir Organik', quantity: 2, price: 35000, img: products[0].img}, {name: 'Dompet Anyaman Motif Gambir', quantity: 1, price: 85000, img: products[3].img}], shippingInfo: {name: 'Budi Santoso', address: 'Jl. Merdeka No. 45, Jakarta'} },
-                { id: 'ORD-1030', status: 'Diproses', totalAmount: 70000, date: '2026-09-16T14:30:00Z', items: [{name: 'Sabun Ekstrak Gambir Organik', quantity: 2, price: 35000, img: products[0].img}], shippingInfo: {name: 'Siti Aminah', address: 'Jl. Pahlawan No. 2, Bandung'} },
-                { id: 'ORD-0921', status: 'Menunggu Pembayaran', totalAmount: 275000, date: '2026-09-17T09:15:00Z', items: [{name: 'Kain Tenun Pewarna Gambir', quantity: 1, price: 250000, img: products[2].img}], shippingInfo: {name: 'Agus Pratama', address: 'Jl. Sudirman 88, Medan'} }
-            ];
-            
-            // Re-render current view if needed
-        }
-
         async function loadPublicData() {
-            if(!db) return;
+            if (!db) return;
             try {
-                // Fetch Products
                 const productsRef = collection(db, 'artifacts', appId, 'public', 'data', 'products');
                 const productsSnap = await getDocs(productsRef);
-                products = productsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                if (productsSnap.docs.length > 0) {
+                    products = productsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+                } else {
+                    products = getDefaultProducts();
+                }
 
-                // Fetch Posts
                 const postsRef = collection(db, 'artifacts', appId, 'public', 'data', 'posts');
                 const postsSnap = await getDocs(postsRef);
-                posts = postsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                if (postsSnap.docs.length > 0) {
+                    posts = postsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+                } else {
+                    posts = getDefaultPosts();
+                }
+                usingLocalFallback = false;
 
-                // If empty, seed mock data to Firestore (for demonstration purposes only)
-                if(products.length === 0 && currentUser) {
-                     seedData();
-                }
-                
-                // Re-render current view
                 const currentView = window.location.hash.slice(1) || 'home';
-                if(currentView === 'marketplace' || currentView === 'edukasi' || currentView === 'home') {
-                    renderView(currentView);
-                }
+                renderView(currentView);
 
             } catch (e) {
-                console.error("Error loading public data:", e);
-                setupMockData();
+                console.error("Error loading public data, using local fallback:", e);
+                products = getDefaultProducts();
+                posts = getDefaultPosts();
+                usingLocalFallback = true;
             }
         }
 
-        function setupFirestoreListeners() {
-            if (!currentUser) return;
-            
-            // Always load public data (products, posts)
-            loadPublicData();
-
-            // Satu koleksi order untuk semua role (bukan disalin ke dua tempat) —
-            // tiap dokumen punya field userId; siapa yang boleh baca/tulis apa
-            // diatur lewat firestore.rules, bukan lewat pemisahan path.
-            const ordersCol = collection(db, 'artifacts', appId, 'public', 'data', 'orders');
-            if (currentUserRole === 'buyer') {
-                const ordersRef = query(ordersCol, where('userId', '==', currentUser.uid));
-                onSnapshot(ordersRef, (snapshot) => {
-                    orders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    if(window.location.hash.slice(1) === 'dashboard') renderDashboard();
-                }, (error) => console.error("Error listening to orders:", error));
-            } else if (currentUserRole === 'admin_market') {
-                onSnapshot(ordersCol, (snapshot) => {
-                    orders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    if(window.location.hash.slice(1) === 'dashboard') renderDashboard();
-                }, (error) => console.error("Error listening to all orders:", error));
+        // Menyemai data default ke Firestore sekali saja — dipanggil manual oleh
+        // admin yang login lewat tombol di dashboard (bukan otomatis), supaya
+        // tidak menimpa data yang sudah pernah diedit admin.
+        window.seedDefaultData = async () => {
+            if (!db || !currentUser) { showToast('Harus login sebagai admin untuk menyemai data', 'error'); return; }
+            try {
+                for (const p of getDefaultProducts()) {
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', p.id), p);
+                }
+                for (const p of getDefaultPosts()) {
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'posts', p.id), p);
+                }
+                await loadPublicData();
+                showToast('Data default berhasil disalin ke Firestore', 'success');
+            } catch (e) {
+                console.error(e);
+                showToast('Gagal menyemai data. Periksa Firestore Security Rules.', 'error');
             }
-        }
-
-        // Helper to seed data for demo
-        async function seedData() {
-            setupMockData(); // load into memory
-            for (const p of products) {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', p.id), p);
-            }
-            for (const p of posts) {
-                 await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'posts', p.id), p);
-            }
-            loadPublicData();
-        }
-
+        };
 
         function renderAuthUI() {
             const desktopContainer = document.getElementById('auth-section-desktop');
             const mobileContainer = document.getElementById('auth-section-mobile');
-            
+
             let html = '';
-            if (!currentUser || currentUser.isAnonymous) {
-                html = `
-                    <button onclick="showLoginModal()" class="text-sm font-medium text-gray-700 hover:text-brand-600 mr-4">Masuk</button>
-                    <button onclick="showRegisterModal()" class="text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 px-4 py-2 rounded-md transition-colors">Daftar</button>
-                `;
-                // Special case for demo: provide quick admin login buttons
-                html += `
-                    <div class="absolute mt-10 right-0 bg-white shadow-md p-2 rounded hidden md:flex flex-col gap-1 text-xs" id="demo-logins">
-                        <span class="text-gray-400 font-bold">Demo Logins:</span>
-                        <button onclick="demoLogin('admin_project')" class="text-left hover:text-brand-600">Admin Project</button>
-                        <button onclick="demoLogin('admin_market')" class="text-left hover:text-brand-600">Admin Market</button>
-                    </div>
-                `;
+            if (!currentUser) {
+                html = `<button onclick="showLoginModal()" class="text-sm font-medium text-gray-700 hover:text-brand-600">Login Admin</button>`;
             } else {
                 let roleDisplay = '';
                 if(currentUserRole === 'admin_project') roleDisplay = '<span class="ml-2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Admin Project</span>';
-                if(currentUserRole === 'admin_market') roleDisplay = '<span class="ml-2 bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Admin Market</span>';
-                
+                if(currentUserRole === 'admin_marketplace') roleDisplay = '<span class="ml-2 bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Admin Marketplace</span>';
+
                 html = `
                     <div class="flex items-center gap-3">
                         <div class="text-sm">
-                            <span class="font-medium text-gray-900">${currentUser.displayName || currentUser.email || 'Pengguna'}</span>
+                            <span class="font-medium text-gray-900">${currentUser.email || 'Admin'}</span>
                             ${roleDisplay}
                         </div>
                         <button onclick="navigate('dashboard')" class="text-gray-600 hover:text-brand-600" title="Dashboard">
@@ -491,53 +495,20 @@
                     </div>
                 `;
             }
-            
+
             desktopContainer.innerHTML = html;
-            
-            // Adjust for mobile
-            if (!currentUser || currentUser.isAnonymous) {
-                 mobileContainer.innerHTML = `
-                    <button onclick="showLoginModal(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-600">Masuk</button>
-                    <button onclick="showRegisterModal(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-base font-medium text-brand-600 hover:text-brand-700">Daftar Akun Baru</button>
-                 `;
+
+            if (!currentUser) {
+                mobileContainer.innerHTML = `<button onclick="showLoginModal(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-600">Login Admin</button>`;
             } else {
-                 mobileContainer.innerHTML = `
+                mobileContainer.innerHTML = `
                     <div class="px-3 py-2 text-sm text-gray-500 border-b border-gray-100 pb-2 mb-2">
-                        Masuk sebagai:<br><span class="font-medium text-gray-900">${currentUser.displayName || currentUser.email}</span>
+                        Masuk sebagai:<br><span class="font-medium text-gray-900">${currentUser.email}</span>
                     </div>
                     <button onclick="navigate('dashboard'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-600">Dashboard</button>
                     <button onclick="handleLogout(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-base font-medium text-red-600 hover:text-red-700">Keluar</button>
                  `;
             }
-        }
-
-        // Demo login function for the prototype to test roles easily
-        window.demoLogin = async (role) => {
-             if(!db) { showToast("Firebase tidak aktif", "error"); return; }
-             
-             try {
-                 // Create a fake email based on appid and role to reuse across reloads in demo
-                 const email = `demo_${role}@${appId}.com`;
-                 const password = "password123";
-                 
-                 try {
-                     await signInWithEmailAndPassword(auth, email, password);
-                 } catch (e) {
-                     // If doesn't exist, create it
-                     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                     await updateProfile(userCredential.user, { displayName: `Demo ${role}` });
-                     // Set role
-                     await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', userCredential.user.uid), { 
-                         role: role, 
-                         email: email, 
-                         name: `Demo ${role}` 
-                     });
-                 }
-                 showToast(`Berhasil masuk sebagai ${role}`, 'success');
-             } catch(e) {
-                 console.error(e);
-                 showToast("Gagal login demo", "error");
-             }
         }
 
         window.showLoginModal = () => {
@@ -550,7 +521,8 @@
                             <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                 <div class="sm:flex sm:items-start w-full">
                                     <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                                        <h3 class="text-xl font-semibold leading-6 text-gray-900 mb-6" id="modal-title">Masuk ke Akun Anda</h3>
+                                        <h3 class="text-xl font-semibold leading-6 text-gray-900 mb-1" id="modal-title">Login Admin</h3>
+                                        <p class="text-xs text-gray-500 mb-6">Khusus Admin Project & Admin Marketplace. Website ini tidak memiliki pendaftaran akun pembeli karena tidak melayani transaksi.</p>
                                         <form id="login-form" onsubmit="handleLoginSubmit(event)">
                                             <div class="mb-4">
                                                 <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -561,11 +533,10 @@
                                                 <input type="password" id="login-password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
                                             </div>
                                             <div class="flex flex-col gap-3">
-                                                <button type="submit" class="w-full inline-flex justify-center rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Masuk</button>
+                                                <button type="submit" class="w-full inline-flex justify-center rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700">Masuk</button>
                                                 <button type="button" onclick="closeModal('dynamic-modal-login')" class="w-full inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Batal</button>
                                             </div>
                                         </form>
-                                        <p class="mt-4 text-sm text-center text-gray-500">Belum punya akun? <a href="#" onclick="closeModal('dynamic-modal-login'); setTimeout(showRegisterModal, 300)" class="text-brand-600 font-medium">Daftar sekarang</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -577,53 +548,13 @@
             setTimeout(() => openModal('dynamic-modal-login'), 50);
         };
 
-        window.showRegisterModal = () => {
-             const modalHtml = `
-            <div id="dynamic-modal-register" class="relative z-[60]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                <div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0"></div>
-                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                        <div class="modal-panel relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                <div class="sm:flex sm:items-start w-full">
-                                    <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                                        <h3 class="text-xl font-semibold leading-6 text-gray-900 mb-6" id="modal-title">Daftar Akun Pembeli</h3>
-                                        <form id="register-form" onsubmit="handleRegisterSubmit(event)">
-                                            <div class="mb-4">
-                                                <label for="reg-name" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
-                                                <input type="text" id="reg-name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="reg-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                                <input type="email" id="reg-email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
-                                            </div>
-                                            <div class="mb-6">
-                                                <label for="reg-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                                                <input type="password" id="reg-password" required minlength="6" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
-                                            </div>
-                                            <div class="flex flex-col gap-3">
-                                                <button type="submit" class="w-full inline-flex justify-center rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">Daftar</button>
-                                                <button type="button" onclick="closeModal('dynamic-modal-register')" class="w-full inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Batal</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-            document.getElementById('modal-container').insertAdjacentHTML('beforeend', modalHtml);
-            setTimeout(() => openModal('dynamic-modal-register'), 50);
-        };
-
         window.handleLoginSubmit = async (e) => {
             e.preventDefault();
-            if(!auth) { showToast('Auth tidak tersedia', 'error'); return; }
-            
+            if(!auth) { showToast('Firebase Auth tidak aktif (mode data lokal)', 'error'); return; }
+
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-            
+
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 closeModal('dynamic-modal-login');
@@ -631,41 +562,6 @@
             } catch (error) {
                 console.error(error);
                 showToast('Gagal masuk: Email atau password salah', 'error');
-            }
-        };
-
-        window.handleRegisterSubmit = async (e) => {
-            e.preventDefault();
-            if(!auth || !db) { showToast('Sistem pendaftaran tidak tersedia', 'error'); return; }
-
-            const name = document.getElementById('reg-name').value;
-            const email = document.getElementById('reg-email').value;
-            const password = document.getElementById('reg-password').value;
-
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                
-                // Update profile
-                await updateProfile(user, { displayName: name });
-                
-                // Save role to Firestore
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'users', user.uid), {
-                    role: 'buyer',
-                    email: email,
-                    name: name,
-                    createdAt: serverTimestamp()
-                });
-
-                closeModal('dynamic-modal-register');
-                showToast('Pendaftaran berhasil! Selamat datang.', 'success');
-                currentUserRole = 'buyer'; // Optimistic update
-                
-            } catch (error) {
-                console.error(error);
-                let msg = 'Pendaftaran gagal';
-                if(error.code === 'auth/email-already-in-use') msg = 'Email sudah digunakan';
-                showToast(msg, 'error');
             }
         };
 
@@ -696,8 +592,8 @@
 
         function renderView(page) {
             const contentDiv = document.getElementById('app-content');
-            contentDiv.innerHTML = ''; // Clear current
-            
+            contentDiv.innerHTML = '';
+
             switch(page) {
                 case 'home':
                     renderHome(contentDiv);
@@ -705,14 +601,13 @@
                 case 'edukasi':
                     renderEdukasi(contentDiv);
                     break;
-                case 'marketplace':
-                    renderMarketplace(contentDiv);
+                case 'katalog':
+                    renderKatalog(contentDiv);
                     break;
                 case 'dashboard':
-                    // Auto-setup akun demo jika mencoba mengakses dashboard tanpa login
-                    if (!currentUser || currentUser.isAnonymous) {
-                        currentUser = { uid: 'demo-user', displayName: 'Pengguna Demo', email: 'demo@agracantika.id' };
-                        if(currentUserRole === 'guest') currentUserRole = 'buyer'; 
+                    if (!currentUser || currentUserRole === 'guest') {
+                        contentDiv.innerHTML = `<div class="text-center py-24 text-gray-500"><i class="fa-solid fa-lock text-4xl mb-4 text-gray-300"></i><p class="text-lg">Silakan login sebagai Admin untuk mengakses dashboard.</p><button onclick="showLoginModal()" class="mt-4 bg-brand-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-brand-700">Login Admin</button></div>`;
+                        return;
                     }
                     renderDashboard(contentDiv);
                     break;
@@ -734,17 +629,20 @@
                         <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20">
                             <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                                 <div class="sm:text-center lg:text-left">
+                                    <span class="inline-flex items-center gap-2 text-xs font-bold tracking-wide uppercase text-brand-700 bg-brand-100 px-3 py-1.5 rounded-full mb-4">
+                                        <i class="fa-solid fa-location-dot"></i> Desa Toman, Kabupaten Musi Banyuasin, Sumatera Selatan
+                                    </span>
                                     <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                                         <span class="block xl:inline">Pemberdayaan Petani</span>
                                         <span class="block text-brand-600 xl:inline">Melalui Inovasi Gambir</span>
                                     </h1>
                                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                        Project Agracantika hadir untuk meningkatkan added value produk gambir menjadi kriya dan sabun berkualitas tinggi, mendukung kesejahteraan petani, dan berkontribusi pada pencapaian SDGs.
+                                        Agracantika hadir untuk meningkatkan nilai tambah produk gambir dari Desa Toman, Musi Banyuasin, menjadi kriya dan sabun berkualitas tinggi — mendukung kesejahteraan petani dan pencapaian SDGs.
                                     </p>
                                     <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                         <div class="rounded-md shadow">
-                                            <a href="#" onclick="navigate('marketplace')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 md:py-4 md:text-lg md:px-10 transition">
-                                                Beli Produk
+                                            <a href="#" onclick="navigate('katalog')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 md:py-4 md:text-lg md:px-10 transition">
+                                                Lihat Katalog Produk
                                             </a>
                                         </div>
                                         <div class="mt-3 sm:mt-0 sm:ml-3">
@@ -758,7 +656,15 @@
                         </div>
                     </div>
                     <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-50">
-                        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Petani di perkebunan">
+                        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="images/berita-kunjungan-kebun-12okt2026.jpg" alt="Kebun gambir di Desa Toman, Musi Banyuasin">
+                    </div>
+                </div>
+
+                <!-- Notice: aggregator only -->
+                <div class="bg-amber-50 border-y border-amber-200">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-3 text-sm text-amber-800">
+                        <i class="fa-solid fa-circle-info text-amber-500 text-lg"></i>
+                        <p>Website Agracantika adalah portal informasi &amp; katalog produk — <strong>tidak melayani transaksi jual-beli langsung</strong>. Pembelian dilayani oleh mitra resmi kami (Kriya Kite Indonesia &amp; Shopee PT Raksasi Ruri Arimbi).</p>
                     </div>
                 </div>
 
@@ -774,7 +680,6 @@
 
                         <div class="mt-10">
                             <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
-                                <!-- Feature 1 -->
                                 <div class="relative bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                                     <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-brand-500 text-white">
                                         <i class="fa-solid fa-briefcase text-xl"></i>
@@ -784,8 +689,6 @@
                                         Meningkatkan pendapatan petani gambir melalui penciptaan produk turunan bernilai tambah tinggi, membuka lapangan kerja baru di sektor kriya dan kosmetik.
                                     </p>
                                 </div>
-
-                                <!-- Feature 2 -->
                                 <div class="relative bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                                     <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-brand-500 text-white">
                                         <i class="fa-solid fa-industry text-xl"></i>
@@ -795,8 +698,6 @@
                                         Mendorong inovasi dalam pengolahan gambir yang sebelumnya hanya bahan mentah menjadi produk jadi (sabun dan pewarna alami kriya) yang kompetitif.
                                     </p>
                                 </div>
-
-                                <!-- Feature 3 -->
                                 <div class="relative bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                                     <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-brand-500 text-white">
                                         <i class="fa-solid fa-recycle text-xl"></i>
@@ -810,6 +711,27 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Latest news teaser -->
+                <div class="py-16 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex justify-between items-end mb-8 border-b pb-4">
+                            <h2 class="text-2xl font-extrabold text-gray-900">Kabar Terbaru</h2>
+                            <a href="#" onclick="navigate('edukasi')" class="text-brand-600 hover:text-brand-700 font-medium text-sm">Semua Berita &rarr;</a>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            ${posts.slice(0, 4).map(p => `
+                                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition cursor-pointer" onclick="navigate('edukasi')">
+                                    <img class="h-36 w-full object-cover" src="${p.image}" alt="${p.title}">
+                                    <div class="p-4">
+                                        <span class="text-xs font-semibold text-brand-600">${p.type} &bull; ${p.date}</span>
+                                        <h3 class="mt-1 text-sm font-bold text-gray-900 leading-snug line-clamp-3">${p.title}</h3>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
             `;
             container.innerHTML = html;
         }
@@ -820,7 +742,7 @@
                 postsHtml = '<p class="text-gray-500 col-span-full text-center py-10">Belum ada informasi/berita saat ini.</p>';
             } else {
                 postsHtml = posts.map(post => `
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition duration-300">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 cursor-pointer" onclick="showArticleDetail('${post.id}')">
                         <img class="h-48 w-full object-cover" src="${post.image || 'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'}" alt="${post.title}">
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-2">
@@ -841,13 +763,22 @@
                 `).join('');
             }
 
+            let galleryHtml = galleryPhotos.map(g => `
+                <div class="relative group overflow-hidden rounded-xl shadow-sm border border-gray-200">
+                    <img src="${g.img}" alt="${g.caption}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                        <p class="text-white text-xs font-medium leading-snug">${g.caption}</p>
+                    </div>
+                </div>
+            `).join('');
+
             const html = `
                 <div class="bg-white py-12 fade-in">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="text-center mb-16">
                             <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Pusat Informasi Agracantika</h2>
                             <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-                                Pelajari lebih lanjut tentang potensi Gambir, kegiatan Capstone Project kami, dan dampaknya bagi masyarakat.
+                                Pelajari lebih lanjut tentang potensi Gambir, kegiatan Capstone Project kami di Desa Toman, Musi Banyuasin, dan dampaknya bagi masyarakat.
                             </p>
                         </div>
 
@@ -856,23 +787,31 @@
                             <div>
                                 <h3 class="text-2xl font-bold text-brand-900 mb-4">Apa itu Gambir?</h3>
                                 <p class="text-gray-700 mb-4 leading-relaxed">
-                                    Gambir adalah ekstrak air panas dari daun dan ranting tanaman <em>Uncaria gambir</em>. Indonesia, khususnya Sumatera Barat, merupakan salah satu penghasil utama gambir dunia.
+                                    Gambir adalah ekstrak air panas dari daun dan ranting tanaman <em>Uncaria gambir</em>. Kabupaten Musi Banyuasin, Sumatera Selatan — khususnya Desa Toman — merupakan salah satu sentra penghasil gambir di Indonesia.
                                 </p>
                                 <p class="text-gray-700 leading-relaxed">
                                     Secara tradisional digunakan untuk menyirih, namun penelitian modern menunjukkan gambir sangat kaya akan <strong>katekin</strong> (antioksidan kuat). Potensi inilah yang Agracantika angkat untuk diolah menjadi produk turunan bernilai ekonomi tinggi seperti kosmetik (sabun) dan pewarna alami untuk produk kriya.
                                 </p>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
-                                <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Daun hijau" class="rounded-lg shadow-sm h-48 w-full object-cover">
-                                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Produk sabun natural" class="rounded-lg shadow-sm h-48 w-full object-cover">
+                                <img src="images/berita-kunjungan-kebun-12okt2026.jpg" alt="Kebun gambir Desa Toman" class="rounded-lg shadow-sm h-48 w-full object-cover">
+                                <img src="images/produk-sabun-cair-100ml.jpg" alt="Produk sabun gambir" class="rounded-lg shadow-sm h-48 w-full object-cover">
                             </div>
                         </div>
 
                         <!-- Blog/News Grid -->
-                        <div>
+                        <div class="mb-16">
                             <h3 class="text-2xl font-bold text-gray-900 mb-8 border-b pb-4">Kabar Terbaru & Edukasi</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 ${postsHtml}
+                            </div>
+                        </div>
+
+                        <!-- Gallery -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-8 border-b pb-4">Galeri Dokumentasi Lapangan</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                ${galleryHtml}
                             </div>
                         </div>
                     </div>
@@ -881,28 +820,77 @@
             container.innerHTML = html;
         }
 
-        function renderMarketplace(container) {
-            let productsHtml = '';
-            if (products.length === 0) {
-                productsHtml = '<p class="text-gray-500 col-span-full text-center py-10">Belum ada produk yang tersedia saat ini.</p>';
-            } else {
-                productsHtml = products.map(product => `
-                    <div onclick="showProductDetail('${product.id}')" class="cursor-pointer group relative bg-white border border-gray-200 rounded-xl flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-90 sm:aspect-none sm:h-64 relative">
-                            <img src="${product.img || 'https://placehold.co/400x400/e2e8f0/475569?text=No+Image'}" alt="${product.name}" class="w-full h-full object-center object-cover sm:w-full sm:h-full transition-transform duration-500 group-hover:scale-105">
-                            ${product.stock < 5 ? `<span class="absolute top-2 left-2 bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded shadow-sm">Stok Menipis: ${product.stock}</span>` : ''}
-                        </div>
-                        <div class="flex-1 p-5 space-y-2 flex flex-col justify-between">
-                            <div>
-                                <h3 class="text-base font-bold text-gray-900 group-hover:text-brand-600 transition-colors">${product.name}</h3>
-                                <p class="text-sm text-gray-500 mt-1">${product.category}</p>
-                            </div>
-                            <div class="flex flex-col justify-end mt-4">
-                                <p class="text-xl font-extrabold text-brand-600">${formatRupiah(product.price)}</p>
-                                <button onclick="addToCart('${product.id}'); event.stopPropagation();" class="mt-4 w-full bg-white border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white py-2 px-4 rounded-lg text-sm font-bold transition-colors flex justify-center items-center gap-2">
-                                    <i class="fa-solid fa-cart-plus"></i> Tambah
+        window.showArticleDetail = (postId) => {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            const modalHtml = `
+            <div id="dynamic-modal-article-view" class="relative z-[60]" role="dialog" aria-modal="true">
+                <div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0" onclick="closeModal('dynamic-modal-article-view')"></div>
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div class="modal-panel relative transform overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                            <div class="absolute top-0 right-0 pt-4 pr-4 z-10">
+                                <button type="button" onclick="closeModal('dynamic-modal-article-view')" class="bg-white/80 rounded-full h-8 w-8 flex items-center justify-center text-gray-500 hover:text-gray-800">
+                                    <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </div>
+                            <img src="${post.image}" alt="${post.title}" class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-brand-600 bg-brand-100">${post.type}</span>
+                                <span class="text-xs text-gray-500 ml-2">${post.date}</span>
+                                <h3 class="mt-3 text-xl font-bold text-gray-900">${post.title}</h3>
+                                <p class="mt-3 text-sm text-gray-600 leading-relaxed">${post.content}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            document.getElementById('modal-container').insertAdjacentHTML('beforeend', modalHtml);
+            setTimeout(() => openModal('dynamic-modal-article-view'), 50);
+        };
+
+        function renderProductCard(product) {
+            return `
+                <div class="group relative bg-white border border-gray-200 rounded-xl flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="bg-gray-100 sm:h-64 relative cursor-pointer" onclick="showProductDetail('${product.id}')">
+                        <img src="${product.img || 'https://placehold.co/400x400/e2e8f0/475569?text=No+Image'}" alt="${product.name}" class="w-full h-full object-center object-cover sm:w-full sm:h-full transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="flex-1 p-5 space-y-2 flex flex-col justify-between">
+                        <div class="cursor-pointer" onclick="showProductDetail('${product.id}')">
+                            <h3 class="text-base font-bold text-gray-900 group-hover:text-brand-600 transition-colors">${product.name}</h3>
+                            ${product.priceLabel ? `<p class="text-sm font-bold text-brand-600 mt-1">${product.priceLabel}</p>` : ''}
+                        </div>
+                        <div class="flex flex-col justify-end mt-4">
+                            <a href="${product.externalUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="w-full bg-brand-600 text-white hover:bg-brand-700 py-2.5 px-4 rounded-lg text-sm font-bold transition-colors flex justify-center items-center gap-2">
+                                ${product.ctaLabel || 'Beli Sekarang'} <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderKatalog(container) {
+            let bodyHtml = '';
+            if (products.length === 0) {
+                bodyHtml = '<p class="text-gray-500 text-center py-10">Belum ada produk yang ditampilkan saat ini.</p>';
+            } else {
+                // Kelompokkan per vendor/mitra supaya jelas siapa yang mengirim/menjual tiap produk.
+                const groups = {};
+                const order = [];
+                products.forEach(p => {
+                    const key = p.vendor || 'Produk Agracantika';
+                    if (!groups[key]) { groups[key] = []; order.push(key); }
+                    groups[key].push(p);
+                });
+                bodyHtml = order.map(vendor => `
+                    <div class="mb-12">
+                        <div class="flex items-center gap-3 mb-5 border-b border-gray-200 pb-3">
+                            ${vendor === 'Kriya Kite Indonesia' ? `<img src="images/logo-kriyakite-icon.png" alt="Logo Kriya Kite Indonesia" class="h-8 w-8 object-contain">` : `<i class="fa-solid fa-store text-brand-600"></i>`}
+                            <h3 class="text-xl font-extrabold text-gray-900">${vendor}</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8">
+                            ${groups[vendor].map(renderProductCard).join('')}
                         </div>
                     </div>
                 `).join('');
@@ -911,23 +899,26 @@
             const html = `
                 <div class="bg-gray-50 py-12 fade-in min-h-screen">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end border-b border-gray-200 pb-6 mb-8 gap-4">
-                            <div>
-                                <h2 class="text-3xl font-extrabold text-gray-900">Marketplace Agracantika</h2>
-                                <p class="mt-2 text-base text-gray-500">Dukung produk lokal hasil karya kelompok tani binaan kami.</p>
-                            </div>
-                            <!-- Simple Filter -->
-                            <div class="w-full sm:w-auto">
-                                <select class="block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm rounded-lg shadow-sm">
-                                    <option>Semua Kategori</option>
-                                    <option>Sabun Gambir</option>
-                                    <option>Kriya</option>
-                                </select>
+                        <div class="border-b border-gray-200 pb-6 mb-8">
+                            <h2 class="text-3xl font-extrabold text-gray-900">Katalog Produk Agracantika</h2>
+                            <p class="mt-2 text-base text-gray-500">Produk hasil kolaborasi petani gambir Desa Toman, Musi Banyuasin, dengan mitra pengembang produk.</p>
+                            <div class="mt-4 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg px-4 py-3 flex items-start gap-2">
+                                <i class="fa-solid fa-circle-info mt-0.5"></i>
+                                <span>Website ini hanya menampilkan katalog — klik "Beli Sekarang" untuk melanjutkan pembelian langsung di platform mitra resmi kami. Harga kriya di atas adalah rentang per kategori produk (draf per Oktober 2026), harga pasti mengikuti halaman mitra.</span>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-                            ${productsHtml}
+                        ${bodyHtml}
+
+                        <!-- CTA: full kriya catalog on partner site -->
+                        <div class="bg-gradient-to-r from-brand-700 to-brand-500 rounded-2xl p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+                            <div>
+                                <h3 class="text-2xl font-extrabold mb-2">Koleksi Lengkap & Custom Branding Korporat</h3>
+                                <p class="text-brand-50 max-w-xl">Varian lain, ukuran custom, dan opsi branding logo perusahaan (merchandise/seminar kit) tersedia selengkapnya di katalog mitra resmi, Kriya Kite Indonesia.</p>
+                            </div>
+                            <a href="https://www.kriyakiteindonesia.com/" target="_blank" rel="noopener" class="flex-shrink-0 bg-white text-brand-700 font-bold px-6 py-3 rounded-lg hover:bg-brand-50 transition flex items-center gap-2">
+                                Kunjungi Kriya Kite Indonesia <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -940,14 +931,13 @@
             if(!product) return;
 
             const modalHtml = `
-            <div id="dynamic-modal-product" class="relative z-[60]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                <div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0" onclick="closeModal('dynamic-modal-product')"></div>
+            <div id="dynamic-modal-product-view" class="relative z-[60]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0" onclick="closeModal('dynamic-modal-product-view')"></div>
                 <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                         <div class="modal-panel relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                             <div class="absolute top-0 right-0 pt-4 pr-4">
-                                <button type="button" onclick="closeModal('dynamic-modal-product')" class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
-                                    <span class="sr-only">Close</span>
+                                <button type="button" onclick="closeModal('dynamic-modal-product-view')" class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
                                     <i class="fa-solid fa-xmark text-xl"></i>
                                 </button>
                             </div>
@@ -960,15 +950,15 @@
                                         <div class="md:w-1/2 flex flex-col justify-between">
                                             <div>
                                                 <h3 class="text-2xl font-bold text-gray-900" id="modal-title">${product.name}</h3>
-                                                <p class="text-sm text-brand-600 font-medium mt-1">${product.category}</p>
+                                                ${product.vendor ? `<p class="text-sm text-brand-600 font-medium mt-1">Oleh: ${product.vendor}</p>` : ''}
+                                                ${product.priceLabel ? `<p class="text-lg font-extrabold text-gray-900 mt-2">${product.priceLabel}</p>` : ''}
                                                 <p class="mt-4 text-gray-600 text-sm leading-relaxed">${product.desc}</p>
-                                                <p class="mt-4 text-xs text-gray-500">Sisa Stok: ${product.stock}</p>
                                             </div>
                                             <div class="mt-6 border-t border-gray-100 pt-4">
-                                                <p class="text-2xl font-bold text-gray-900">${formatRupiah(product.price)}</p>
-                                                <button onclick="addToCart('${product.id}'); closeModal('dynamic-modal-product')" class="mt-4 w-full bg-brand-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
-                                                    Tambahkan ke Keranjang
-                                                </button>
+                                                <a href="${product.externalUrl}" target="_blank" rel="noopener" class="w-full bg-brand-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-brand-700 flex items-center justify-center gap-2">
+                                                    ${product.ctaLabel || 'Beli Sekarang'} <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                                                </a>
+                                                <p class="text-xs text-gray-400 mt-2 text-center">Anda akan diarahkan ke situs mitra untuk menyelesaikan pembelian.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -979,361 +969,36 @@
                 </div>
             </div>`;
             document.getElementById('modal-container').insertAdjacentHTML('beforeend', modalHtml);
-            setTimeout(() => openModal('dynamic-modal-product'), 50);
-        };
-
-        window.addToCart = (productId) => {
-            const product = products.find(p => p.id === productId);
-            if(!product) return;
-
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                if(existingItem.quantity < product.stock) {
-                    existingItem.quantity++;
-                    showToast(`${product.name} ditambahkan lagi ke keranjang`);
-                } else {
-                    showToast('Stok tidak mencukupi', 'error');
-                }
-            } else {
-                cart.push({ ...product, quantity: 1 });
-                showToast(`${product.name} ditambahkan ke keranjang`);
-            }
-            updateCartUI();
-        };
-
-        window.removeFromCart = (productId) => {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartUI();
-        };
-
-        window.updateQuantity = (productId, change) => {
-            const item = cart.find(i => i.id === productId);
-            if(item) {
-                const newQty = item.quantity + change;
-                if(newQty > 0 && newQty <= item.stock) {
-                    item.quantity = newQty;
-                } else if (newQty === 0) {
-                    removeFromCart(productId);
-                    return;
-                }
-                updateCartUI();
-            }
-        };
-
-        window.toggleCart = () => {
-            const sidebar = document.getElementById('cart-sidebar');
-            const panel = document.getElementById('cart-panel');
-            
-            if (sidebar.classList.contains('hidden')) {
-                updateCartUI();
-                sidebar.classList.remove('hidden');
-                setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-            } else {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => sidebar.classList.add('hidden'), 500);
-            }
-        };
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const subtotalEl = document.getElementById('cart-subtotal');
-            const countDesktop = document.getElementById('cart-count');
-            const countMobile = document.getElementById('cart-count-mobile');
-
-            let totalItems = 0;
-            let subtotal = 0;
-            let html = '';
-
-            if (cart.length === 0) {
-                html = '<li class="py-6 text-center text-gray-500">Keranjang kosong</li>';
-            } else {
-                cart.forEach(item => {
-                    totalItems += item.quantity;
-                    subtotal += (item.price * item.quantity);
-                    html += `
-                        <li class="flex py-6">
-                            <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img src="${item.img}" alt="${item.name}" class="h-full w-full object-cover object-center">
-                            </div>
-                            <div class="ml-4 flex flex-1 flex-col">
-                                <div>
-                                    <div class="flex justify-between text-base font-medium text-gray-900">
-                                        <h3><a href="#">${item.name}</a></h3>
-                                        <p class="ml-4">${formatRupiah(item.price * item.quantity)}</p>
-                                    </div>
-                                </div>
-                                <div class="flex flex-1 items-end justify-between text-sm">
-                                    <div class="flex items-center border rounded">
-                                        <button onclick="updateQuantity('${item.id}', -1)" class="px-2 py-1 text-gray-600 hover:bg-gray-100">-</button>
-                                        <span class="px-2 py-1 text-gray-700 font-medium">${item.quantity}</span>
-                                        <button onclick="updateQuantity('${item.id}', 1)" class="px-2 py-1 text-gray-600 hover:bg-gray-100">+</button>
-                                    </div>
-                                    <div class="flex">
-                                        <button type="button" onclick="removeFromCart('${item.id}')" class="font-medium text-red-600 hover:text-red-500">Hapus</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    `;
-                });
-            }
-
-            container.innerHTML = html;
-            subtotalEl.textContent = formatRupiah(subtotal);
-            
-            [countDesktop, countMobile].forEach(el => {
-                if(totalItems > 0) {
-                    el.textContent = totalItems;
-                    el.classList.remove('hidden');
-                } else {
-                    el.classList.add('hidden');
-                }
-            });
-        }
-
-        window.proceedToCheckout = () => {
-            if (cart.length === 0) {
-                showToast('Keranjang belanja masih kosong', 'error');
-                return;
-            }
-            if (!currentUser || currentUser.isAnonymous || currentUserRole !== 'buyer') {
-                toggleCart();
-                showToast('Silahkan daftar atau masuk sebagai pembeli untuk checkout', 'error');
-                showLoginModal();
-                return;
-            }
-            
-            toggleCart(); // Close cart sidebar
-            renderCheckoutView();
-        };
-
-        function renderCheckoutView() {
-            const contentDiv = document.getElementById('app-content');
-            
-            let itemsHtml = cart.map(item => `
-                <div class="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                    <div class="flex items-center gap-3">
-                        <img src="${item.img}" class="w-12 h-12 rounded object-cover">
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">${item.name}</p>
-                            <p class="text-xs text-gray-500">${item.quantity} x ${formatRupiah(item.price)}</p>
-                        </div>
-                    </div>
-                    <p class="text-sm font-medium text-gray-900">${formatRupiah(item.price * item.quantity)}</p>
-                </div>
-            `).join('');
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            // TODO: ongkir masih nilai tetap. Integrasi live ke Komerce/RajaOngkir
-            // (lihat backend/shipping-ongkir-proxy.gs) butuh field tujuan terstruktur
-            // (kota/kecamatan, bukan textarea alamat bebas) — belum ditambahkan di form ini.
-            const shippingCost = 25000;
-            const total = subtotal + shippingCost;
-
-            const html = `
-                <div class="bg-gray-50 min-h-screen py-10 fade-in">
-                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 class="text-2xl font-extrabold text-gray-900 mb-8">Checkout</h2>
-                        
-                        <div class="flex flex-col lg:flex-row gap-8">
-                            <!-- Form Column -->
-                            <div class="lg:w-2/3">
-                                <form id="checkout-form" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
-                                    <div>
-                                        <h3 class="text-lg font-medium text-gray-900 mb-4">Informasi Pengiriman</h3>
-                                        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
-                                            <div class="sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Nama Penerima</label>
-                                                <input type="text" id="co-name" value="${currentUser.displayName || ''}" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm">
-                                            </div>
-                                            <div class="sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Alamat Lengkap</label>
-                                                <textarea id="co-address" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm"></textarea>
-                                            </div>
-                                            <div>
-                                                <label class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
-                                                <input type="tel" id="co-phone" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm">
-                                            </div>
-                                            <div>
-                                                <label class="block text-sm font-medium text-gray-700">Ekspedisi</label>
-                                                <select id="co-expedition" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm">
-                                                    <option value="JNE">JNE (Reguler)</option>
-                                                    <option value="JNT">J&T Express</option>
-                                                    <option value="SICEPAT">SiCepat</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- Summary Column -->
-                            <div class="lg:w-1/3">
-                                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 sticky top-24">
-                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Ringkasan Pesanan</h3>
-                                    <div class="mb-4 max-h-60 overflow-y-auto no-scrollbar">
-                                        ${itemsHtml}
-                                    </div>
-                                    <div class="border-t border-gray-200 pt-4 space-y-2">
-                                        <div class="flex justify-between text-sm">
-                                            <span class="text-gray-600">Subtotal</span>
-                                            <span class="font-medium text-gray-900">${formatRupiah(subtotal)}</span>
-                                        </div>
-                                        <div class="flex justify-between text-sm">
-                                            <span class="text-gray-600">Ongkos Kirim (Est)</span>
-                                            <span class="font-medium text-gray-900">${formatRupiah(shippingCost)}</span>
-                                        </div>
-                                        <div class="flex justify-between text-base font-bold pt-2 border-t border-gray-100 mt-2">
-                                            <span class="text-gray-900">Total</span>
-                                            <span class="text-brand-600">${formatRupiah(total)}</span>
-                                        </div>
-                                    </div>
-                                    <button type="button" onclick="processPayment(${total})" class="mt-6 w-full bg-brand-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
-                                        Pilih Pembayaran
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            contentDiv.innerHTML = html;
-        }
-
-        window.processPayment = (totalAmount) => {
-            // Validate form
-            const name = document.getElementById('co-name').value;
-            const address = document.getElementById('co-address').value;
-            const phone = document.getElementById('co-phone').value;
-            const expedition = document.getElementById('co-expedition').value;
-
-            if(!name || !address || !phone) {
-                showToast('Mohon lengkapi data pengiriman', 'error');
-                return;
-            }
-
-            // Save order data temporarily
-            window.tempOrderData = {
-                items: [...cart],
-                shippingInfo: { name, address, phone, expedition },
-                totalAmount,
-                status: 'Menunggu Pembayaran',
-                date: new Date().toISOString()
-            };
-
-            // Show Payment Modal (QRIS Mockup)
-            const modalHtml = `
-            <div id="dynamic-modal-payment" class="relative z-[60]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                <div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity opacity-0"></div>
-                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                        <div class="modal-panel relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 text-center">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Pembayaran QRIS</h3>
-                                <p class="text-sm text-gray-500 mb-6">Scan QR Code di bawah menggunakan aplikasi M-Banking atau e-Wallet Anda.</p>
-                                
-                                <div class="bg-gray-100 p-4 rounded-xl inline-block mb-4 border border-gray-200">
-                                    <!-- GANTI src di bawah dengan foto QRIS statis rekening/merchant Agracantika
-                                         yang asli (unggah ke Firebase Storage, lalu tempel URL-nya di sini).
-                                         Gambar saat ini hanya QR placeholder, TIDAK bisa menerima pembayaran nyata. -->
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=AgracantikaPaymentMock" alt="QRIS placeholder — ganti dengan QRIS asli" class="w-48 h-48 mx-auto">
-                                </div>
-                                
-                                <div class="bg-blue-50 text-blue-800 text-sm p-3 rounded-md mb-6">
-                                    Total Tagihan: <strong>${formatRupiah(totalAmount)}</strong>
-                                </div>
-
-                                <button onclick="confirmPaymentPaid()" class="w-full inline-flex justify-center rounded-md bg-brand-600 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 mb-2">
-                                    Saya Sudah Membayar
-                                </button>
-                                <button type="button" onclick="closeModal('dynamic-modal-payment')" class="w-full inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                    Batal
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-            document.getElementById('modal-container').insertAdjacentHTML('beforeend', modalHtml);
-            setTimeout(() => openModal('dynamic-modal-payment'), 50);
-        };
-
-        window.confirmPaymentPaid = async () => {
-            const btn = document.querySelector('#dynamic-modal-payment button[onclick="confirmPaymentPaid()"]');
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
-            btn.disabled = true;
-
-            try {
-                if(db && currentUser) {
-                    const orderData = {
-                        ...window.tempOrderData,
-                        userId: currentUser.uid,
-                        createdAt: serverTimestamp()
-                    };
-
-                    // Satu dokumen order saja (koleksi bersama, difilter lewat where('userId',...)
-                    // di sisi pembeli dan dibaca penuh di sisi admin — lihat setupFirestoreListeners).
-                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderData);
-                } else {
-                    // Fallback local memory save for demo without Firebase
-                    const newOrder = { id: 'ORD-' + Math.floor(Math.random()*10000), ...window.tempOrderData };
-                    orders.push(newOrder);
-                }
-
-                cart = []; // Empty cart
-                updateCartUI();
-                closeModal('dynamic-modal-payment');
-                showToast('Pesanan berhasil dibuat. Menunggu verifikasi admin.', 'success');
-                navigate('dashboard');
-                
-            } catch (error) {
-                console.error("Checkout error", error);
-                showToast('Terjadi kesalahan sistem saat checkout', 'error');
-                closeModal('dynamic-modal-payment');
-            }
+            setTimeout(() => openModal('dynamic-modal-product-view'), 50);
         };
 
         function renderDashboard(container) {
             let dashboardHtml = '';
 
-            if (currentUserRole === 'buyer') {
-                dashboardHtml = renderBuyerDashboard();
-            } else if (currentUserRole === 'admin_project') {
+            if (currentUserRole === 'admin_project') {
                 dashboardHtml = renderProjectAdminDashboard();
-            } else if (currentUserRole === 'admin_market') {
+            } else if (currentUserRole === 'admin_marketplace') {
                 dashboardHtml = renderMarketAdminDashboard();
             } else {
                 dashboardHtml = `<div class="text-center py-20 text-gray-500">Akses ditolak atau role tidak dikenali.</div>`;
             }
-            
-            // Demo Mode Role Switcher (Ditampilkan agar mudah menguji prototype)
-            let demoSwitcher = `
-                <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-blue-100 p-3 rounded-full"><i class="fa-solid fa-laptop-code text-blue-600 text-lg"></i></div>
-                        <div>
-                            <p class="text-sm text-blue-900 font-bold uppercase tracking-wide">Demo Dashboard Viewer</p>
-                            <p class="text-sm text-blue-700 mt-1">Anda sedang melihat dashboard sebagai <strong>${currentUserRole === 'buyer' ? 'Pembeli (Buyer)' : (currentUserRole === 'admin_project' ? 'Admin Project' : 'Admin Marketplace')}</strong>.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-2 text-sm w-full md:w-auto">
-                        <button onclick="switchDemoRole('buyer')" class="px-4 py-2 rounded-lg font-medium transition-colors ${currentUserRole === 'buyer' ? 'bg-blue-600 text-white shadow' : 'bg-white text-blue-600 border border-blue-200 hover:bg-blue-50'}">Dashboard Pembeli</button>
-                        <button onclick="switchDemoRole('admin_project')" class="px-4 py-2 rounded-lg font-medium transition-colors ${currentUserRole === 'admin_project' ? 'bg-blue-600 text-white shadow' : 'bg-white text-blue-600 border border-blue-200 hover:bg-blue-50'}">Admin Edukasi</button>
-                        <button onclick="switchDemoRole('admin_market')" class="px-4 py-2 rounded-lg font-medium transition-colors ${currentUserRole === 'admin_market' ? 'bg-blue-600 text-white shadow' : 'bg-white text-blue-600 border border-blue-200 hover:bg-blue-50'}">Admin Marketplace</button>
-                    </div>
-                </div>
-            `;
+
+            const fallbackNotice = usingLocalFallback ? `
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-sm text-amber-800 flex items-center gap-3">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Firestore tidak terhubung — dashboard sedang menampilkan data default lokal (perubahan tidak akan tersimpan). Periksa koneksi/konfigurasi Firebase.</span>
+                </div>` : '';
 
             const html = `
                 <div class="bg-gray-50 min-h-screen py-8 fade-in">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        ${demoSwitcher}
+                        ${fallbackNotice}
                         <div class="md:flex md:items-center md:justify-between mb-8">
                             <div class="flex-1 min-w-0">
                                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
                                     Dashboard
                                 </h2>
-                                <p class="mt-1 text-sm text-gray-500">Selamat datang kembali, <strong>${currentUser?.displayName || 'Pengguna'}</strong></p>
+                                <p class="mt-1 text-sm text-gray-500">Selamat datang kembali, <strong>${currentUser?.email || 'Admin'}</strong></p>
                             </div>
                         </div>
                         ${dashboardHtml}
@@ -1343,100 +1008,7 @@
             container.innerHTML = html;
         }
 
-        // --- Pembeli Dashboard ---
-        function renderBuyerDashboard() {
-            let ordersHtml = '';
-            
-            // Kalkulasi ringkasan
-            const totalSpent = orders.reduce((sum, order) => sum + order.totalAmount, 0);
-            const activeOrders = orders.filter(o => ['Diproses', 'Dikirim', 'Menunggu Pembayaran'].includes(o.status)).length;
-
-            if (orders.length === 0) {
-                ordersHtml = '<div class="p-10 text-center text-gray-500 bg-white rounded-xl border border-gray-200 shadow-sm"><i class="fa-solid fa-box-open text-5xl mb-4 text-gray-300"></i><p class="text-lg">Belum ada riwayat pesanan.</p><button onclick="navigate(\'marketplace\')" class="mt-4 text-brand-600 font-bold hover:underline">Mulai Belanja Sekarang</button></div>';
-            } else {
-                const sortedOrders = [...orders].reverse(); 
-                
-                ordersHtml = sortedOrders.map(order => {
-                    let statusColor = 'bg-gray-100 text-gray-800 border-gray-200';
-                    if(order.status === 'Menunggu Pembayaran') statusColor = 'bg-yellow-100 text-yellow-800 border-yellow-200';
-                    if(order.status === 'Diproses') statusColor = 'bg-blue-100 text-blue-800 border-blue-200';
-                    if(order.status === 'Dikirim') statusColor = 'bg-brand-100 text-brand-800 border-brand-200';
-                    if(order.status === 'Selesai') statusColor = 'bg-green-100 text-green-800 border-green-200';
-                    if(order.status === 'Dibatalkan') statusColor = 'bg-red-100 text-red-800 border-red-200';
-
-                    return `
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6 transition hover:shadow-md">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-                                    <i class="fa-solid fa-bag-shopping text-brand-600 text-lg"></i>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-extrabold text-gray-900">${order.id || 'N/A'}</span>
-                                    <span class="text-xs text-gray-500 mt-1">${formatDate(order.createdAt || order.date)}</span>
-                                </div>
-                            </div>
-                            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold border ${statusColor}">
-                                ${order.status}
-                            </span>
-                        </div>
-                        <div class="px-6 py-5">
-                            <div class="flex flex-col gap-4">
-                                ${order.items.map(item => `
-                                    <div class="flex items-center gap-4">
-                                        <img src="${item.img}" class="w-16 h-16 rounded-lg object-cover border border-gray-100 shadow-sm">
-                                        <div class="flex-1">
-                                            <h4 class="text-sm font-bold text-gray-900">${item.name}</h4>
-                                            <p class="text-sm text-gray-500 mt-1">${item.quantity} barang x ${formatRupiah(item.price)}</p>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="mt-6 pt-5 border-t border-gray-100 flex justify-between items-center">
-                                <div>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Total Belanja</p>
-                                    <p class="font-extrabold text-xl text-gray-900">${formatRupiah(order.totalAmount)}</p>
-                                </div>
-                                <button class="text-sm text-brand-600 border-2 border-brand-600 rounded-lg px-5 py-2.5 hover:bg-brand-50 font-bold transition">Lacak Pesanan</button>
-                            </div>
-                        </div>
-                    </div>
-                `}).join('');
-            }
-
-            return `
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center gap-5 transition hover:shadow-md">
-                        <div class="p-4 bg-brand-50 text-brand-600 rounded-xl"><i class="fa-solid fa-wallet text-2xl"></i></div>
-                        <div>
-                            <p class="text-sm text-gray-500 font-semibold mb-1">Total Pengeluaran</p>
-                            <p class="text-2xl font-extrabold text-gray-900">${formatRupiah(totalSpent)}</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center gap-5 transition hover:shadow-md">
-                        <div class="p-4 bg-blue-50 text-blue-600 rounded-xl"><i class="fa-solid fa-truck-fast text-2xl"></i></div>
-                        <div>
-                            <p class="text-sm text-gray-500 font-semibold mb-1">Pesanan Aktif</p>
-                            <p class="text-2xl font-extrabold text-gray-900">${activeOrders} <span class="text-base font-medium text-gray-500">Pesanan</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center gap-5 transition hover:shadow-md">
-                        <div class="p-4 bg-purple-50 text-purple-600 rounded-xl"><i class="fa-solid fa-award text-2xl"></i></div>
-                        <div>
-                            <p class="text-sm text-gray-500 font-semibold mb-1">Poin Reward</p>
-                            <p class="text-2xl font-extrabold text-gray-900">120 <span class="text-base font-medium text-gray-500">Poin</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <h3 class="text-xl font-extrabold text-gray-900 mb-6 border-b border-gray-200 pb-4">Riwayat Pesanan Saya</h3>
-                    ${ordersHtml}
-                </div>
-            `;
-        }
-
-        // --- Admin Project Dashboard ---
+        // --- Admin Project Dashboard (kelola Berita & Edukasi) ---
         function renderProjectAdminDashboard() {
             let tableRows = posts.map(post => `
                 <tr class="hover:bg-gray-50 transition">
@@ -1456,7 +1028,6 @@
                         </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">${post.date}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">124 Views</td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button onclick="openArticleModal('${post.id}')" class="text-blue-600 hover:text-blue-900 mr-4 bg-blue-50 p-2 rounded-lg transition"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button onclick="deleteArticle('${post.id}')" class="text-red-600 hover:text-red-900 bg-red-50 p-2 rounded-lg transition"><i class="fa-solid fa-trash"></i></button>
@@ -1465,31 +1036,26 @@
             `).join('');
 
             return `
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition hover:shadow-md">
-                        <div class="text-gray-500 text-sm font-semibold mb-2">Total Artikel Edukasi</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="text-gray-500 text-sm font-semibold mb-2">Total Artikel & Berita</div>
                         <div class="text-3xl font-extrabold text-gray-900">${posts.length}</div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition hover:shadow-md">
-                        <div class="text-gray-500 text-sm font-semibold mb-2">Total Pengunjung Blog</div>
-                        <div class="text-3xl font-extrabold text-gray-900">1,245</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition hover:shadow-md">
-                        <div class="text-gray-500 text-sm font-semibold mb-2">Kegiatan Terjadwal</div>
-                        <div class="text-3xl font-extrabold text-gray-900">2</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition hover:shadow-md">
-                        <div class="text-gray-500 text-sm font-semibold mb-2">Petani Terlibat</div>
-                        <div class="text-3xl font-extrabold text-gray-900">45 <span class="text-base text-gray-500 font-medium">Orang</span></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="text-gray-500 text-sm font-semibold mb-2">Status Data</div>
+                        <div class="text-sm font-bold ${usingLocalFallback ? 'text-amber-600' : 'text-green-600'}">${usingLocalFallback ? 'Mode Lokal (belum tersambung Firestore)' : 'Tersambung ke Firestore'}</div>
                     </div>
                 </div>
 
                 <div class="bg-white shadow-sm overflow-hidden rounded-xl border border-gray-200">
                     <div class="px-6 py-5 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-center bg-gray-50 gap-4">
-                        <h3 class="text-lg font-extrabold text-gray-900">Manajemen Konten Edukasi & SDG</h3>
-                        <button onclick="openArticleModal()" class="bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-700 shadow-sm transition">
-                            <i class="fa-solid fa-plus mr-2"></i> Tulis Artikel Baru
-                        </button>
+                        <h3 class="text-lg font-extrabold text-gray-900">Manajemen Berita & Edukasi</h3>
+                        <div class="flex gap-2">
+                            <button onclick="seedDefaultData()" title="Salin ulang data default ke Firestore" class="bg-white border-2 border-gray-200 text-gray-600 px-4 py-2.5 rounded-lg text-sm font-bold hover:bg-gray-50 transition"><i class="fa-solid fa-rotate mr-2"></i>Semai Data Default</button>
+                            <button onclick="openArticleModal()" class="bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-700 shadow-sm transition">
+                                <i class="fa-solid fa-plus mr-2"></i> Tulis Artikel Baru
+                            </button>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -1497,13 +1063,12 @@
                                 <tr>
                                     <th scope="col" class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Konten</th>
                                     <th scope="col" class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Kategori</th>
-                                    <th scope="col" class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Tanggal Rilis</th>
-                                    <th scope="col" class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Stats</th>
+                                    <th scope="col" class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Tanggal</th>
                                     <th scope="col" class="relative px-6 py-4"><span class="sr-only">Aksi</span></th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                ${tableRows || '<tr><td colspan="5" class="px-6 py-10 text-center text-sm text-gray-500">Belum ada konten.</td></tr>'}
+                                ${tableRows || '<tr><td colspan="4" class="px-6 py-10 text-center text-sm text-gray-500">Belum ada konten.</td></tr>'}
                             </tbody>
                         </table>
                     </div>
@@ -1511,176 +1076,57 @@
             `;
         }
 
-        // --- Admin Market Dashboard ---
+        // --- Admin Marketplace Dashboard (kelola Katalog Produk) ---
         function renderMarketAdminDashboard() {
-            const viewType = window.marketAdminView || 'orders';
-
-            // Stats
-            const totalRevenue = orders.reduce((sum, o) => sum + o.totalAmount, 0);
-            const pendingOrders = orders.filter(o => o.status === 'Menunggu Pembayaran' || o.status === 'Diproses').length;
-
-            let contentHtml = '';
-            if(viewType === 'orders') {
-                let ordersHtml = orders.map(order => {
-                    let statusClass = "bg-gray-100 text-gray-800 border-gray-200";
-                    if(order.status === 'Menunggu Pembayaran') statusClass = "bg-yellow-100 text-yellow-800 border-yellow-200";
-                    if(order.status === 'Diproses') statusClass = "bg-blue-100 text-blue-800 border-blue-200";
-                    if(order.status === 'Dikirim') statusClass = "bg-brand-100 text-brand-800 border-brand-200";
-                    
-                    let actionBtn = '';
-                    if(order.status === 'Menunggu Pembayaran') {
-                         actionBtn = `<button onclick="updateOrderStatus('${order.id}', 'Diproses')" class="text-xs bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-700 font-bold transition">Verifikasi Bayar</button>`;
-                    } else if(order.status === 'Diproses') {
-                         actionBtn = `<button onclick="updateOrderStatus('${order.id}', 'Dikirim')" class="text-xs bg-brand-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-brand-700 font-bold transition">Kirim Pesanan</button>`;
-                    } else {
-                         actionBtn = `<span class="text-xs text-gray-400 font-medium bg-gray-50 px-3 py-1 rounded border">Tidak ada aksi</span>`;
-                    }
-
-                    return `
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-6 py-5 whitespace-nowrap">
-                            <div class="text-sm font-extrabold text-gray-900">${order.id}</div>
-                            <div class="text-xs text-gray-500 mt-1 font-medium">${formatDate(order.createdAt || order.date)}</div>
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap">
-                            <div class="text-sm text-gray-900 font-bold">${order.shippingInfo?.name || 'User'}</div>
-                            <div class="text-xs text-gray-500 mt-1 font-medium">${order.items.length} Macam Barang</div>
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap text-sm font-extrabold text-brand-700">${formatRupiah(order.totalAmount)}</td>
-                        <td class="px-6 py-5 whitespace-nowrap">
-                            <span class="px-3 py-1.5 inline-flex text-xs leading-5 font-bold rounded-full border ${statusClass}">
-                                ${order.status}
-                            </span>
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap text-right">
-                            ${actionBtn}
-                        </td>
-                    </tr>
-                `}).join('');
-
-                contentHtml = `
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-white border-b border-gray-200">
-                                <tr>
-                                    <th class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">ID & Tanggal</th>
-                                    <th class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Pembeli</th>
-                                    <th class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Total Pendapatan</th>
-                                    <th class="px-6 py-4 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-4 text-right text-xs font-extrabold text-gray-500 uppercase tracking-wider">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-100">
-                                ${ordersHtml || '<tr><td colspan="5" class="px-6 py-10 text-center text-sm text-gray-500">Belum ada pesanan masuk.</td></tr>'}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-            } else {
-                 let prodsHtml = products.map(p => `
-                    <div class="flex items-center justify-between p-6 border-b border-gray-100 hover:bg-gray-50 transition">
-                        <div class="flex items-center gap-5">
-                            <img src="${p.img}" class="w-16 h-16 rounded-xl object-cover border border-gray-200 shadow-sm">
-                            <div>
-                                <p class="text-base font-extrabold text-gray-900">${p.name}</p>
-                                <p class="text-sm text-gray-600 mt-1"><span class="font-bold text-brand-600">${p.category}</span> &bull; Harga: ${formatRupiah(p.price)}</p>
-                                <div class="mt-3 flex items-center gap-2">
-                                    <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Stok Gudang:</span>
-                                    <span class="text-xs font-extrabold ${p.stock < 15 ? 'text-red-700 bg-red-100 border-red-200' : 'text-green-800 bg-green-100 border-green-200'} border px-2 py-1 rounded-md shadow-sm">${p.stock}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-3">
-                            <button onclick="openProductModal('${p.id}')" class="text-sm px-5 py-2.5 border-2 border-gray-200 rounded-lg text-gray-700 hover:border-gray-400 hover:bg-white bg-gray-50 font-bold transition shadow-sm">Edit</button>
-                            <button onclick="deleteProduct('${p.id}')" class="text-sm px-4 py-2.5 border-2 border-red-100 rounded-lg text-red-600 hover:bg-red-50 font-bold transition shadow-sm"><i class="fa-solid fa-trash"></i></button>
+            let prodsHtml = products.map(p => `
+                <div class="flex items-center justify-between p-6 border-b border-gray-100 hover:bg-gray-50 transition">
+                    <div class="flex items-center gap-5">
+                        <img src="${p.img}" class="w-16 h-16 rounded-xl object-cover border border-gray-200 shadow-sm">
+                        <div>
+                            <p class="text-base font-extrabold text-gray-900">${p.name}</p>
+                            <p class="text-sm text-gray-600 mt-1">${p.vendor ? `Oleh: <span class="font-bold">${p.vendor}</span> &bull; ` : ''}Link: <a href="${p.externalUrl}" target="_blank" class="text-brand-600 underline">${p.externalUrl}</a></p>
                         </div>
                     </div>
-                 `).join('');
-
-                 contentHtml = `
-                    <div class="p-5 border-b border-gray-200 bg-gray-50 flex flex-col sm:flex-row justify-between items-center gap-4">
-                        <span class="text-sm text-gray-600 font-bold bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm">Total Produk Aktif: ${products.length} Item</span>
-                        <button onclick="openProductModal()" class="bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-700 shadow-sm transition">
-                            <i class="fa-solid fa-plus mr-2"></i> Tambah Produk
-                        </button>
+                    <div class="flex gap-3">
+                        <button onclick="openProductModal('${p.id}')" class="text-sm px-5 py-2.5 border-2 border-gray-200 rounded-lg text-gray-700 hover:border-gray-400 hover:bg-white bg-gray-50 font-bold transition shadow-sm">Edit</button>
+                        <button onclick="deleteProduct('${p.id}')" class="text-sm px-4 py-2.5 border-2 border-red-100 rounded-lg text-red-600 hover:bg-red-50 font-bold transition shadow-sm"><i class="fa-solid fa-trash"></i></button>
                     </div>
-                    <div class="flex flex-col bg-white">
-                        ${prodsHtml}
-                    </div>
-                 `;
-            }
+                </div>
+             `).join('');
 
             return `
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center justify-between transition hover:shadow-md">
-                        <div>
-                            <p class="text-sm text-gray-500 font-semibold mb-1">Total Pendapatan</p>
-                            <p class="text-2xl font-extrabold text-gray-900 mt-1">${formatRupiah(totalRevenue)}</p>
-                        </div>
-                        <div class="p-4 bg-green-50 text-green-600 rounded-xl text-2xl"><i class="fa-solid fa-money-bill-wave"></i></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="text-gray-500 text-sm font-semibold mb-2">Total Produk Ditampilkan</div>
+                        <div class="text-3xl font-extrabold text-gray-900">${products.length}</div>
                     </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center justify-between transition hover:shadow-md">
-                        <div>
-                            <p class="text-sm text-gray-500 font-semibold mb-1">Pesanan Menunggu Aksi</p>
-                            <p class="text-3xl font-extrabold text-gray-900 mt-1">${pendingOrders}</p>
-                        </div>
-                        <div class="p-4 bg-yellow-50 text-yellow-600 rounded-xl text-2xl"><i class="fa-solid fa-clock"></i></div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex items-center justify-between transition hover:shadow-md">
-                        <div>
-                            <p class="text-sm text-gray-500 font-semibold mb-1">Produk Terjual Bulan Ini</p>
-                            <p class="text-3xl font-extrabold text-gray-900 mt-1">128</p>
-                        </div>
-                        <div class="p-4 bg-brand-50 text-brand-600 rounded-xl text-2xl"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="text-gray-500 text-sm font-semibold mb-2">Status Data</div>
+                        <div class="text-sm font-bold ${usingLocalFallback ? 'text-amber-600' : 'text-green-600'}">${usingLocalFallback ? 'Mode Lokal (belum tersambung Firestore)' : 'Tersambung ke Firestore'}</div>
                     </div>
                 </div>
 
                 <div class="bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
-                    <div class="border-b border-gray-200 bg-gray-50">
-                        <nav class="-mb-px flex" aria-label="Tabs">
-                            <button onclick="switchMarketAdminTab('orders')" class="${viewType === 'orders' ? 'border-brand-500 text-brand-700 bg-white shadow-sm' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} w-1/2 py-4 px-1 text-center border-b-2 font-extrabold text-sm transition">
-                                <i class="fa-solid fa-list-check mr-2"></i> Kelola Pesanan Masuk
+                    <div class="p-5 border-b border-gray-200 bg-gray-50 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <span class="text-sm text-gray-600 font-bold">Produk ini ditampilkan sebagai katalog — pembelian diarahkan ke link eksternal yang Anda tentukan.</span>
+                        <div class="flex gap-2">
+                            <button onclick="seedDefaultData()" title="Salin ulang data default ke Firestore" class="bg-white border-2 border-gray-200 text-gray-600 px-4 py-2.5 rounded-lg text-sm font-bold hover:bg-gray-50 transition"><i class="fa-solid fa-rotate mr-2"></i>Semai Data Default</button>
+                            <button onclick="openProductModal()" class="bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-700 shadow-sm transition">
+                                <i class="fa-solid fa-plus mr-2"></i> Tambah Produk
                             </button>
-                            <button onclick="switchMarketAdminTab('products')" class="${viewType === 'products' ? 'border-brand-500 text-brand-700 bg-white shadow-sm' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} w-1/2 py-4 px-1 text-center border-b-2 font-extrabold text-sm transition">
-                                <i class="fa-solid fa-box-open mr-2"></i> Inventori Produk
-                            </button>
-                        </nav>
+                        </div>
                     </div>
-                    ${contentHtml}
+                    <div class="flex flex-col bg-white">
+                        ${prodsHtml || '<p class="p-10 text-center text-sm text-gray-500">Belum ada produk.</p>'}
+                    </div>
                 </div>
             `;
         }
 
-        window.switchMarketAdminTab = (tab) => {
-            window.marketAdminView = tab;
-            renderDashboard(document.getElementById('app-content'));
-        }
-
-        window.updateOrderStatus = async (orderId, newStatus) => {
-             if(db && !window.isDemoMode) { // Gunakan data lokal jika sedang demo mode
-                 try {
-                     const orderRef = doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId);
-                     await updateDoc(orderRef, { status: newStatus });
-                     showToast('Status pesanan diperbarui', 'success');
-                 } catch(e) {
-                     console.error(e);
-                     // Fallback mock up
-                     const o = orders.find(x => x.id === orderId);
-                     if(o) o.status = newStatus;
-                     renderDashboard(document.getElementById('app-content'));
-                     showToast('Status pesanan diperbarui (Mode Simulasi)', 'success');
-                 }
-             } else {
-                  // In memory update for prototype
-                  const o = orders.find(x => x.id === orderId);
-                  if(o) o.status = newStatus;
-                  renderDashboard(document.getElementById('app-content'));
-                  showToast('Status pesanan diperbarui', 'success');
-             }
-        }
-
         /* ============================================================
          * CRUD PRODUK — dipakai dashboard Admin Marketplace
+         * (produk di sini murni katalog; tombol "Beli" mengarahkan ke
+         * externalUrl — tidak ada keranjang/checkout di website ini)
          * ============================================================ */
         window.openProductModal = (productId) => {
             const p = productId ? products.find(x => x.id === productId) : null;
@@ -1695,22 +1141,20 @@
                                 <div class="space-y-4">
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
                                         <input id="pm-name" value="${p ? p.name : ''}" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-                                            <select id="pm-category" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm">
-                                                <option value="Sabun" ${p && p.category==='Sabun' ? 'selected' : ''}>Sabun</option>
-                                                <option value="Kriya" ${p && p.category==='Kriya' ? 'selected' : ''}>Kriya</option>
-                                                <option value="Bahan Baku" ${p && p.category==='Bahan Baku' ? 'selected' : ''}>Bahan Baku</option>
-                                            </select></div>
-                                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
-                                            <input id="pm-price" type="number" value="${p ? p.price : ''}" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
-                                    </div>
-                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Stok</label>
-                                        <input id="pm-stock" type="number" value="${p ? p.stock : ''}" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Dijual oleh (opsional, jadi judul grup di Katalog)</label>
+                                        <input id="pm-vendor" value="${p && p.vendor ? p.vendor : ''}" placeholder="mis. PT Raksasi Ruri Arimbi" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Harga/Rentang Harga (opsional, teks bebas)</label>
+                                        <input id="pm-price" value="${p && p.priceLabel ? p.priceLabel : ''}" placeholder="mis. Rp120.000 – Rp155.000" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">URL Foto Produk</label>
-                                        <input id="pm-img" value="${p ? p.img : ''}" placeholder="https://..." class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                        <input id="pm-img" value="${p ? p.img : ''}" placeholder="https:// atau images/nama-file.jpg" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
                                         <textarea id="pm-desc" rows="3" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm">${p ? p.desc : ''}</textarea></div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Teks Tombol Beli</label>
+                                            <input id="pm-cta" value="${p ? p.ctaLabel : 'Beli Sekarang'}" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Link Tujuan (wajib)</label>
+                                            <input id="pm-url" value="${p ? p.externalUrl : ''}" placeholder="https://..." class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                    </div>
                                 </div>
                                 <div class="mt-6 flex gap-3">
                                     <button onclick="saveProductModal('${p ? p.id : ''}')" class="flex-1 bg-brand-600 text-white rounded-md py-2.5 text-sm font-semibold hover:bg-brand-700">Simpan</button>
@@ -1728,16 +1172,17 @@
         window.saveProductModal = async (existingId) => {
             const data = {
                 name: document.getElementById('pm-name').value,
-                category: document.getElementById('pm-category').value,
-                price: Number(document.getElementById('pm-price').value) || 0,
-                stock: Number(document.getElementById('pm-stock').value) || 0,
+                vendor: document.getElementById('pm-vendor').value,
+                priceLabel: document.getElementById('pm-price').value,
                 img: document.getElementById('pm-img').value || 'https://placehold.co/400x400/6B3226/ffffff?text=Agracantika',
-                desc: document.getElementById('pm-desc').value
+                desc: document.getElementById('pm-desc').value,
+                ctaLabel: document.getElementById('pm-cta').value || 'Beli Sekarang',
+                externalUrl: document.getElementById('pm-url').value
             };
-            if (!data.name || data.price <= 0) { showToast('Nama dan harga produk wajib diisi', 'error'); return; }
+            if (!data.name || !data.externalUrl) { showToast('Nama produk dan link tujuan wajib diisi', 'error'); return; }
 
             try {
-                if (db && !window.isDemoMode) {
+                if (db && !usingLocalFallback) {
                     const ref = existingId
                         ? doc(db, 'artifacts', appId, 'public', 'data', 'products', existingId)
                         : doc(collection(db, 'artifacts', appId, 'public', 'data', 'products'));
@@ -1762,7 +1207,7 @@
         window.deleteProduct = async (id) => {
             if (!confirm('Hapus produk ini?')) return;
             try {
-                if (db && !window.isDemoMode) {
+                if (db && !usingLocalFallback) {
                     await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', id));
                     await loadPublicData();
                 } else {
@@ -1778,8 +1223,6 @@
 
         /* ============================================================
          * CRUD ARTIKEL/BERITA — dipakai dashboard Admin Project
-         * (foto & video disimpan sebagai URL — unggah filenya ke Firebase
-         * Storage lebih dulu, lalu tempel URL hasil unggahannya di sini)
          * ============================================================ */
         window.openArticleModal = (postId) => {
             const post = postId ? posts.find(x => x.id === postId) : null;
@@ -1799,10 +1242,10 @@
                                             <option value="Berita" ${post && post.type==='Berita' ? 'selected' : ''}>Berita</option>
                                             <option value="Edukasi" ${post && post.type==='Edukasi' ? 'selected' : ''}>Edukasi</option>
                                         </select></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+                                        <input id="am-date" value="${post ? post.date : ''}" placeholder="mis. 12 Oktober 2026" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">URL Foto</label>
-                                        <input id="am-image" value="${post ? post.image : ''}" placeholder="https://..." class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
-                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">URL Video (opsional)</label>
-                                        <input id="am-video" value="${post && post.video ? post.video : ''}" placeholder="https://..." class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
+                                        <input id="am-image" value="${post ? post.image : ''}" placeholder="https:// atau images/nama-file.jpg" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm"></div>
                                     <div><label class="block text-sm font-medium text-gray-700 mb-1">Isi Artikel</label>
                                         <textarea id="am-content" rows="4" class="block w-full border border-gray-300 rounded-md py-2 px-3 text-sm">${post ? post.content : ''}</textarea></div>
                                 </div>
@@ -1823,15 +1266,14 @@
             const data = {
                 title: document.getElementById('am-title').value,
                 type: document.getElementById('am-type').value,
+                date: document.getElementById('am-date').value || new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }),
                 image: document.getElementById('am-image').value || 'https://placehold.co/600x400/45573D/ffffff?text=Agracantika',
-                video: document.getElementById('am-video').value || '',
-                content: document.getElementById('am-content').value,
-                date: new Date().toISOString().slice(0, 10)
+                content: document.getElementById('am-content').value
             };
             if (!data.title) { showToast('Judul artikel wajib diisi', 'error'); return; }
 
             try {
-                if (db && !window.isDemoMode) {
+                if (db && !usingLocalFallback) {
                     const ref = existingId
                         ? doc(db, 'artifacts', appId, 'public', 'data', 'posts', existingId)
                         : doc(collection(db, 'artifacts', appId, 'public', 'data', 'posts'));
@@ -1856,7 +1298,7 @@
         window.deleteArticle = async (id) => {
             if (!confirm('Hapus artikel ini?')) return;
             try {
-                if (db && !window.isDemoMode) {
+                if (db && !usingLocalFallback) {
                     await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'posts', id));
                     await loadPublicData();
                 } else {
@@ -1869,18 +1311,6 @@
                 showToast('Gagal menghapus artikel. Periksa Firestore Security Rules.', 'error');
             }
         };
-
-        // Fungsi Global untuk berganti Role Dashboard dengan cepat
-        window.switchDemoRole = (role) => {
-            currentUserRole = role;
-            if(!currentUser) {
-                currentUser = { uid: 'demo-user', displayName: 'Pengguna Demo', email: 'demo@agracantika.id' };
-            }
-            // Toggle demo flag
-            window.isDemoMode = true; 
-            renderDashboard(document.getElementById('app-content'));
-            renderAuthUI();
-        }
 
         window.addEventListener('DOMContentLoaded', () => {
             initFirebase();

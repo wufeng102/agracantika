@@ -1,55 +1,82 @@
 # Agracantika — Struktur Proyek
 
-Capstone SDG Academy Indonesia 2026. Nilai tambah gambir lewat produk kriya dan sabun.
+Capstone SDG Academy Indonesia 2026. Nilai tambah gambir dari Desa Toman, Kabupaten
+Musi Banyuasin, Sumatera Selatan, lewat produk kriya dan sabun.
 
-## Perubahan arsitektur (penting)
-Versi ini **menggantikan** rencana Google Apps Script + Spreadsheet sebagai database.
-Front-end yang dibuat di Gemini sudah dikabel ke Firebase (Auth + Firestore), dan itu
-pilihan yang lebih baik untuk kasus ini — jadi kita lanjutkan dengan Firebase, bukan
-dipaksa balik ke GAS+Sheets. GAS hanya dipertahankan untuk satu tugas sempit: proxy
-API ongkir (lihat alasan di `backend/shipping-ongkir-proxy.gs`). Blogger tidak
-dipakai lagi — artikel edukasi dikelola langsung lewat dashboard Admin Project
-(koleksi `posts` di Firestore), supaya tidak ada dua sistem konten yang harus
-disinkronkan.
+## Perubahan arsitektur (revisi terbaru — PENTING)
+Situs ini sekarang **portal informasi & katalog, bukan platform transaksi**.
+Tidak ada lagi keranjang belanja, checkout, QRIS, atau akun pembeli. Setiap
+produk di halaman Katalog menautkan langsung ke mitra penjualan:
+- 2 produk sabun Ruri Arimbi → Shopee PT Raksasi Ruri Arimbi (`https://id.shp.ee/RKmnheoP`)
+- Produk kriya lainnya → `https://www.kriyakiteindonesia.com/`
+
+Akibatnya, **koleksi `orders` di Firestore dan proxy ongkir (`backend/shipping-ongkir-proxy.gs`)
+tidak lagi dipakai** — tidak perlu dideploy atau dikonfigurasi. File `.gs` tetap
+disimpan sebagai arsip, aman dihapus kapan saja.
+
+## Bug yang diperbaiki di revisi ini
+Ditemukan saat revisi: kode sebelumnya login admin marketplace dengan nilai role
+`'admin_market'`, tetapi `firestore.rules` yang sudah ter-publish memeriksa
+`'admin_marketplace'` — akibatnya dashboard Admin Marketplace versi lama **tidak
+akan pernah berhasil menyimpan produk** (ditolak Security Rules, silent-fail
+tanpa pesan error yang jelas). Sekarang kode dan rules konsisten memakai
+`'admin_marketplace'`. **Jika Anda sudah pernah membuat akun admin marketplace
+di Firebase Console dengan role `admin_market`, ubah field `role` dokumen
+user tersebut di Firestore menjadi `admin_marketplace`** (Firestore Database >
+koleksi `artifacts/{appId}/public/data/users` > dokumen dengan UID akun
+tersebut > edit field `role`).
 
 ## Struktur
 ```
 agracantika-web/
-├── index.html                        # SATU file: landing, edukasi, marketplace,
-│                                      #   cart, checkout, dan 3 dashboard (SPA client-side routing)
-├── firestore.rules                   # Aturan akses Firestore (siapa boleh baca/tulis apa)
+├── index.html                        # SATU file: landing, edukasi/berita, katalog produk,
+│                                      #   dan 2 dashboard admin (SPA client-side routing)
+├── firestore.rules                   # Aturan akses Firestore
+├── images/                           # Foto produk, berita, dan galeri dokumentasi
 └── backend/
-    └── shipping-ongkir-proxy.gs      # GAS Web App kecil, proxy API ongkir Komerce/RajaOngkir
+    └── shipping-ongkir-proxy.gs      # TIDAK DIPAKAI LAGI — arsip, aman dihapus
 ```
 
-`marketplace.html` dan pendekatan GAS+Sheets dari draf sebelumnya sudah dihapus — semuanya sekarang ada di `index.html` sebagai satu single-page app.
+## Keandalan saat presentasi (penting)
+`index.html` menyimpan **data asli (produk, berita) langsung di dalam kode**
+sebagai default/fallback (lihat `getDefaultProducts()` dan `getDefaultPosts()`
+di dalam `<script type="module">`). Alurnya:
+1. Saat dibuka, situs langsung menampilkan data default ini.
+2. Jika Firebase berhasil tersambung, situs mencoba memuat data dari Firestore
+   (supaya admin bisa mengedit lewat dashboard); jika koleksi masih kosong,
+   data default tetap dipakai.
+3. Jika Firebase/Firestore gagal tersambung (mis. wifi venue bermasalah), situs
+   otomatis kembali memakai data default lokal — **konten asli tetap tampil
+   apa pun yang terjadi dengan koneksi**.
 
-## Yang sudah diperbaiki/disambungkan dari file Gemini
-- **Konfigurasi Firebase**: sebelumnya bergantung pada variabel global yang hanya ada di Canvas Google AI Studio (`__firebase_config`, dst) — di luar itu, semua data cuma jalan di memori browser (hilang saat refresh, tidak ada login sungguhan, tidak ada yang tersimpan). Sekarang ada slot config eksplisit di dekat awal `<script type="module">` yang tinggal diisi dari Firebase Console (lihat langkah di bawah). Sebelum diisi, situs otomatis jalan dalam **mode demo** (data contoh, tidak tersimpan) — cukup aman untuk dites tampilannya sekarang juga.
-- **Bug path Firestore untuk data user**: path sebelumnya (`public/users/{uid}`, 5 segmen) tidak valid untuk `doc()` di Firestore — akan error begitu Firebase asli dipasang. Sudah diperbaiki jadi `public/data/users/{uid}` (konsisten dengan pola produk/artikel/order).
-- **Order tidak sinkron**: sebelumnya order ditulis dua kali (koleksi privat pembeli + koleksi publik admin), tapi saat admin ubah status, salinan pembeli tidak ikut ter-update — dashboard pembeli akan menampilkan status basi selamanya. Sekarang cuma satu koleksi (`public/data/orders`), difilter per pembeli lewat query `where('userId', '==', ...)`.
-- **Tombol yang sebelumnya hanya tampilan** (tidak ngapa-ngapain saat diklik): Tambah/Edit/Hapus Produk di dashboard Admin Marketplace, dan Tulis/Edit/Hapus Artikel di dashboard Admin Project — semuanya sekarang membuka modal form sungguhan dan menulis ke Firestore (dengan fallback ke data lokal saat masih mode demo).
-- **`firestore.rules`**: sebelumnya tidak ada aturan sama sekali (di luar Canvas, tulisan ke Firestore akan selalu gagal atau, lebih buruk, terbuka untuk siapa saja). Sekarang: produk & artikel hanya bisa ditulis oleh role admin yang sesuai, order hanya bisa dibaca pemiliknya atau admin_marketplace, dan tidak ada pengguna yang bisa menaikkan role-nya sendiri.
+Dashboard admin punya tombol "Semai Data Default" untuk menyalin ulang data
+default ke Firestore kapan saja (tidak otomatis, supaya tidak menimpa
+perubahan yang sudah disimpan admin).
 
-## Masih placeholder / belum selesai
-- **Ongkir**: form checkout masih pakai ongkos kirim tetap (Rp 25.000). Integrasi nyata ke `shipping-ongkir-proxy.gs` butuh field tujuan terstruktur (kota/kecamatan, bukan textarea alamat bebas) yang belum ditambahkan — ini pekerjaan berikutnya.
-- **QRIS**: gambar QR di modal pembayaran masih placeholder, bukan QRIS asli. Ganti dengan foto QRIS statis rekening/merchant Agracantika (unggah ke Firebase Storage, tempel URL-nya — lokasinya ditandai jelas di kode dengan komentar `GANTI`).
-- **Foto/video di dashboard Admin Project & Marketplace**: form yang sudah tersambung masih menerima **URL** foto/video (bukan unggah file langsung). Untuk unggah file asli, aktifkan Firebase Storage dan tambahkan input `<input type="file">` + `uploadBytes()` — belum dikerjakan di putaran ini.
+## Yang BELUM bisa diotomatisasi dari sistem ini
+- **Foto produk dari folder Drive "Produk untuk Website"** dan **foto petani
+  tambahan dari folder "Dokumentasi babat toman"** tidak bisa diambil otomatis
+  (folder Drive tersebut tidak bisa diakses lewat koneksi yang tersedia saat
+  revisi ini dibuat — folder terlihat ada, tapi isinya tidak bisa dibaca).
+  Katalog & galeri saat ini memakai foto yang sudah pernah dilampirkan langsung
+  ke percakapan. Untuk menambah foto lain: simpan file ke folder `images/`,
+  lalu tambahkan sebagai produk/berita baru lewat dashboard Admin, atau edit
+  array `getDefaultProducts()` / `galleryPhotos` di `index.html`.
+- Lokasi kecamatan: nama folder Drive kedua ("Dokumentasi babat toman")
+  mengindikasikan kecamatan **Babat Toman** — ini dugaan dari nama folder,
+  bukan dari instruksi eksplisit, jadi belum dituliskan di situs. Konfirmasi
+  dulu sebelum menambahkannya.
 
 ## Cara setup Firebase (ringkas)
-1. Buka https://console.firebase.google.com → buat project baru (paket Spark/gratis cukup).
-2. Project settings → General → Your apps → tambah **Web app** → salin objek `firebaseConfig` yang muncul, tempel menggantikan placeholder `"GANTI..."` di `index.html`.
-3. Authentication → Sign-in method → aktifkan **Email/Password**.
-4. Firestore Database → Create database (mode production).
-5. Firestore → Rules → tempel isi `firestore.rules` → Publish.
-6. (Opsional, untuk unggah foto/video asli) Storage → Get started.
-7. Buat akun admin secara manual: Authentication → Add user (isi email/password), lalu Firestore → koleksi `artifacts/{appId}/public/data/users` → tambah dokumen dengan ID = UID user tadi, isi field `role: "admin_project"` atau `role: "admin_marketplace"`.
+1. https://console.firebase.google.com → project (sudah ada: `agracantika-5ce27`).
+2. Authentication → Sign-in method → Email/Password harus aktif.
+3. Firestore Database → Rules → tempel isi `firestore.rules` terbaru → Publish.
+4. Buat akun admin manual: Authentication → Add user (isi email/password),
+   lalu Firestore → koleksi `artifacts/{appId}/public/data/users` → tambah
+   dokumen dengan ID = UID user tadi, isi field `role: "admin_project"` atau
+   `role: "admin_marketplace"` (perhatikan ejaan — lihat catatan bug di atas).
 
 ## Cara deploy ke GitHub Pages
-Push folder ini ke repo GitHub → Settings → Pages → set source ke branch/folder ini. `index.html` langsung jalan sebagai SPA di `namakamu.github.io/repo`.
-
-## Cara deploy proxy ongkir
-1. https://script.google.com/home → New project → tempel isi `backend/shipping-ongkir-proxy.gs`.
-2. Project Settings → Script Properties → tambah `KOMERCE_KEY` = API key RajaOngkir/Komerce kamu.
-3. Deploy → New deployment → Web app (Execute as: Me, Access: Anyone) → salin URL `.../exec`.
-4. Panggil dari `index.html` lewat `fetch()` setelah field tujuan pengiriman ditambahkan ke form checkout.
+Upload **seluruh folder ini** (termasuk folder `images/`, bukan cuma
+`index.html`) ke repo GitHub yang sudah terhubung ke domain `agracantika.store`.
+Commit ke branch yang sudah dipakai GitHub Pages — situs otomatis ter-update.
