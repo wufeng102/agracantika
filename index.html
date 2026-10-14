@@ -1312,6 +1312,14 @@
             }
         };
 
+        // Link navigasi memakai <a href="#" onclick="navigate(...)">. Tanpa ini, setelah
+        // navigate() jalan, browser ikut berpindah ke "#" kosong → memicu popstate →
+        // halaman dirender ulang sebagai Beranda (menu terlihat "tidak bisa diklik").
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest && e.target.closest('a[href="#"]');
+            if (a) e.preventDefault();
+        });
+
         window.addEventListener('DOMContentLoaded', () => {
             initFirebase();
         });
